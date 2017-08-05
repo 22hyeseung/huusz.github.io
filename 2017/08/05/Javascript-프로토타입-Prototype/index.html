@@ -3,14 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Huusz&#39;s Log</title>
+  <title>[Javascript] 프로토타입 Prototype | Huusz&#39;s Log</title>
   <meta name="viewport" content="width=device-width">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Huusz&#39;s Log">
-<meta property="og:url" content="http://huusz.github.io/index.html">
+  <meta name="description" content="Prototype 프로토타입과 객체지향객체 자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Object 타입의 객체">
+<meta name="keywords" content="Javascipt,Prototype,Inheritance,Object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Javascript] 프로토타입 Prototype">
+<meta property="og:url" content="http://huusz.github.io/2017/08/05/Javascript-프로토타입-Prototype/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
+<meta property="og:description" content="Prototype 프로토타입과 객체지향객체 자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Object 타입의 객체">
+<meta property="og:image" content="http://poiemaweb.com/img/object_literal_prototype_chaining.png">
+<meta property="og:image" content="http://poiemaweb.com/img/constructor_function_prototype_chaining.png">
+<meta property="og:image" content="http://poiemaweb.com/img/extension_prototype.png">
+<meta property="og:image" content="http://poiemaweb.com/img/string_constructor_function_prototype_chaining.png">
+<meta property="og:image" content="http://poiemaweb.com/img/changing_prototype.png">
+<meta property="og:updated_time" content="2017-08-05T08:21:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Huusz&#39;s Log">
+<meta name="twitter:title" content="[Javascript] 프로토타입 Prototype">
+<meta name="twitter:description" content="Prototype 프로토타입과 객체지향객체 자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Object 타입의 객체">
+<meta name="twitter:image" content="http://poiemaweb.com/img/object_literal_prototype_chaining.png">
   
     <link rel="alternative" href="/atom.xml" title="Huusz&#39;s Log" type="application/atom+xml">
   
@@ -42,9 +53,7 @@
 	</div>
 </header>
     <div id="main">
-      
-  
-    <article id="post-Javascript-프로토타입-Prototype" class="post">
+      <article id="post-Javascript-프로토타입-Prototype" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
 			<a href="/2017/08/05/Javascript-프로토타입-Prototype/" class="article-date">
@@ -60,8 +69,8 @@
 	<header class="entry-header">
 		
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/08/05/Javascript-프로토타입-Prototype/">[Javascript] 프로토타입 Prototype</a>
+    <h1 class="article-title entry-title" itemprop="name">
+      [Javascript] 프로토타입 Prototype
     </h1>
   
 
@@ -166,70 +175,26 @@
 		</div>
 	</footer>
 	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
-    <article id="post-hello-world" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/08/05/hello-world/" class="article-date">
-  <time datetime="2017-08-05T06:15:16.000Z" itemprop="datePublished">2017-08-05</time>
-</a>
-		</span>
-		<span class="meta-elements author">huusz</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/08/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
     
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-	<hr class="article-devider">
 
-
-
-  
-  
 
     </div>
     <div class="mb-search">
