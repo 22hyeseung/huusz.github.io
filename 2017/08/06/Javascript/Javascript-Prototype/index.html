@@ -11,12 +11,12 @@
     <meta name="description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Javascript] Prototype">
-<meta property="og:url" content="http://huusz.github.io/2017/08/06/Javascript-Prototype/index.html">
+<meta property="og:url" content="http://huusz.github.io/2017/08/06/Javascript/Javascript-Prototype/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
 <meta property="og:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="http://poiemaweb.com/img/object_literal_prototype_chaining.png">
-<meta property="og:updated_time" content="2017-08-06T01:56:55.000Z">
+<meta property="og:updated_time" content="2017-08-06T04:09:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Javascript] Prototype">
 <meta name="twitter:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
@@ -28,7 +28,7 @@
     
 
     
-        <link rel="icon" href="/images/favicon.jpeg" />
+        <link rel="icon" href="/css/images/favicon.jpeg" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -45,6 +45,17 @@
     
         <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
     
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104157265-1', 'auto');
+ga('send', 'pageview');
+
+</script>
     
     
 
@@ -75,7 +86,7 @@
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/Javascript/index.html">index.javascript</a>
                                 </li>
                             
                         </ul>
@@ -135,7 +146,7 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Javascript-Prototype" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Javascript/Javascript-Prototype" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -152,7 +163,7 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/08/06/Javascript-Prototype/" class="article-date">
+        <a href="/2017/08/06/Javascript/Javascript-Prototype/" class="article-date">
             <time datetime="2017-08-06T01:53:50.000Z" itemprop="datePublished">2017-08-06</time>
         </a>
     </div>
@@ -265,66 +276,59 @@
             
 
 
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
 
-    <a data-url="http://huusz.github.io/2017/08/06/Javascript-Prototype/" data-id="cj602w0f70001n79qc3iognfz" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
 
         </footer>
     </div>
@@ -380,7 +384,7 @@
 <nav id="article-nav">
     
     
-        <a href="/2017/08/05/Javascript-Object/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/08/05/Javascript/Javascript-Object/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">오래된</strong>
         <p class="article-nav-title">[Javascript] Object</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
@@ -401,7 +405,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/08/06/Javascript-Prototype/" class="thumbnail">
+                            <a href="/2017/08/06/Javascript/Javascript-Prototype/" class="thumbnail">
     
     
         <span style="background-image:url(http://poiemaweb.com/img/object_literal_prototype_chaining.png)" alt="[Javascript] Prototype" class="thumbnail-image"></span>
@@ -413,7 +417,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/06/Javascript-Prototype/" class="title">[Javascript] Prototype</a></p>
+                            <p class="item-title"><a href="/2017/08/06/Javascript/Javascript-Prototype/" class="title">[Javascript] Prototype</a></p>
                             <p class="item-date"><time datetime="2017-08-06T01:53:50.000Z" itemprop="datePublished">2017-08-06</time></p>
                         </div>
                     </li>
@@ -421,7 +425,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/08/05/Javascript-Object/" class="thumbnail">
+                            <a href="/2017/08/05/Javascript/Javascript-Object/" class="thumbnail">
     
     
         <span style="background-image:url(http://poiemaweb.com/img/object.png)" alt="[Javascript] Object" class="thumbnail-image"></span>
@@ -433,7 +437,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/05/Javascript-Object/" class="title">[Javascript] Object</a></p>
+                            <p class="item-title"><a href="/2017/08/05/Javascript/Javascript-Object/" class="title">[Javascript] Object</a></p>
                             <p class="item-date"><time datetime="2017-08-05T11:16:16.000Z" itemprop="datePublished">2017-08-05</time></p>
                         </div>
                     </li>
@@ -469,7 +473,7 @@
             <ul>
                 
                     <li>
-                        <a href="http://hexo.io">Hexo</a>
+                        <a href="http://poiemaweb.com">Poiema web</a>
                     </li>
                 
             </ul>
@@ -504,7 +508,7 @@
     var disqus_shortname = 'huuszLog';
     
     
-    var disqus_url = 'http://huusz.github.io/2017/08/06/Javascript-Prototype/';
+    var disqus_url = 'http://huusz.github.io/2017/08/06/Javascript/Javascript-Prototype/';
     
     (function() {
     var dsq = document.createElement('script');
