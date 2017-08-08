@@ -710,10 +710,11 @@ code {
   padding: 30px 30px 20px;
 }
 .widget-title {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 6px;
+  color: rgba(1,1,1,0.4);
 }
 .widget {
   line-height: 1.6em;
