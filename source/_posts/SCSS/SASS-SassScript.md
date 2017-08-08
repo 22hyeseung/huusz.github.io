@@ -1,7 +1,8 @@
 ---
 title: '[SASS] Sass Script'
 date: 2017-08-06 16:56:57
-tags: sass
+category: Sass
+tags: sass syntax
 ---
 # Sass Script
 

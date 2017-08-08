@@ -1,7 +1,8 @@
 ---
 title: '[Javascript] Object'
 date: 2017-08-05 20:16:16
-tags: javascript
+category: Javascript
+tags: object
 ---
 # Object
 

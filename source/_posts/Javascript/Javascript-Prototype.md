@@ -1,7 +1,8 @@
 ---
 title: '[Javascript] Prototype'
 date: 2017-08-06 10:53:50
-tags: javascript
+category: Javascript
+tags: prototype
 ---
 # Prototype 프로토타입과 객체지향
 

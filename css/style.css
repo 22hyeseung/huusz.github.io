@@ -327,8 +327,8 @@ code {
   padding: 18px 30px 17px;
   border-bottom: 1px solid #eee;
   color: #666;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 400;
   text-transform: uppercase;
   line-height: 24px;
 }
@@ -1577,8 +1577,10 @@ a.article-title:hover {
 }
 #page-nav .pages {
   display: block;
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 300;
+  text-align: right;
+  margin-right: 1.5em;
   margin-bottom: 1em !important;
   border: none !important;
 }
@@ -1598,7 +1600,6 @@ a.article-title:hover {
   margin: 0 2px;
   text-decoration: none;
   border-bottom: 3px solid #ddd;
-  border-top: 1px solid #f1f1f1;
   font-weight: 600;
   -webkit-transition: 0.2s ease-in;
   -moz-transition: 0.2s ease-in;
@@ -1613,7 +1614,6 @@ a.article-title:hover {
 #page-nav .extend.current {
   color: #444;
   border-bottom: 3px solid #f4dad1;
-  border-top: 1px solid #f1f1f1;
 }
 #page-nav .space {
   color: #ddd;
@@ -2146,6 +2146,9 @@ i.icon:before {
   #sidebar .sidebar-top,
   #sidebar .widget-wrap {
     padding: 15px;
+  }
+  #sidebar .widget-list {
+    display: none;
   }
   #sidebar .widgets-container {
     padding-bottom: 15px;

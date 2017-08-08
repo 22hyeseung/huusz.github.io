@@ -14,7 +14,7 @@ timezone: Asia/Seoul
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://huusz.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:category/:title/
 permalink_defaults:
 
 # Directory
@@ -80,3 +80,13 @@ deploy:
   type: git
   repository: https://github.com/huusz/huusz.github.io.git
   branch: master
+
+## sitemap auto generator
+sitemap:
+    path: sitemap.xml
+
+feed:
+  type: atom
+  path: feed.xml
+  limit: 20
+  hub:

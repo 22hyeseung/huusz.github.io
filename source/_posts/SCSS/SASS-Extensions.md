@@ -1,7 +1,8 @@
 ---
 title: '[SASS] Extensions'
 date: 2017-08-07 14:03:41
-tags: sass
+category: Sass
+tags: nesting
 ---
 # Extensions
 
