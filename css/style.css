@@ -975,7 +975,7 @@ code {
   line-height: 19px;
   position: absolute;
   display: inline-block;
-  background-color: #82b965;
+  background-color: #b0e0e6;
 }
 .article-summary .article-summary-inner .thumbnail .comment-counter:before {
   top: 3px;
@@ -984,7 +984,7 @@ code {
   position: absolute;
   display: inline-block;
   border: 9px solid transparent;
-  border-right-color: #82b965;
+  border-right-color: #b0e0e6;
 }
 .article-summary .article-summary-inner .thumbnail .thumbnail-image {
   display: block;
