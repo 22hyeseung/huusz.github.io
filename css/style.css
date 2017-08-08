@@ -288,10 +288,6 @@ code {
   -ms-user-select: none;
   user-select: none;
 }
-.logo {
-a
-  z-index: 1;
-}
 .main-body {
   margin-top: -60px;
   background-color: #fff;
