@@ -1656,8 +1656,8 @@ a.article-title:hover {
 }
 #footer .logo {
   width: 198.4px;
-  height: 35px;
-  padding: 13px;
+  height: 25px;
+  padding-bottom: 10px;
   -webkit-background-size: 198.4px 32px;
   -moz-background-size: 198.4px 32px;
   background-size: 198.4px 32px;
