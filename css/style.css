@@ -975,7 +975,7 @@ code {
   line-height: 19px;
   position: absolute;
   display: inline-block;
-  background-color: #82b965;
+  background-color: rgba(176,224,230,0.9);
 }
 .article-summary .article-summary-inner .thumbnail .comment-counter:before {
   top: 3px;
@@ -984,7 +984,7 @@ code {
   position: absolute;
   display: inline-block;
   border: 9px solid transparent;
-  border-right-color: #82b965;
+  border-right-color: rgba(176,224,230,0.9);
 }
 .article-summary .article-summary-inner .thumbnail .thumbnail-image {
   display: block;
@@ -1656,7 +1656,8 @@ a.article-title:hover {
 }
 #footer .logo {
   width: 198.4px;
-  height: 32px;
+  height: 25px;
+  padding-bottom: 10px;
   -webkit-background-size: 198.4px 32px;
   -moz-background-size: 198.4px 32px;
   background-size: 198.4px 32px;
