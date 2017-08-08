@@ -274,12 +274,19 @@ code {
 .logo {
   font-family: 'Neuton', Georgia, "Times New Roman", serif;
   display: block;
-  padding: 10px 0;
+  padding: 0;
   width: 248px;
   height: 40px;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 38px;
   color: #555;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .main-body {
   margin-top: -60px;
