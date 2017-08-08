@@ -272,6 +272,7 @@ code {
   clear: both;
 }
 .logo {
+  font-family: 'Neuton', Georgia, "Times New Roman", serif;
   display: block;
   padding: 10px 0;
   width: 248px;
