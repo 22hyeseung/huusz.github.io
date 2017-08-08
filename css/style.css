@@ -1043,14 +1043,14 @@ code {
 }
 .article-title {
   text-decoration: none;
-  font-size: 38px;
-  letter-spacing: -1px;
+  font-size: 36px;
+  letter-spacing: 0px;
   color: #555;
   line-height: 1.3em;
-  -webkit-transition: color 0.2s;
-  -moz-transition: color 0.2s;
-  -ms-transition: color 0.2s;
-  transition: color 0.2s;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  transition: color 0.3s;
   margin-bottom: 10px;
 }
 a.article-title:hover {
@@ -1137,11 +1137,13 @@ a.article-title:hover {
   margin: 1.3em 0;
 }
 .article-entry a {
-  color: 'B0E0E6';
+  color: #b0e0e6;
   text-decoration: none;
 }
 .article-entry a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  background-color: #b0e0e6;
+  color: #eee;
 }
 .article-entry ul,
 .article-entry ol,
