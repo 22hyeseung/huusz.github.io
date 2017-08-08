@@ -294,8 +294,11 @@ code {
   box-sizing: border-box;
   -webkit-box-shadow: rgba(0,0,0,0.098) 0px 1px 1px 0px;
   box-shadow: rgba(0,0,0,0.098) 0px 1px 1px 0px;
-  padding-left: 300px;
+  padding-left: 280px;
   background: url("images/s-left.png") repeat-y left 0;
+  -webkit-background-size: 280px;
+  -moz-background-size: 280px;
+  background-size: 280px;
 }
 .main-body-inner:before,
 .main-body-inner:after {
@@ -557,8 +560,8 @@ code {
 }
 #sidebar {
   float: left;
-  margin-left: -300px;
-  width: 300px;
+  margin-left: -280px;
+  width: 280px;
 }
 #sidebar .sidebar-toggle {
   display: none;
@@ -1979,7 +1982,7 @@ i.icon:before {
     transition: opacity 0.2s ease-in;
   }
   .main-body-inner #sidebar.expend {
-    width: 300px;
+    width: 280px;
     overflow-y: auto;
     z-index: 2;
     -webkit-transition: width 0.2s ease-in;
