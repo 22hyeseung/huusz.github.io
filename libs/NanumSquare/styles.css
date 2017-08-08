@@ -1,18 +1,64 @@
 @font-face {
   font-family: 'NanumSquare';
+<<<<<<< HEAD
+  src: local('NanumSquareL');
+=======
   src: local('NanumSquareL'), url('../fonts/NanumSquareL.eot');
+>>>>>>> e23808c47a61d084320ffbd0e041dd5a33156671
   src: url('../fonts/NanumSquareL.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/NanumSquareL.eot') format('embedded-opentype'),
        url('../fonts/NanumSquareL.woff') format('woff'), /* Modern Browsers */
        url('../fonts/NanumSquareL.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('../fonts/NanumSquareOTFLight.svg#017f9c78318bcde3d1dc4451e8eaca0a') format('svg'); /* Legacy iOS */
       }
 
 @font-face {
+<<<<<<< HEAD
+  font-family: 'NanumSquare';
+  src: local('NanumSquareR');
+=======
   font-family: 'NanumSquareR';
   src: local('NanumSquareR'), url('../fonts/NanumSquareR.eot');
+>>>>>>> e23808c47a61d084320ffbd0e041dd5a33156671
   src: url('../fonts/NanumSquareR.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/NanumSquareR.eot') format('embedded-opentype'),
        url('../fonts/NanumSquareR.woff') format('woff'), /* Modern Browsers */
        url('../fonts/NanumSquareR.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('../fonts/NanumSquareOTFR.svg#9e23ceb0c858ca37642ba540402577eb') format('svg'); /* Legacy iOS */
+<<<<<<< HEAD
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'NanumSquare';
+  src: local('NanumSquareB');
+  src: url('../fonts/NanumSquareB.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/NanumSquareB.eot') format('embedded-opentype'),
+       url('../fonts/NanumSquareB.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/NanumSquareB.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/NanumSquareOTFB.svg#a41a1fda1fdf3dafd3394867a156b1cf') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'NanumSquare';
+  src: local('NanumSquareEB');
+  src: url('../fonts/NanumSquareEB.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/NanumSquareEB.eot') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/NanumSquareEB.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/NanumSquareEB.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/NanumSquareOTFExtraBold.svg#090d6763bc81b49309446d23fbd10e87') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  900;
+}
+
+
+=======
 
 }
+>>>>>>> e23808c47a61d084320ffbd0e041dd5a33156671
