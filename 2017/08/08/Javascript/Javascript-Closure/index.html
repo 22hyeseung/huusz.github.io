@@ -8,19 +8,19 @@
     
         <meta name="keywords" content="javascript" />
     
-    <meta name="description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x = 10;   var innerFunc = function() &amp;#123;">
+    <meta name="description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Javascript] Closure">
 <meta property="og:url" content="http://huusz.github.io/2017/08/08/Javascript/Javascript-Closure/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x = 10;   var innerFunc = function() &amp;#123;">
+<meta property="og:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="http://poiemaweb.com/img/closure.png">
-<meta property="og:updated_time" content="2017-08-07T15:46:09.000Z">
+<meta property="og:updated_time" content="2017-08-08T10:36:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Javascript] Closure">
-<meta name="twitter:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x = 10;   var innerFunc = function() &amp;#123;">
+<meta name="twitter:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x">
 <meta name="twitter:image" content="http://poiemaweb.com/img/closure.png">
     
 
@@ -179,7 +179,7 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h1><h2 id="1-클로저의-개념"><a href="#1-클로저의-개념" class="headerlink" title="1. 클로저의 개념"></a>1. 클로저의 개념</h2><p>클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다.</p>
+            <h1 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h1><h2 id="1-클로저의-개념"><a href="#1-클로저의-개념" class="headerlink" title="1. 클로저의 개념"></a>1. 클로저의 개념</h2><p>클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params"></span>) </span>&#123;  <span class="comment">//...(1)</span></div><div class="line">  <span class="keyword">var</span> x = <span class="number">10</span>; </div><div class="line">  <span class="keyword">var</span> innerFunc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//...(2)</span></div><div class="line">    <span class="built_in">console</span>.log(x); <span class="comment">//...(3)</span></div><div class="line">  &#125;;</div><div class="line">  innerFunc();</div><div class="line">&#125;</div><div class="line">outerFunc();</div></pre></td></tr></table></figure>
 <p>위 예제를 통해 살펴보면, outerFunc 함수가 선언되었고 …(1)<br>그 내부 함수로 innerFunc가 선언되었다. …(2)<br>innerFunc는 자신을 포함하고 있는 outerFunc의 지역 변수 x에 접근할 수 있다. …(3)  </p>
 <p>자바스크립트 엔진은 Scope-chain을 통해 중첩된 함수의 scope 레퍼런스를 차례대로 검색한다.  </p>
@@ -220,8 +220,9 @@ ga('send', 'pageview');
 <p><em>즉시실행함수는 단 한번만 실행된다.</em> 따라서 <code>add</code>에 담긴 함수가 호출될 때마다 변수 <code>counter</code>가 초기화되는 일은 없을 것이다. 중요한 것은 <code>add</code>에 담겨 있는 내부 함수(3)는 변수 <code>counter</code>(2)에 접근할 수 있고 변수 <code>counter</code>는 <code>add</code>에 담겨 있는 내부 함수(3)가 소멸될 때까지 유지된다는 것이다. 이것이 클로저이다.</p>
 <p>변수 <code>counter</code>는 외부에서 직접 접근할 수 없는 <code>private</code>변수이므로 전역 변수를 사용했을 때와 같이 의도되지 않은 변경을 걱정할 필요도 없다.</p>
 <h3 id="2-setTimeout-의-콜백-함수"><a href="#2-setTimeout-의-콜백-함수" class="headerlink" title="2) setTimeout()의 콜백 함수"></a>2) setTimeout()의 콜백 함수</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>새로고침으로 다시 실행해 보세요<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> fade = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span></div><div class="line"><span class="javascript">      <span class="comment">// 자유변수</span></span></div><div class="line"><span class="javascript">      <span class="keyword">var</span> level = <span class="number">1</span>; <span class="comment">// ②</span></span></div><div class="line"><span class="javascript">      <span class="keyword">var</span> step = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">        <span class="keyword">var</span> hex = level.toString(<span class="number">16</span>); <span class="comment">// ④</span></span></div><div class="line"><span class="undefined">        </span></div><div class="line"><span class="javascript">        <span class="comment">// hex: '1' ~ 'f'</span></span></div><div class="line"><span class="javascript">        node.style.backgroundColor = <span class="string">'#ff'</span> + hex; <span class="comment">// ⑤</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="keyword">if</span>(level &lt; <span class="number">15</span>) &#123; <span class="comment">// ⑥</span></span></div><div class="line"><span class="undefined">          level += 1;</span></div><div class="line"><span class="javascript">          setTimeout(step, <span class="number">100</span>); <span class="comment">// ⑦</span></span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">      &#125;;</span></div><div class="line"><span class="javascript">      <span class="comment">// setTimeout 호출 이후 fade 함수는 종료한다. 100ms 후 함수 step은 호출된다.</span></span></div><div class="line"><span class="javascript">      <span class="comment">// 즉 외부 함수 fade보다 내부 함수 step이 더 오래 유지된다.</span></span></div><div class="line"><span class="javascript">      setTimeout(step, <span class="number">100</span>); <span class="comment">// ③</span></span></div><div class="line"><span class="undefined">    &#125;;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">    fade(<span class="built_in">document</span>.body); <span class="comment">// ①</span></span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>① 함수 fade는 document.body를 인자로 전달받아 호출된다.<br>② 함수 fade의 지역변수 level은 1로 초기화되어 있다. 함수 step은 내부함수이며 외부함수 fade의 지역변수 level을 사용한다. level은 자유변수이다.<br>③ setTimeout 호출 이후 fade 함수는 종료한다. 100ms 후 함수 step은 호출된다. 즉 외부 함수 fade보다 내부 함수 step이 더 오래 유지된다.<br>④ 함수 step은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.<br>⑤ 함수 fade의 매개변수 node(document.body)의 배경색을 변경한다.<br>⑥ 변수 level이 15(f)보다 작은지 다시말해 16진수 범위 내(1~f)인지 확인한다.<br>⑦ level을 1 증가시키고 다시 함수 step을 호출하여 같은 작업을 반복한다.</p>
-<p>이때 fade 함수는 이미 반환되었지만 외부함수 fade 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.</p>
+<p>setTimeout() 함수는 첫번째 파라미터에 콜백 함수를 전달하고, 파라미터에 ms(1/1000초)단위의 시간 간격을 지정한다. 즉 지정된 시간 간격으로 콜백 함수를 호출한다.</p>
+<p>① 함수 fade는 document.body를 인자로 전달받아 호출된다.<br>② 함수 fade의 지역변수 level은 1로 초기화되어 있다. 함수 step은 내부함수이며 외부함수 fade의 지역변수 level을 사용한다. level은 자유변수이다.<br>③ setTimeout 호출 이후 fade 함수는 종료한다. 100ms 후 함수 step은 호출된다. 즉 외부 함수 fade보다 내부 함수 step이 더 오래 유지된다.<br>④ 함수 step은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.<br>⑤ 함수 fade의 매개변수 node(document.body)의 배경색을 변경한다.<br>⑥ 변수 level이 15(f)보다 작은지 다시말해 16진수 범위 내(1~f)인지 확인한다.<br>⑦ level을 1 증가시키고 다시 함수 step을 호출하여 같은 작업을 반복한다.  </p>
+<p>이때 fade 함수는 이미 반환되었지만 외부함수 fade 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.  </p>
 <h3 id="3-자주-발생하는-실수"><a href="#3-자주-발생하는-실수" class="headerlink" title="3) 자주 발생하는 실수"></a>3) 자주 발생하는 실수</h3><p>아래 예제는 클로저 사용시 자주 발생하는 실수에 관한 예제이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  arr[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> i;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; arr.length; index++) &#123;</div><div class="line">  <span class="built_in">console</span>.log(arr[index]());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>배열 arr에 5개의 함수가 할당되고 각각의 함수는 순차적으로 0, 1, 2, 3, 4를 반환할 것으로 기대하겠지만 결과는 그렇지않다. 이유는 변수 i는 외부함수의 변수가 아닌 전역 변수이기 때문이다. 바르게 동작하는 코드는 아래와 같다.</p>
@@ -348,7 +349,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
     
     
-        <a href="/2017/08/07/SCSS/SCSS-Extensions/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/08/07/SCSS/SASS-Extensions/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">[SASS] Extensions</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
@@ -389,7 +390,7 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/08/07/SCSS/SCSS-Extensions/" class="thumbnail">
+                            <a href="/2017/08/07/SCSS/SASS-Extensions/" class="thumbnail">
     
     
         <span style="background-image:url(http://poiemaweb.com/img/partial.png)" alt="[SASS] Extensions" class="thumbnail-image"></span>
@@ -401,7 +402,7 @@ ga('send', 'pageview');
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/07/SCSS/SCSS-Extensions/" class="title">[SASS] Extensions</a></p>
+                            <p class="item-title"><a href="/2017/08/07/SCSS/SASS-Extensions/" class="title">[SASS] Extensions</a></p>
                             <p class="item-date"><time datetime="2017-08-07T05:03:41.000Z" itemprop="datePublished">2017-08-07</time></p>
                         </div>
                     </li>
