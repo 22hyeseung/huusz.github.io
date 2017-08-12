@@ -227,6 +227,7 @@ body,
 ::selection {
   color: #fff;
   background: #f4dad1;
+  text-shadow: 1px 1px #000;
 }
 body {
   background: #eaeaea;
