@@ -225,8 +225,9 @@ body,
   height: 100%;
 }
 ::selection {
-  color: #fff;
+  color: #fffaf0;
   background: #f4dad1;
+  text-shadow: 1px 1px #999;
 }
 body {
   background: #eaeaea;
@@ -479,6 +480,7 @@ code {
   line-height: 20px;
   padding: 15px 14px;
   font-size: 16px;
+  font-weight: 200;
 }
 .nav-container .nav-container-inner #main-nav .main-nav-list-item .main-nav-list-link.current {
   color: #fff;
