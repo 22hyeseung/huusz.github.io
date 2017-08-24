@@ -230,8 +230,8 @@ body,
   text-shadow: 1.5px 1.4px 1.7px #888;
 }
 body {
-  background: #eaeaea;
-  font: 14px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  background: #f2e3c7;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 code {
@@ -273,7 +273,7 @@ code {
   clear: both;
 }
 .logo {
-  font-family: 'Montserrat', 'Neuton', serif;
+  font-family: 'Neuton', serif;
   display: block;
   padding: 0;
   width: 248px;
@@ -543,7 +543,7 @@ code {
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
-  font: 16px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 16px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   color: rgba(238,247,254,0.7);
 }
 .search-form-input:focus,
@@ -1212,7 +1212,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font-family: 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1260,7 +1260,7 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #eaeaea;
+  background: #f2e3c7;
   color: #aaa;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -1324,7 +1324,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -1334,7 +1334,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #eaeaea;
+  background: #f2e3c7;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1637,7 +1637,7 @@ a.article-title:hover {
   padding: 30px;
 }
 #footer #back-to-top {
-  background: #eaeaea;
+  background: #f2e3c7;
   color: #777;
   overflow: hidden;
   text-align: center;
