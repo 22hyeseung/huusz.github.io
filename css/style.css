@@ -225,9 +225,9 @@ body,
   height: 100%;
 }
 ::selection {
-  color: #fffaf0;
+  color: #fff;
   background: #f4dad1;
-  text-shadow: 1px 1px #999;
+  text-shadow: 1.5px 1.4px 1.7px #888;
 }
 body {
   background: #eaeaea;
@@ -273,13 +273,13 @@ code {
   clear: both;
 }
 .logo {
-  font-family: 'Patrick Hand SC', 'Neuton', serif;
+  font-family: 'Montserrat', 'Neuton', serif;
   display: block;
   padding: 0;
   width: 248px;
   height: 40px;
   text-decoration: none;
-  font-size: 38px;
+  font-size: 30px;
   color: #555;
   -ms-user-select: none;
   -moz-user-select: none;
