@@ -231,7 +231,7 @@ body,
 }
 body {
   background: #f2e3c7;
-  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 code {
@@ -540,7 +540,7 @@ code {
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
-  font: 16px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 16px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   color: rgba(238,247,254,0.7);
 }
 .search-form-input:focus,
@@ -1214,7 +1214,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font-family: 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1326,7 +1326,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -1908,7 +1908,7 @@ i.icon:before {
 }
 @media only screen and (min-width: 480px) and (max-width: 959px) {
   #header {
-    padding-bottom: 20px;
+    padding-bottom: 45px;
   }
   #header .nav-container-inner {
     display: block !important;
@@ -1921,10 +1921,10 @@ i.icon:before {
     width: 100px;
   }
   .main-body {
-    margin-top: -20px;
+    margin-top: -45px;
   }
   .main-body-inner {
-    padding-left: 20px;
+    padding-left: 45px;
     background-position: -290px 0 !important;
   }
   .main-body-inner #sidebar {
@@ -1934,7 +1934,7 @@ i.icon:before {
     height: 100%;
     position: absolute;
     overflow: hidden;
-    width: 20px;
+    width: 45px;
     -webkit-transition: width 0.2s ease-in 0.2s;
     -moz-transition: width 0.2s ease-in 0.2s;
     -ms-transition: width 0.2s ease-in 0.2s;
@@ -1950,10 +1950,10 @@ i.icon:before {
   }
   .main-body-inner #sidebar .sidebar-toggle {
     display: block;
-    padding: 6px;
+    padding: 3px;
     color: rgba(255,255,255,0.7);
     text-align: center;
-    height: 20px;
+    height: 45px;
     background: #03053a;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
