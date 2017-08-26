@@ -275,10 +275,10 @@ code {
 .logo {
   display: block;
   padding: 0;
-  width: 248px;
-  height: 40px;
+  width: 300px;
+  height: 50px;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 24px;
   color: #fef8ed;
   -ms-user-select: none;
   -moz-user-select: none;
@@ -289,7 +289,7 @@ code {
   user-select: none;
 }
 .main-body {
-  margin-top: -40px;
+  margin-top: -20px;
   background-color: #fff;
 }
 .main-body-inner {
@@ -352,7 +352,7 @@ code {
 }
 #header {
   background: #1e3976;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   position: relative;
 }
 #header-outer {
@@ -364,7 +364,7 @@ code {
 }
 #header-title {
   text-align: center;
-  padding: 75px 30px;
+  padding: 30px 15px 165px 15px;
 }
 #header-title:before,
 #header-title:after {
@@ -385,7 +385,7 @@ code {
 #header-title .subtitle {
   font-size: 16px;
   font-style: italic;
-  line-height: 50px;
+  line-height: 60px;
   color: rgba(238,247,254,0.7);
   text-shadow: 0 1px rgba(0,0,0,0.2);
 }
@@ -1660,12 +1660,12 @@ a.article-title:hover {
   line-height: 22px;
 }
 #footer .logo {
-  width: 198.4px;
+  width: 240px;
   height: 25px;
   padding-bottom: 10px;
-  -webkit-background-size: 198.4px 32px;
-  -moz-background-size: 198.4px 32px;
-  background-size: 198.4px 32px;
+  -webkit-background-size: 240px 40px;
+  -moz-background-size: 240px 40px;
+  background-size: 240px 40px;
 }
 i.icon {
   display: inline-block;
@@ -1909,7 +1909,7 @@ i.icon:before {
 }
 @media only screen and (min-width: 480px) and (max-width: 959px) {
   #header {
-    padding-bottom: 50px;
+    padding-bottom: 40px;
   }
   #header .nav-container-inner {
     display: block !important;
@@ -1922,20 +1922,20 @@ i.icon:before {
     width: 100px;
   }
   .main-body {
-    margin-top: -50px;
+    margin-top: -40px;
   }
   .main-body-inner {
-    padding-left: 50px;
+    padding-left: 40px;
     background-position: -290px 0 !important;
   }
   .main-body-inner #sidebar {
     left: 0;
-    background: url("images/s-left.png") repeat-y left 0;
+    background: rgba(244,247,249,0.95);
     margin: 0;
     height: 100%;
     position: absolute;
     overflow: hidden;
-    width: 50px;
+    width: 40px;
     -webkit-transition: width 0.2s ease-in 0.2s;
     -moz-transition: width 0.2s ease-in 0.2s;
     -ms-transition: width 0.2s ease-in 0.2s;
@@ -1954,7 +1954,7 @@ i.icon:before {
     padding: 6px;
     color: rgba(255,255,255,0.7);
     text-align: center;
-    height: 50px;
+    height: 40px;
     background: #03053a;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
