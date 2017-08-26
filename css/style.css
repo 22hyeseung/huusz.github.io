@@ -225,9 +225,9 @@ body,
   height: 100%;
 }
 ::selection {
-  color: #fff;
+  color: #efe0c7;
   background: #03053a;
-  text-shadow: 1.5px 1.4px 1.7px #888;
+  text-shadow: 1.5px 1.4px 1.7px #060935;
 }
 body {
   background: #f2e3c7;
