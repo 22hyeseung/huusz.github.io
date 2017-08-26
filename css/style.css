@@ -246,7 +246,6 @@ code {
 .container {
   position: relative;
   padding: 0 20px;
-  border: 10px solid #f2e3c7;
 }
 .container-inner {
   max-width: 1120px;
@@ -357,7 +356,6 @@ code {
   background: #1e3976;
   padding-bottom: 60px;
   position: relative;
-  border: 10px solid #f2e3c7;
 }
 #header-outer {
   height: 100%;
