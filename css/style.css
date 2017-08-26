@@ -226,12 +226,12 @@ body,
 }
 ::selection {
   color: #fff;
-  background: #f4dad1;
+  background: #03053a;
   text-shadow: 1.5px 1.4px 1.7px #888;
 }
 body {
-  background: #eaeaea;
-  font: 14px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  background: #1e3976;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 code {
@@ -273,7 +273,7 @@ code {
   clear: both;
 }
 .logo {
-  font-family: 'Montserrat', 'Neuton', serif;
+  font-family: 'Neuton', serif;
   display: block;
   padding: 0;
   width: 248px;
@@ -353,7 +353,7 @@ code {
   clear: both;
 }
 #header {
-  background: #fff8f0;
+  background: #1e3976;
   padding-bottom: 60px;
   position: relative;
 }
@@ -388,13 +388,13 @@ code {
   font-size: 16px;
   font-style: italic;
   line-height: 50px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(238,247,254,0.7);
   text-shadow: 0 1px rgba(0,0,0,0.2);
 }
 .nav-container .nav-icon,
 .nav-container .nav-container-inner #main-nav .main-nav-list-item .main-nav-list-link {
   float: left;
-  color: rgba(255,255,255,0.7);
+  color: rgba(238,247,254,0.7);
   text-decoration: none;
   text-shadow: 0 1px rgba(0,0,0,0.2);
   display: block;
@@ -411,7 +411,7 @@ code {
 }
 .nav-container {
   padding: 0 15px;
-  background: #33363b;
+  background: #03053a;
   z-index: 1;
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 -1px 0 rgba(0,0,0,0.2), inset 1px 0 0 rgba(0,0,0,0.2), inset -1px 0 0 rgba(0,0,0,0.2);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 -1px 0 rgba(0,0,0,0.2), inset 1px 0 0 rgba(0,0,0,0.2), inset -1px 0 0 rgba(0,0,0,0.2);
@@ -492,7 +492,7 @@ code {
   overflow: hidden;
   position: absolute;
   width: 180px;
-  background: #33363b url("images/opacity-10.png") repeat;
+  background: #03053a url("images/opacity-10.png") repeat;
 }
 .nav-container .nav-container-inner #main-nav .main-nav-list-item .main-nav-list-child li {
   -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.06);
@@ -524,7 +524,7 @@ code {
 .search-form:before {
   content: "\f002";
   margin-right: 8px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(238,247,254,0.7);
   font: normal normal normal 16px/1 FontAwesome;
 }
 .search-form-input,
@@ -543,8 +543,8 @@ code {
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
-  font: 16px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
-  color: rgba(255,255,255,0.7);
+  font: 16px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  color: rgba(238,247,254,0.7);
 }
 .search-form-input:focus,
 .search-form-input.ins-search-input:focus,
@@ -574,7 +574,7 @@ code {
   display: none;
 }
 #sidebar .sidebar-top {
-  background: #f4dad1;
+  background: #03053a;
   padding: 15px 30px;
 }
 #sidebar .sidebar-top:before,
@@ -693,7 +693,7 @@ code {
   background: rgba(0,0,0,0.02);
 }
 .article-nav-link-wrap:hover .icon {
-  color: #f4dad1;
+  color: #03053a;
 }
 .article-nav-caption {
   display: block;
@@ -870,7 +870,7 @@ code {
 }
 #recent-post li .item-inner a a,
 #recent-post li .item-inner .item-category a {
-  color: #f4dad1;
+  color: #03053a;
 }
 #recent-post li .item-inner a a:hover,
 #recent-post li .item-inner .item-category a:hover {
@@ -901,7 +901,7 @@ code {
   opacity: 0.8;
 }
 #recent-post li:hover .item-title a {
-  color: #f4dad1;
+  color: #03053a;
 }
 .category-list-count,
 .tag-list-count,
@@ -954,7 +954,7 @@ code {
 }
 .article-summary a {
   text-decoration: none;
-  color: #f4dad1;
+  color: #03053a;
 }
 .article-summary .article-summary-inner {
   margin-right: 30px;
@@ -1037,7 +1037,7 @@ code {
   opacity: 0.7;
 }
 .article-summary:hover .article-title a {
-  color: #f4dad1;
+  color: #03053a;
 }
 .article-category {
   float: left;
@@ -1062,7 +1062,7 @@ code {
   margin-bottom: 10px;
 }
 a.article-title:hover {
-  color: #f4dad1;
+  color: #03053a;
 }
 .article-meta {
   line-height: 1.6em;
@@ -1101,7 +1101,7 @@ a.article-title:hover {
   overflow: hidden;
 }
 .article-summary .article-meta a {
-  color: #f4dad1;
+  color: #03053a;
 }
 .article-summary .article-meta > div {
   margin-right: 0;
@@ -1212,7 +1212,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font-family: 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1260,16 +1260,16 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #eaeaea;
+  background: #1e3976;
   color: #aaa;
   text-shadow: 0 1px #fff;
   text-decoration: none;
 }
 .article-more-link a:hover {
-  background: #f4dad1;
+  background: #03053a;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 1px #e39f88;
+  text-shadow: 0 1px #02042e;
 }
 .article-footer {
   font-size: 14px;
@@ -1324,7 +1324,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -1334,7 +1334,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #eaeaea;
+  background: #1e3976;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1492,7 +1492,7 @@ a.article-title:hover {
   padding: 30px 30px 20px;
 }
 #comments a {
-  color: #f4dad1;
+  color: #03053a;
 }
 .archives-wrap {
   margin: block-margin 0;
@@ -1548,7 +1548,7 @@ a.article-title:hover {
   line-height: 1.6em;
 }
 .archive-article-title:hover {
-  color: #f4dad1;
+  color: #03053a;
 }
 .archive-article-footer {
   margin-top: 1em;
@@ -1593,7 +1593,7 @@ a.article-title:hover {
 }
 #page-nav .page-number,
 #page-nav .extend {
-  color: #f4dad1;
+  color: #03053a;
   position: relative;
   overflow: hidden;
   font-size: 16px;
@@ -1615,13 +1615,13 @@ a.article-title:hover {
 #page-nav .page-number.current,
 #page-nav .extend.current {
   color: #444;
-  border-bottom: 3px solid #f4dad1;
+  border-bottom: 3px solid #03053a;
 }
 #page-nav .space {
   color: #ddd;
 }
 #footer {
-  background: #33363b;
+  background: #03053a;
   margin-top: 60px;
   color: #aaa;
   line-height: 1.6em;
@@ -1637,7 +1637,7 @@ a.article-title:hover {
   padding: 30px;
 }
 #footer #back-to-top {
-  background: #eaeaea;
+  background: #1e3976;
   color: #777;
   overflow: hidden;
   text-align: center;
@@ -1729,7 +1729,7 @@ i.icon:before {
   display: inline-block;
 }
 .ins-close:hover {
-  color: #f4dad1;
+  color: #03053a;
 }
 .ins-search-container {
   left: 50%;
@@ -1804,7 +1804,7 @@ i.icon:before {
 .ins-section .ins-search-item:hover,
 .ins-section .ins-search-item.active {
   color: #fff;
-  background: #f4dad1;
+  background: #03053a;
 }
 .ins-section .ins-search-item:hover .ins-slug,
 .ins-section .ins-search-item.active .ins-slug,
@@ -1952,7 +1952,7 @@ i.icon:before {
     color: rgba(255,255,255,0.7);
     text-align: center;
     height: 50px;
-    background: #f4dad1;
+    background: #03053a;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2079,7 +2079,7 @@ i.icon:before {
   }
   #header .nav-container #main-nav .main-nav-list-item.top-level-menu:hover > a {
     background: none;
-    color: rgba(255,255,255,0.7);
+    color: rgba(238,247,254,0.7);
   }
   #header .nav-container #main-nav .main-nav-list-item.top-level-menu > a:hover {
     color: #fff;
