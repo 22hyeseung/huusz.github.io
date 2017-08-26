@@ -245,7 +245,7 @@ code {
 }
 .container {
   position: relative;
-  border: 10px solid #f2e3c7;
+  padding: 0 20px;
 }
 .container-inner {
   max-width: 1120px;
@@ -289,7 +289,7 @@ code {
   user-select: none;
 }
 .main-body {
-  margin-top: -20px;
+  margin-top: -40px;
   background-color: #fff;
 }
 .main-body-inner {
@@ -2022,7 +2022,8 @@ i.icon:before {
 }
 @media only screen and (max-width: 479px) {
   .container {
-    padding: 0px;
+    padding: 10px;
+    border: none;
   }
   #header .logo-wrap {
     width: 100%;
@@ -2158,7 +2159,7 @@ i.icon:before {
     padding-bottom: 15px;
   }
   #footer {
-    margin-top: 0px;
+    margin-top: -10px;
   }
   #footer #back-to-top {
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1), inset 0 1px 0 rgba(0,0,0,0.05);
