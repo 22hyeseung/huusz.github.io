@@ -289,7 +289,6 @@ code {
   user-select: none;
 }
 .main-body {
-  margin-top: -40px;
   background-color: #fff;
 }
 .main-body-inner {
@@ -2114,6 +2113,9 @@ i.icon:before {
   .main-body-inner {
     padding: 0px;
     background: none;
+  }
+  .main-body {
+    margin: -20px;
   }
   #main {
     float: none;
