@@ -1960,7 +1960,7 @@ i.icon:before {
   }
   .main-body-inner #sidebar .sidebar-toggle .toggle {
     line-height: 38px;
-    font-size: 38px;
+    font-size: 30px;
     width: 38px;
     font-family: fontawesome;
   }
