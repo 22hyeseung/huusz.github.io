@@ -231,7 +231,7 @@ body,
 }
 body {
   background: #f2e3c7;
-  font: 14px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 code {
@@ -240,7 +240,7 @@ code {
   padding: 3px 5px;
   font-size: 0.8em;
   border-radius: 2px;
-  font-family: 'Cousine', Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: 'Fira Mono', Consolas, Monaco, Menlo, Consolas, monospace;
   background-color: #f8f8f8;
 }
 .container {
@@ -539,7 +539,7 @@ code {
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
-  font: 16px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 16px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   color: rgba(238,247,254,0.7);
 }
 .search-form-input:focus,
@@ -1213,7 +1213,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font-family: 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1325,7 +1325,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px 'Proxima Nova', 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+  font: 14px 'Montserrat', 'Spoqa Han Sans', 'Spoqa Han Sans JP', "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -1819,7 +1819,7 @@ i.icon:before {
   overflow-x: auto;
   padding: 15px 20px;
   font-size: 14px;
-  font-family: 'Cousine', Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: 'Fira Mono', Consolas, Monaco, Menlo, Consolas, monospace;
   line-height: 22.400000000000002px;
 }
 .highlight table {
@@ -1960,7 +1960,7 @@ i.icon:before {
   }
   .main-body-inner #sidebar .sidebar-toggle .toggle {
     line-height: 38px;
-    font-size: 38px;
+    font-size: 30px;
     width: 38px;
     font-family: fontawesome;
   }
