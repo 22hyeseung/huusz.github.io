@@ -1,5 +1,5 @@
 ---
-title: '[Javascript] Object'
+title: '[JS] 객체 Object'
 date: 2017-08-05 20:16:16
 category: Javascript
 tags: object

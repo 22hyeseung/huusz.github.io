@@ -1,5 +1,5 @@
 ---
-title: '[Javascript] Prototype'
+title: '[JS] 프로토타입 Prototype'
 date: 2017-08-06 10:53:50
 category: Javascript
 tags: prototype

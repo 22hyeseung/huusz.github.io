@@ -1,5 +1,5 @@
 ---
-title: '[Javascript] Closure'
+title: '[JS] 클로져 Closure'
 date: 2017-08-08 00:35:42
 category: Javascript
 tags: closure
