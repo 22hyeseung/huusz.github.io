@@ -3,17 +3,17 @@
 
     <sitemap>
         <loc>http://huusz.github.io/post-sitemap.xml</loc>
-        <lastmod>2017-08-08T14:56:13.000Z</lastmod>
+        <lastmod>2017-08-28T14:13:25.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://huusz.github.io/category-sitemap.xml</loc>
-        <lastmod>2017-08-08T14:55:33.000Z</lastmod>
+        <lastmod>2017-08-28T14:12:48.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://huusz.github.io/tag-sitemap.xml</loc>
-        <lastmod>2017-08-08T14:55:23.000Z</lastmod>
+        <lastmod>2017-08-08T14:56:13.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>

@@ -7,32 +7,8 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-SassScript/</loc>
-        <lastmod>2017-08-08T14:56:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</loc>
-        <lastmod>2017-08-08T14:55:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/2017/Javascript/Javascript/Javascript-Prototype/</loc>
-        <lastmod>2017-08-08T14:55:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Javascript/Javascript/Javascript-Closure/</loc>
-        <lastmod>2017-08-08T14:55:25.000Z</lastmod>
+        <lastmod>2017-08-28T14:13:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -40,7 +16,31 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Javascript/Javascript/Javascript-Object/</loc>
-        <lastmod>2017-08-08T14:55:23.000Z</lastmod>
+        <lastmod>2017-08-28T14:13:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Javascript/Javascript/Javascript-Closure/</loc>
+        <lastmod>2017-08-28T14:13:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</loc>
+        <lastmod>2017-08-28T14:12:48.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-SassScript/</loc>
+        <lastmod>2017-08-08T14:56:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
