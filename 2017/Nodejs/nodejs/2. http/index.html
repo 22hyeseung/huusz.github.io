@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="Huusz&#39;s Log">
 <meta property="og:description" content="HTTP네트워크 확인하기1) wireshark  2) 크롬 개발자도구  HTTP  웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약 최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다. 모바일 앱 - 서버 간 통신 서버 - 서버 간 통신   80번 포트를 기본으로 사용 클라이언트의 요청(request)과 서버의 응답(response)">
 <meta property="og:locale" content="ko">
-<meta property="og:image" content="http://huusz.github.io/2017/Nodejs/nodejs/images/WIRESHARK.png">
-<meta property="og:updated_time" content="2017-08-29T15:43:23.000Z">
+<meta property="og:image" content="http://huusz.github.io/2017/Nodejs/nodejs/2.%20http/images/WIRESHARK.png">
+<meta property="og:updated_time" content="2017-08-29T15:50:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[node] HTTP">
 <meta name="twitter:description" content="HTTP네트워크 확인하기1) wireshark  2) 크롬 개발자도구  HTTP  웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약 최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다. 모바일 앱 - 서버 간 통신 서버 - 서버 간 통신   80번 포트를 기본으로 사용 클라이언트의 요청(request)과 서버의 응답(response)">
-<meta name="twitter:image" content="http://huusz.github.io/2017/Nodejs/nodejs/images/WIRESHARK.png">
+<meta name="twitter:image" content="http://huusz.github.io/2017/Nodejs/nodejs/2.%20http/images/WIRESHARK.png">
     
 
     
@@ -180,11 +180,11 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="../images/WIRESHARK.png" alt="WIRESHARK"></p>
-<p><img src="../images/WIRESHARK.png" alt="WIRESHARK2"></p>
-<h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="../images/chromeDevTools.png" alt="WIRESHARK2"></p>
+            <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="images/WIRESHARK.png" alt="WIRESHARK"></p>
+<p><img src="images/WIRESHARK.png" alt="WIRESHARK2"></p>
+<h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="images/chromeDevTools.png" alt="WIRESHARK2"></p>
 <p><br></p>
-<h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="../images/http.png" alt="http"></p>
+<h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="images/http.png" alt="http"></p>
 <ul>
 <li>웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약</li>
 <li>최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다.<ul>
@@ -199,7 +199,7 @@ ga('send', 'pageview');
 <p><strong>1996</strong><br>여러 인터넷 서비스 업체들이 자체적으로 사용하던 HTTP 구현들을 모아 HTTP 1.0 발표</p>
 <p><strong>1999</strong><br>1.0의 문제를 해결하고 여러가지 기능을 추가한 HTTP 1.1을 발표. 지금까지 사용되고 있는 버전</p>
 <p><br></p>
-<h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="../images/https.png" alt="https"></p>
+<h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="images/https.png" alt="https"></p>
 <ul>
 <li>HTTP over SSL</li>
 <li>HTTP 통신을 암호화해 주고 받는 내용을 중간에서 가로챌 수 없도록 한다.</li>
@@ -273,7 +273,7 @@ ga('send', 'pageview');
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; encodeURIComponent(&quot;한글&quot;)</div><div class="line">&quot;%ED%95%9C%EA%B8%80&quot;</div><div class="line">&gt; decodeURIComponent(&quot;%ED%95%9C%EA%B8%80&quot;)</div><div class="line">&quot;한글&quot;</div></pre></td></tr></table></figure>
-<p><img src="../images/퍼센트인코딩.png" alt="퍼센트인코딩"></p>
+<p><img src="images/퍼센트인코딩.png" alt="퍼센트인코딩"></p>
 <h3 id="5-Request-Target"><a href="#5-Request-Target" class="headerlink" title="5) Request Target"></a>5) Request Target</h3><p>일반적인 경우 아래와 같은 구조가 사용됨  </p>
 <p><code>absolute path + query string + fragment id</code></p>
 <p>절대 경로 + 쿼리스트링 + 해시  </p>
@@ -504,7 +504,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/2. http/" class="thumbnail">
     
     
-        <span style="background-image:url(../images/WIRESHARK.png)" alt="[node] HTTP" class="thumbnail-image"></span>
+        <span style="background-image:url(images/WIRESHARK.png)" alt="[node] HTTP" class="thumbnail-image"></span>
     
     
 </a>
