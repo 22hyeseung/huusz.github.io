@@ -14,15 +14,15 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Nodejs/</loc>
-        <lastmod>2017-08-29T15:43:26.000Z</lastmod>
+        <loc>http://huusz.github.io/categories/Javascript/</loc>
+        <lastmod>2017-08-29T15:43:40.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Javascript/</loc>
-        <lastmod>2017-08-29T15:43:40.000Z</lastmod>
+        <loc>http://huusz.github.io/categories/Nodejs/</loc>
+        <lastmod>2017-08-29T15:58:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
