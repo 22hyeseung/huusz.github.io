@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-08-29T15:43:15.000Z</updated>
+  <updated>2017-08-30T08:08:42.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -14,6 +14,230 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[node] Web form</title>
+    <link href="http://huusz.github.io/2017/Nodejs/nodejs/5.%20Web%20form/"/>
+    <id>http://huusz.github.io/2017/Nodejs/nodejs/5. Web form/</id>
+    <published>2017-08-30T08:08:08.000Z</published>
+    <updated>2017-08-30T08:08:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTML-Form"><a href="#HTML-Form" class="headerlink" title="HTML Form"></a>HTML Form</h1><h2 id="1-기본-동작"><a href="#1-기본-동작" class="headerlink" title="1. 기본 동작"></a>1. 기본 동작</h2><p>HTML form을 전송하면, 입력된 정보가 기본적으로 percent encoding 되어 요청됨</p>
+<ul>
+<li>GET method</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /search?query=%EA%B0%9C&amp;sort=latest HTTP/1.1</div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>POST method</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">POST /form HTTP/1.1</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">...</div><div class="line"></div><div class="line">home=Cosby&amp;favorite+flavor=flies</div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="2-multipart-form-data"><a href="#2-multipart-form-data" class="headerlink" title="2. multipart/form-data"></a>2. multipart/form-data</h2><ul>
+<li>기본 설정(percent encoding)으로는 폼으로 파일을 업로드하는 것은 불가능</li>
+<li>(클라이언트 측) form 태그에 enctype=”multipart/form-data” 속성을 적용하면 파일 업로드 가능</li>
+<li>(서버 측) body-parser 미들웨어는 multipart/form-data 형태의 요청을 지원하지 않음 (<a href="https://www.npmjs.com/package/multer" target="_blank" rel="external">multer</a> 필요)</li>
+</ul>
+<p><br></p>
+<h2 id="3-예제"><a href="#3-예제" class="headerlink" title="3.  예제"></a>3.  예제</h2><p><a href="https://glitch.com/edit/#!/reflective-aries?path=server.js:44:45" target="_blank" rel="external">code</a></p>
+<ul>
+<li><p>UUID (Universally unique identifier)</p>
+<ul>
+<li>유효ID = 범용 고유 식별자</li>
+</ul>
+<p><img src="../images/uuid.png" alt="UUID"></p>
+<p>인터넷 상의 수많은 자료를 구분하기 위해 각 자료에 식별자(identifier)를 부여하는 일은 아주 중요합니다. 식별자를 부여하는 가장 쉬운 방법은 자료가 생성된 순서대로 번호를 붙이는 것입니다. 실제로 많은 데이터베이스에서 이런 방법을 사용하고 있습니다. 하지만 환경에 따라 자료가 생성되는 순서를 알 수 없는 경우도 있습니다.  </p>
+<p>UUID는 식별자로 사용하기 위해 고안된 수 형식이며, 아래와 같은 형식으로 표현됩니다.  </p>
+<p>424e19f5-f330-4be1-889f-4a9f7da75b69  </p>
+<p>UUID는 표현할 수 있는 경우의 수가 무지무지무지무지 많습니다. (128bit = 2의 128제곱) UUID 난수를 생성하는 표준적인 방법(UUID version 4)을 사용하면, 언제 어디서 UUID를 생성해도 정확히 같은 UUID가 생성될 수 있는 확률이 매우매우매우매우 작기 때문에 안심하고 식별자로 사용할 수 있습니다.  </p>
+<p>node에서의 uuid는 <a href="https://www.npmjs.com/package/uuid" target="_blank" rel="external">npm uuid package</a> 설치를 통해 사용할 수 있다.  </p>
+</li>
+<li><p>Redirection after submission<br>브라우저의 새로고침은 동일한 요청을 한번 더 보내는 것이다.<br>redirect를 하지 않으면 POST가 같은 요청을 또 보내기 때문에, 새로고침시 이전에 보냈던 요청을 한번 더 보내게 된다. 따라서 POST에 대해서는 redirect 하지 않으면 문제가 발생한다.  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 할일 추가 endpoint</span></div><div class="line">app.post(<span class="string">'/todo'</span>, urlencodedParser, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> title = req.body.title</div><div class="line">  <span class="comment">// validation 유효성 검사 : title이 빈 문자열인지 확인</span></div><div class="line">  <span class="keyword">if</span> (title &amp;&amp; title.length!==<span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">const</span> todo = &#123;</div><div class="line">      id: uuidv4(), <span class="comment">// slug</span></div><div class="line">      title <span class="comment">// es6문법</span></div><div class="line">    &#125;</div><div class="line">    todos.push(todo)</div><div class="line">    <span class="comment">// redirect 하지 않으면 새로고침시 동일 요청을 한번 더 보낸다.</span></div><div class="line">    res.render(<span class="string">'index.ejs'</span>, &#123;todos&#125;) <span class="comment">// 이렇게 하면 안 됩니다!</span></div><div class="line">    <span class="comment">// res.redirect(301, '/') // 이렇게 해도 안 됩니다!</span></div><div class="line">    <span class="comment">// res.redirect('/') // res.redirect는 302 상태코드로 응답합니다.</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">400</span>)</div><div class="line">    res.send(<span class="string">'400 Bad Request'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>순수 HTML form으로 요청을 보낼 때는 반드시 redirect를 해야 한다.<br>(AJAX로 하는 경우에는 요청을 새로 또 보내지 않으니, 굳이 하지 않아도 됨!)  </p>
+</li>
+</ul>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 할일 추가 endpoint</span></div><div class="line">app.post(<span class="string">'/todo'</span>, urlencodedParser, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> title = req.body.title</div><div class="line">  <span class="comment">// validation 유효성 검사 : title이 빈 문자열인지 확인</span></div><div class="line">  <span class="keyword">if</span> (title &amp;&amp; title.length!==<span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">const</span> todo = &#123;</div><div class="line">      id: uuidv4(), <span class="comment">// slug</span></div><div class="line">      title <span class="comment">// es6문법</span></div><div class="line">    &#125;</div><div class="line">    todos.push(todo)</div><div class="line">    <span class="comment">//res.render('index.ejs', &#123;todos&#125;) // 이렇게 하면 안 됩니다!</span></div><div class="line">    res.redirect(<span class="number">301</span>, <span class="string">'/'</span>) <span class="comment">// 이렇게 해도 안 됩니다!</span></div><div class="line">    <span class="comment">// res.redirect('/') // res.redirect는 302 상태코드로 응답합니다.</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">400</span>)</div><div class="line">    res.send(<span class="string">'400 Bad Request'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="301-vs-302"><a href="#301-vs-302" class="headerlink" title="# 301 vs 302"></a># 301 vs 302</h4><p>  서버가 301응답을 보내면 웹 브라우저는 그것을 기억해뒀다가 똑같은 요청이 왔을 때 서버에 요청을 보내지 않고 브라우저에 저장해두었던 redirect 정보를 가지고 redirect를 한다. 즉 서버에 재요청하지 않고 웹브라우저에 기억해둔 정보를 꺼내와서 사용한다. 웹브라우저 주소가 완전히 이동했을 때, (사이트가 폐쇄된 경우 등) 301을 사용한다. (부수 효과: 검색엔진의 웹 크롤러는 301응답을 발견할 경우 그 사이트로 더이상 접근하지 않는다.)  </p>
+<p>  반면 똑같은 요청이 와도 서버에 해당 요청을 한번 더 전송하는 것이 302 응답이다.  </p>
+<ul>
+<li><p>Form validation  </p>
+<p>사용자가 입력하는 자료는 개발자가 기대하는 형식과는 영 딴판일 수 있습니다. 필요한 필드가 없을 수도 있고, 자료의 형식을 서버가 이해할 수 없는 경우도 있습니다. 이런 자료를 데이터베이스에 그냥 집어넣게 되면 데이터베이스가 뒤죽박죽이 되고 말 것입니다. 그래서, 사용자에게 입력받은 자료는 처리를 하기 전에 항상 올바른 형태인지 검증해야 합니다. 이런 검증 과정을 form validation이라고 합니다.  </p>
+<p>form validation을 구현하는 전형적인 방법은 다음과 같습니다.  </p>
+<ul>
+<li>사용자가 폼을 작성합니다.  </li>
+<li>사용자가 폼을 서버에 전송합니다.</li>
+<li>서버는 기대한대로 데이터가 들어왔는지 검사합니다.</li>
+<li>서버는 데이터가 기대한 대로 잘 들어왔으면 다음 단계를 진행하고, 데이터에 문제가 있다면 어떤 문제가 있는지를 사용자에게 알려줍니다. (이 프로젝트에서는 데이터에 문제가 있으면 단순하게 400 Bad Request 응답을 하고 있지만 사용자 경험을 위해서는 이렇게 하면 안되겠죠?)  </li>
+</ul>
+<p>서버 측에서 하는 form validation은 꼭 필요하지만, 사용자가 자료를 서버에 전송해야만 데이터에 어떤 문제가 있는지를 알 수 있다는 단점이 있습니다. 사용자 입장에서는 실컷 폼을 다 작성해서 전송했더니 폼에 에러가 있다고 하며 중간 단계부터 다시 시작해야 하니 짜증이 날 것입니다. 아마 여러분도 비슷한 경험이 있을 것입니다.  </p>
+<p>서버 측 validation을 잘 구현해서 사용자가 덜 불편하게끔 만드는 방법도 있지만 폼을 서버에 전송해야 피드백을 받을 수 있다는 점은 변하지 않습니다. 더 나은 사용자 경험을 위해 클라이언트 측 validation을 하는 것을 고려해볼 수 있습니다.  </p>
+<p>클라이언트 측 validation은 사용자가 폼을 작성하는 도중에 피드백을 받을 수 있다는 점에서 서버 측 validation보다 훨씬 나은 사용자 경험을 제공할 수 있습니다. 대신 서버 측 코드에서 하는 데이터 검사 로직을 클라이언트 측 코드에도 중복 구현해야 한다는 어려운 점이 있습니다. 다행히 HTML5에 추가된 form validation 기능을 이용하면 간단한 validation은 자바스크립트 코드를 하나도 짜지 않고도 구현할 수 있습니다. HTML5 form validation을 시험해 보려면, index.ejs 파일의 title 필드에 required 속성을 추가해보세요.  </p>
+<p>HTML5 form validation은 사용하기 간편하고, 브라우저에 내장되어 있다는 점에서 (특히 모바일에서) 일관성있는 사용자 경험을 제공할 수 있다는 장점이 있습니다. 하지만 HTML5를 지원하지 않는 구형 브라우저에서는 사용할 수 없고, 또 복잡한 형태의 validation은 지원하지 않는다는 단점이 있습니다. (여러 필드의 자료를 합쳐서 validation을 한다거나, validation을 하기 위해 서버에 요청을 해야 하는 등)  </p>
+<p>주의! 클라이언트 측 validation을 하더라도 서버 측에서는 반드시 validation을 따로 해주어야 합니다. 사용자가 언제나 우리가 제공하는 클라이언트를 사용한다는 보장은 없기 때문입니다. (예를 들면 악의적인 해커가 Postman 등을 이용해 이상한 요청을 보낼 수도 있겠죠?)  </p>
+</li>
+</ul>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;HTML-Form&quot;&gt;&lt;a href=&quot;#HTML-Form&quot; class=&quot;headerlink&quot; title=&quot;HTML Form&quot;&gt;&lt;/a&gt;HTML Form&lt;/h1&gt;&lt;h2 id=&quot;1-기본-동작&quot;&gt;&lt;a href=&quot;#1-기본-동작&quot; class=&quot;he
+    
+    </summary>
+    
+      <category term="Nodejs" scheme="http://huusz.github.io/categories/Nodejs/"/>
+    
+    
+      <category term="webform" scheme="http://huusz.github.io/tags/webform/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[node] URL shortner 만들기</title>
+    <link href="http://huusz.github.io/2017/Nodejs/nodejs/6.%20service%20development/"/>
+    <id>http://huusz.github.io/2017/Nodejs/nodejs/6. service development/</id>
+    <published>2017-08-30T08:08:01.000Z</published>
+    <updated>2017-08-30T08:07:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="요구사항"><a href="#요구사항" class="headerlink" title="요구사항"></a>요구사항</h1><p><br></p>
+<h2 id="시나리오"><a href="#시나리오" class="headerlink" title="시나리오"></a>시나리오</h2><h1 id="화면설계"><a href="#화면설계" class="headerlink" title="화면설계"></a>화면설계</h1><ul>
+<li><ol>
+<li>로그인</li>
+</ol>
+</li>
+<li><ol>
+<li>목록</li>
+</ol>
+<ul>
+<li>현재 생성된 URL: 3</li>
+<li>url = 0 ? 현재 생성된 URL이 없습니다.<br><br></li>
+</ul>
+</li>
+</ul>
+<h1 id="데이터-설계"><a href="#데이터-설계" class="headerlink" title="데이터 설계"></a>데이터 설계</h1><ul>
+<li>짧은 URL의 slug ex. goo.gl/59DX78</li>
+<li>긴 URL 1번은 68AB12</li>
+<li>긴 URL 1번도 56DX78 에 연결</li>
+</ul>
+<p>=&gt; 데이터 구조 {긴url, 짧url}</p>
+<p><br></p>
+<h1 id="프로젝트-세팅"><a href="#프로젝트-세팅" class="headerlink" title="프로젝트 세팅"></a>프로젝트 세팅</h1><p>1) project folder 생성<br>2) npm init<br>3) git init<br>3) .gitignore - node로 생성<br>vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitignore를 생성할 수 있다.</p>
+<blockquote>
+<p>node_modules는 깃 저장소에 넣지 않는 것이 원칙이다.</p>
+</blockquote>
+<ul>
+<li>node_modules를 깃에 올리지 않는 이유?<ul>
+<li><ol>
+<li>git 저장소는 내 프로젝트의 코드를 관리하기 위한 곳이지 외부 패키지를 관리하기 위한 것이 아니다.</li>
+</ol>
+</li>
+<li><ol>
+<li>git 저장소의 용량이 커지고 git이 추적해야 할 파일이 많아지기 때문에 느려질 수 있다.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>4) first commit</p>
+<p>5) git history<br>vscode의 git History 플러그인을 설치하면 깃 로그를 볼 수 있다. cmd+shift+p -&gt; git log -&gt; 로그를 볼 브랜치 선택/ 실행</p>
+<p>6) npm install express –save</p>
+<p>7) server.js 생성</p>
+<p>단축키: <code>cmd+enter</code> 다음 줄로 이동!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">'hello express'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>8) 서버 구동</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node server.js</div></pre></td></tr></table></figure>
+<p>콘솔에 listening이라고 뜨면 로컬서버가 정상적으로 열린 것이다.<br>웹 브라우저에서의 접속은 <code>localhost:3000</code> 으로 할 수 있다.</p>
+<p><code>ctrl+c</code>를 누르면 서버가 종료된다.<br>서버 재시작은 <code>ctrl+c</code> + <code>node server.js</code></p>
+<p>하지만 프로젝트마다 서버 구동 명령어가 조금씩 달라질 수 있다. 보통 <code>npm start</code>를 서버 구동 명령어로 쓰는 것이 관례이다.</p>
+<p>package.json을 열어 script를 아래와 같이 수정한다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line">  "start": "node server.js"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이제 <code>npm start</code>로 서버를 구동할 수 있다.</p>
+<p>9) ejs 추가</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install ejs --save</div></pre></td></tr></table></figure>
+<p>아래 코드를 <code>app.get</code> 코드 위에 추가해준다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div></pre></td></tr></table></figure>
+<p>10) views 폴더를 추가하고 폴더 안에 index.ejs 파일을 추가한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">  &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;h1&gt;hello ejs&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>body&gt;</div><div class="line">&lt;<span class="regexp">/html&gt;</span></div></pre></td></tr></table></figure>
+<p>11) server.js 파일의 app.get 코드를 아래와 같이 수정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>12) 서버를 구동하여 확인한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm start</div></pre></td></tr></table></figure>
+<p>13) server.js 파일 app.set 다음 줄에 app.use 코드를 추가한다</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div></pre></td></tr></table></figure>
+<p>14) 루트에 public 폴더를 생성하고 그 밑에 index.css를 생성하고 index.ejs의 head에 링크 태그를 추가해준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;프로젝트 폴더&gt;</div><div class="line">|____public</div><div class="line">  |____index.css</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* index.css */</span></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: skyblue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/index.css"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>15) 서버를 구동하여 확인한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm start</div></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="로깅과-인증"><a href="#로깅과-인증" class="headerlink" title="로깅과 인증"></a>로깅과 인증</h1><h2 id="1-morgan-설정"><a href="#1-morgan-설정" class="headerlink" title="1. morgan 설정"></a>1. morgan 설정</h2><p>1) 미들웨어 morgan 설치 후 server.js에 아래 코드를 삽입한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save morgan</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"></div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div></pre></td></tr></table></figure>
+<p>지금까지의 전체 코드</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>셋팅이 완료된 후 server를 구동시키면 터미널에 아래와 같은 메시지가 뜨는 것을 확인할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET / 200 322 - 11.862 ms</div></pre></td></tr></table></figure>
+<h2 id="2-express-basic-auth-설정"><a href="#2-express-basic-auth-설정" class="headerlink" title="2. express-basic-auth 설정"></a>2. express-basic-auth 설정</h2><p><a href="https://www.npmjs.com/package/express-basic-auth" target="_blank" rel="external">npm-express-basic-auth</a>에 접속하여 사용법을 확인한다.</p>
+<p>(1) basic-auth를 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install express-basic-auth</div></pre></td></tr></table></figure>
+<p>(2) 설치한 패키지를 불러온다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'express'</span>)()</div><div class="line"><span class="keyword">var</span> basicAuth = <span class="built_in">require</span>(<span class="string">'express-basic-auth'</span>)</div><div class="line"></div><div class="line">app.use(basicAuth(&#123;</div><div class="line">    users: &#123; <span class="string">'someuser'</span>: <span class="string">'somepassword'</span> &#125;,</div><div class="line">    challenge: <span class="literal">true</span>,</div><div class="line">    realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;))</div></pre></td></tr></table></figure>
+<p>위 코드에서 <code>var app = require(&#39;express&#39;)()</code>는 이미 하였으므로 그 아래부터 코드를 삽입해준다. someuser를 admin으로 somepassword도 admin으로 변경한다.</p>
+<p>서버 구동 후 localhost:3000으로 접속하면 로그인 화면이 뜨는데, ID: admin, Password: admin으로 로그인할 수 있다.</p>
+<h1 id="초기-데이터-작업"><a href="#초기-데이터-작업" class="headerlink" title="초기 데이터 작업"></a>초기 데이터 작업</h1><h2 id="1-randomstring"><a href="#1-randomstring" class="headerlink" title="1. randomstring"></a>1. randomstring</h2><p>1) 데이터를 담을 배열 객체를 추가하고, app.get 코드를 수정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:<span class="string">'58DX37'</span>&#125;</div><div class="line">]</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>, &#123;data&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>2) index.ejs의 body에 아래 소스를 추가한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">    &lt;thead&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Long URL&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">        &lt;td&gt;Short URL&lt;/</span>td&gt;</div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">    &lt;/</span>thead&gt;</div><div class="line">    &lt;tbody&gt;</div><div class="line">      &lt;% data.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123; %&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">      &lt;td&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.longURL</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">      &lt;td&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.id</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">      &lt;% &#125;) %&gt; </span></div><div class="line"><span class="regexp">    &lt;/</span>tbody&gt;</div><div class="line">  &lt;<span class="regexp">/table&gt;</span></div></pre></td></tr></table></figure>
+<p>서버 재구동 후 확인한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hello Express</div><div class="line"></div><div class="line">Long URL	Short URL</div><div class="line">http://google.com	58DX37</div></pre></td></tr></table></figure>
+<p>3) <a href="https://www.npmjs.com/package/randomstring" target="_blank" rel="external">randomstring</a> 패키지를 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save randomstring</div></pre></td></tr></table></figure>
+<p>설치한 패키지 사용을 위해 randomstring 객체를 추가해주고, generate 메소드를 사용하여 id를 6자리 랜덤 스트링으로 생성한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> randomstring = <span class="built_in">require</span>(<span class="string">'randomstring'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:randomstring.generate(<span class="number">6</span>)&#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h1 id="짧은-URL의-Redirection"><a href="#짧은-URL의-Redirection" class="headerlink" title="짧은 URL의 Redirection"></a>짧은 URL의 Redirection</h1><h2 id="1-라우터-핸들러-작성-301-Moved-Permanently"><a href="#1-라우터-핸들러-작성-301-Moved-Permanently" class="headerlink" title="1. 라우터 핸들러 작성 (301 Moved Permanently)"></a>1. 라우터 핸들러 작성 (301 Moved Permanently)</h2><p>아래 코드를 <code>app.get(&#39;/&#39;, (req, res) ~~</code> 코드의 아래에 추가로 작성한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.get(<span class="string">'/:id'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> id = req.params.id</div><div class="line">  <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === id)</div><div class="line">  <span class="keyword">if</span>(matched) &#123;</div><div class="line">    res.redirect(<span class="number">301</span>, matched.longURL)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">404</span>)</div><div class="line">    res.send(<span class="string">'404 Not Found'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>서버 구동 후 localhost:3000 뒤에 shorturl을 붙여 접속하면 (ex. localhost:3000/LL3L5c)longurl로 redirect되어 google.com으로 접속되는 것을 확인할 수 있다.</p>
+<p>2) html 수정</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.ejs --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/&lt;%= item.id%&gt;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.id</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>a태그로 감싸기 단축키: <code>cmd+shift+p -&gt; wrap -&gt; Emmet:wrap with Abbreviation</code></p>
+<h1 id="폼"><a href="#폼" class="headerlink" title="폼"></a>폼</h1><h2 id="body-parser-amp-폼-핸들러-작성"><a href="#body-parser-amp-폼-핸들러-작성" class="headerlink" title="body-parser&amp; 폼, 핸들러 작성"></a><a href="https://www.npmjs.com/package/body-parser#examples" target="_blank" rel="external">body-parser</a>&amp; 폼, 핸들러 작성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save body-parser</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> bodyparser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</div><div class="line"></div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.ejs --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello Express<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"longURL"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"전송"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>form 전송을 받은 후 redirect시켜야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.post(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> longURL = req.body.longURL</div><div class="line">  <span class="keyword">let</span> id;</div><div class="line"></div><div class="line">  <span class="comment">// id가 있으면 다시 만들고, 없으면 candidate를 저장하고 빠져나간다.</span></div><div class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">    <span class="comment">// id가 될 후보</span></div><div class="line">    <span class="keyword">const</span> candidate = randomstring.generate(<span class="number">6</span>)</div><div class="line">    <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === candidate)</div><div class="line">    <span class="comment">//matched가 없으면, 잘 된 상황</span></div><div class="line">    <span class="keyword">if</span>(!matched) &#123;</div><div class="line">      id = candidate</div><div class="line">      <span class="keyword">break</span> <span class="comment">// 중복이 없는 아이디를 찾은 상황</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  data.push(&#123;id, longURL&#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p># </p>
+<p>현재는 로그인 인증을 app.use에 넣어뒀기 때문에, 로그인하지 않은 사용자는 짧은 url을 사용할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.use(basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;))</div></pre></td></tr></table></figure>
+<p>위 코드를 아래와 같이 수정해준다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> authMiddleware = basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>body parser 미들웨어도 app.use에서 꺼내 따로 정의한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</div></pre></td></tr></table></figure>
+<p>위 코드를 아래처럼 바꾼다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> bodyParserMiddleWare = bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)</div></pre></td></tr></table></figure>
+<p>이제 분리한 미들웨어를 필요한 곳에만 주입할 수 있다.<br>인증이 필요한 곳에만, 바디파서가 필요한 곳에만 넣을 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"><span class="keyword">const</span> basicAuth = <span class="built_in">require</span>(<span class="string">'express-basic-auth'</span>)</div><div class="line"><span class="keyword">const</span> randomstring = <span class="built_in">require</span>(<span class="string">'randomstring'</span>)</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 실무에서는 데이터를 이렇게 관리하지 않는다.</span></div><div class="line"><span class="comment">// 이렇게 만들어진 데이터는 메모리상에서 관리되는 것으로 새로고침시 사라지는 데이터이다.</span></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:randomstring.generate(<span class="number">6</span>)&#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment">// http://localhost:3000/58DX37</span></div><div class="line"><span class="comment">// 302 응답</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"><span class="keyword">const</span> authMiddleware = basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> bodyParserMiddleWare = bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)</div><div class="line"></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, authMiddleware, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>, &#123;data&#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/:id'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> id = req.params.id</div><div class="line">  <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === id)</div><div class="line">  <span class="keyword">if</span>(matched) &#123;</div><div class="line">    res.redirect(<span class="number">301</span>, matched.longURL)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">404</span>)</div><div class="line">    res.send(<span class="string">'404 Not Found'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.post(<span class="string">'/'</span>, bodyParserMiddleWare, authMiddleware, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> longURL = req.body.longURL</div><div class="line">  <span class="keyword">let</span> id;</div><div class="line"></div><div class="line">  <span class="comment">// id가 있으면 다시 만들고, 없으면 candidate를 저장하고 빠져나간다.</span></div><div class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">    <span class="comment">// id가 될 후보</span></div><div class="line">    <span class="keyword">const</span> candidate = randomstring.generate(<span class="number">6</span>)</div><div class="line">    <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === candidate)</div><div class="line">    <span class="comment">//matched가 없으면, 잘 된 상황</span></div><div class="line">    <span class="keyword">if</span>(!matched) &#123;</div><div class="line">      id = candidate</div><div class="line">      <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  data.push(&#123;id, longURL&#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h1 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h1><p><a href="https://zeit.co/now" target="_blank" rel="external">now.sh</a>를 이용해 배포한다.</p>
+<p>now를 글로벌로 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ npm install -g now</div><div class="line">$ now</div><div class="line">-&gt; enter email: 이메일을 입력한다.</div><div class="line">-&gt; 받은 메일의 링크로 접속하여 인증한다.</div><div class="line"></div><div class="line">$ now</div><div class="line">-&gt; y 하고 enter</div></pre></td></tr></table></figure>
+<p>now URL을 통해 배포가 완료되며 해당 url로 접속할 수 있다.<br><a href="https://urlshortner-budejegbvb.now.sh" target="_blank" rel="external">urlshortner</a></p>
+<p>이렇게 배포된 서비스는 소스코드가 모두 공개되기 때문에 관리자 아이디와 비밀번호를 외부에서 열람하는 것이 가능하다. 따라서 개인정보는 밖으로 노출되지 않도록 않도록 해야한다.</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;요구사항&quot;&gt;&lt;a href=&quot;#요구사항&quot; class=&quot;headerlink&quot; title=&quot;요구사항&quot;&gt;&lt;/a&gt;요구사항&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;시나리오&quot;&gt;&lt;a href=&quot;#시나리오&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="Nodejs" scheme="http://huusz.github.io/categories/Nodejs/"/>
+    
+    
+      <category term="urlshortner" scheme="http://huusz.github.io/tags/urlshortner/"/>
+    
+  </entry>
   
   <entry>
     <title>[node] 템플릿 언어 ejs</title>
