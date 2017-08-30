@@ -7,8 +7,32 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/case1/</loc>
+        <lastmod>2017-08-30T14:23:28.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/6.%20service%20development/</loc>
+        <lastmod>2017-08-30T08:21:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/5.%20Web%20form/</loc>
+        <lastmod>2017-08-30T08:11:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/2.%20http/</loc>
-        <lastmod>2017-08-29T16:12:22.000Z</lastmod>
+        <lastmod>2017-08-30T02:25:21.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

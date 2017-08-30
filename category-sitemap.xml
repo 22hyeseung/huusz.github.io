@@ -22,7 +22,14 @@
 
     <url>
         <loc>http://huusz.github.io/categories/Nodejs/</loc>
-        <lastmod>2017-08-29T16:12:22.000Z</lastmod>
+        <lastmod>2017-08-30T08:21:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/categories/Git/</loc>
+        <lastmod>2017-08-30T14:23:28.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

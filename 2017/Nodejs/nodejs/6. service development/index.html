@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>[node] URL shortner 만들기 | Huusz&#39;s Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="urlshortner" />
+    
+    <meta name="description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+<meta name="keywords" content="urlshortner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[node] URL shortner 만들기">
+<meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/6. service development/index.html">
+<meta property="og:site_name" content="Huusz&#39;s Log">
+<meta property="og:description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2017-08-30T08:21:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[node] URL shortner 만들기">
+<meta name="twitter:description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+    
+
+    
+        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/css/images/favi.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104157265-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a class="logo" href="https://huusz.github.io">
+                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'post',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs/6. service development" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        [node] URL shortner 만들기
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/Nodejs/nodejs/6. service development/" class="article-date">
+            <time datetime="2017-08-30T08:08:01.000Z" itemprop="datePublished">2017-08-30</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/urlshortner/">urlshortner</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="요구사항"><a href="#요구사항" class="headerlink" title="요구사항"></a>요구사항</h1><p><br></p>
+<h2 id="시나리오"><a href="#시나리오" class="headerlink" title="시나리오"></a>시나리오</h2><h1 id="화면설계"><a href="#화면설계" class="headerlink" title="화면설계"></a>화면설계</h1><ul>
+<li><ol>
+<li>로그인</li>
+</ol>
+</li>
+<li><ol>
+<li>목록</li>
+</ol>
+<ul>
+<li>현재 생성된 URL: 3</li>
+<li>url = 0 ? 현재 생성된 URL이 없습니다.<br><br></li>
+</ul>
+</li>
+</ul>
+<h1 id="데이터-설계"><a href="#데이터-설계" class="headerlink" title="데이터 설계"></a>데이터 설계</h1><ul>
+<li>짧은 URL의 slug ex. goo.gl/59DX78</li>
+<li>긴 URL 1번은 68AB12</li>
+<li>긴 URL 1번도 56DX78 에 연결</li>
+</ul>
+<p>=&gt; 데이터 구조 {긴url, 짧url}</p>
+<p><br></p>
+<h1 id="프로젝트-세팅"><a href="#프로젝트-세팅" class="headerlink" title="프로젝트 세팅"></a>프로젝트 세팅</h1><p>1) project folder 생성<br>2) npm init<br>3) git init<br>3) .gitignore - node로 생성<br>vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitignore를 생성할 수 있다.</p>
+<blockquote>
+<p>node_modules는 깃 저장소에 넣지 않는 것이 원칙이다.</p>
+</blockquote>
+<ul>
+<li>node_modules를 깃에 올리지 않는 이유?<ul>
+<li><ol>
+<li>git 저장소는 내 프로젝트의 코드를 관리하기 위한 곳이지 외부 패키지를 관리하기 위한 것이 아니다.</li>
+</ol>
+</li>
+<li><ol>
+<li>git 저장소의 용량이 커지고 git이 추적해야 할 파일이 많아지기 때문에 느려질 수 있다.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>4) first commit</p>
+<p>5) git history<br>vscode의 git History 플러그인을 설치하면 깃 로그를 볼 수 있다. cmd+shift+p -&gt; git log -&gt; 로그를 볼 브랜치 선택/ 실행</p>
+<p>6) npm install express –save</p>
+<p>7) server.js 생성</p>
+<p>단축키: <code>cmd+enter</code> 다음 줄로 이동!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">'hello express'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>8) 서버 구동</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node server.js</div></pre></td></tr></table></figure>
+<p>콘솔에 listening이라고 뜨면 로컬서버가 정상적으로 열린 것이다.<br>웹 브라우저에서의 접속은 <code>localhost:3000</code> 으로 할 수 있다.</p>
+<p><code>ctrl+c</code>를 누르면 서버가 종료된다.<br>서버 재시작은 <code>ctrl+c</code> + <code>node server.js</code></p>
+<p>하지만 프로젝트마다 서버 구동 명령어가 조금씩 달라질 수 있다. 보통 <code>npm start</code>를 서버 구동 명령어로 쓰는 것이 관례이다.</p>
+<p>package.json을 열어 script를 아래와 같이 수정한다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line">  "start": "node server.js"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이제 <code>npm start</code>로 서버를 구동할 수 있다.</p>
+<p>9) ejs 추가</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install ejs --save</div></pre></td></tr></table></figure>
+<p>아래 코드를 <code>app.get</code> 코드 위에 추가해준다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div></pre></td></tr></table></figure>
+<p>10) views 폴더를 추가하고 폴더 안에 index.ejs 파일을 추가한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">  &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;h1&gt;hello ejs&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>body&gt;</div><div class="line">&lt;<span class="regexp">/html&gt;</span></div></pre></td></tr></table></figure>
+<p>11) server.js 파일의 app.get 코드를 아래와 같이 수정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>12) 서버를 구동하여 확인한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm start</div></pre></td></tr></table></figure>
+<p>13) server.js 파일 app.set 다음 줄에 app.use 코드를 추가한다</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div></pre></td></tr></table></figure>
+<p>14) 루트에 public 폴더를 생성하고 그 밑에 index.css를 생성하고 index.ejs의 head에 링크 태그를 추가해준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;프로젝트 폴더&gt;</div><div class="line">|____public</div><div class="line">  |____index.css</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* index.css */</span></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: skyblue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/index.css"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>15) 서버를 구동하여 확인한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm start</div></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="로깅과-인증"><a href="#로깅과-인증" class="headerlink" title="로깅과 인증"></a>로깅과 인증</h1><h2 id="1-morgan-설정"><a href="#1-morgan-설정" class="headerlink" title="1. morgan 설정"></a>1. morgan 설정</h2><p>1) 미들웨어 morgan 설치 후 server.js에 아래 코드를 삽입한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save morgan</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"></div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div></pre></td></tr></table></figure>
+<p>지금까지의 전체 코드</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>셋팅이 완료된 후 server를 구동시키면 터미널에 아래와 같은 메시지가 뜨는 것을 확인할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET / 200 322 - 11.862 ms</div></pre></td></tr></table></figure>
+<h2 id="2-express-basic-auth-설정"><a href="#2-express-basic-auth-설정" class="headerlink" title="2. express-basic-auth 설정"></a>2. express-basic-auth 설정</h2><p><a href="https://www.npmjs.com/package/express-basic-auth" target="_blank" rel="external">npm-express-basic-auth</a>에 접속하여 사용법을 확인한다.</p>
+<p>(1) basic-auth를 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install express-basic-auth</div></pre></td></tr></table></figure>
+<p>(2) 설치한 패키지를 불러온다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'express'</span>)()</div><div class="line"><span class="keyword">var</span> basicAuth = <span class="built_in">require</span>(<span class="string">'express-basic-auth'</span>)</div><div class="line"></div><div class="line">app.use(basicAuth(&#123;</div><div class="line">    users: &#123; <span class="string">'someuser'</span>: <span class="string">'somepassword'</span> &#125;,</div><div class="line">    challenge: <span class="literal">true</span>,</div><div class="line">    realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;))</div></pre></td></tr></table></figure>
+<p>위 코드에서 <code>var app = require(&#39;express&#39;)()</code>는 이미 하였으므로 그 아래부터 코드를 삽입해준다. someuser를 admin으로 somepassword도 admin으로 변경한다.</p>
+<p>서버 구동 후 localhost:3000으로 접속하면 로그인 화면이 뜨는데, ID: admin, Password: admin으로 로그인할 수 있다.</p>
+<h1 id="초기-데이터-작업"><a href="#초기-데이터-작업" class="headerlink" title="초기 데이터 작업"></a>초기 데이터 작업</h1><h2 id="1-randomstring"><a href="#1-randomstring" class="headerlink" title="1. randomstring"></a>1. randomstring</h2><p>1) 데이터를 담을 배열 객체를 추가하고, app.get 코드를 수정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server.js</span></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:<span class="string">'58DX37'</span>&#125;</div><div class="line">]</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>, &#123;data&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>2) index.ejs의 body에 아래 소스를 추가한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">    &lt;thead&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Long URL&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">        &lt;td&gt;Short URL&lt;/</span>td&gt;</div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">    &lt;/</span>thead&gt;</div><div class="line">    &lt;tbody&gt;</div><div class="line">      &lt;% data.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123; %&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">      &lt;td&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.longURL</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">      &lt;td&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.id</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">      &lt;% &#125;) %&gt; </span></div><div class="line"><span class="regexp">    &lt;/</span>tbody&gt;</div><div class="line">  &lt;<span class="regexp">/table&gt;</span></div></pre></td></tr></table></figure>
+<p>서버 재구동 후 확인한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hello Express</div><div class="line"></div><div class="line">Long URL	Short URL</div><div class="line">http://google.com	58DX37</div></pre></td></tr></table></figure>
+<p>3) <a href="https://www.npmjs.com/package/randomstring" target="_blank" rel="external">randomstring</a> 패키지를 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save randomstring</div></pre></td></tr></table></figure>
+<p>설치한 패키지 사용을 위해 randomstring 객체를 추가해주고, generate 메소드를 사용하여 id를 6자리 랜덤 스트링으로 생성한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> randomstring = <span class="built_in">require</span>(<span class="string">'randomstring'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:randomstring.generate(<span class="number">6</span>)&#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h1 id="짧은-URL의-Redirection"><a href="#짧은-URL의-Redirection" class="headerlink" title="짧은 URL의 Redirection"></a>짧은 URL의 Redirection</h1><h2 id="1-라우터-핸들러-작성-301-Moved-Permanently"><a href="#1-라우터-핸들러-작성-301-Moved-Permanently" class="headerlink" title="1. 라우터 핸들러 작성 (301 Moved Permanently)"></a>1. 라우터 핸들러 작성 (301 Moved Permanently)</h2><p>아래 코드를 <code>app.get(&#39;/&#39;, (req, res) ~~</code> 코드의 아래에 추가로 작성한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.get(<span class="string">'/:id'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> id = req.params.id</div><div class="line">  <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === id)</div><div class="line">  <span class="keyword">if</span>(matched) &#123;</div><div class="line">    res.redirect(<span class="number">301</span>, matched.longURL)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">404</span>)</div><div class="line">    res.send(<span class="string">'404 Not Found'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>서버 구동 후 localhost:3000 뒤에 shorturl을 붙여 접속하면 (ex. localhost:3000/LL3L5c)longurl로 redirect되어 google.com으로 접속되는 것을 확인할 수 있다.</p>
+<p>2) html 수정</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.ejs --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/&lt;%= item.id%&gt;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">item.id</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>a태그로 감싸기 단축키: <code>cmd+shift+p -&gt; wrap -&gt; Emmet:wrap with Abbreviation</code></p>
+<h1 id="폼"><a href="#폼" class="headerlink" title="폼"></a>폼</h1><h2 id="body-parser-amp-폼-핸들러-작성"><a href="#body-parser-amp-폼-핸들러-작성" class="headerlink" title="body-parser&amp; 폼, 핸들러 작성"></a><a href="https://www.npmjs.com/package/body-parser#examples" target="_blank" rel="external">body-parser</a>&amp; 폼, 핸들러 작성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save body-parser</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> bodyparser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</div><div class="line"></div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.ejs --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello Express<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"longURL"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"전송"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>form 전송을 받은 후 redirect시켜야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.post(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> longURL = req.body.longURL</div><div class="line">  <span class="keyword">let</span> id;</div><div class="line"></div><div class="line">  <span class="comment">// id가 있으면 다시 만들고, 없으면 candidate를 저장하고 빠져나간다.</span></div><div class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">    <span class="comment">// id가 될 후보</span></div><div class="line">    <span class="keyword">const</span> candidate = randomstring.generate(<span class="number">6</span>)</div><div class="line">    <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === candidate)</div><div class="line">    <span class="comment">//matched가 없으면, 잘 된 상황</span></div><div class="line">    <span class="keyword">if</span>(!matched) &#123;</div><div class="line">      id = candidate</div><div class="line">      <span class="keyword">break</span> <span class="comment">// 중복이 없는 아이디를 찾은 상황</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  data.push(&#123;id, longURL&#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p># </p>
+<p>현재는 로그인 인증을 app.use에 넣어뒀기 때문에, 로그인하지 않은 사용자는 짧은 url을 사용할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line">app.use(basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;))</div></pre></td></tr></table></figure>
+<p>위 코드를 아래와 같이 수정해준다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> authMiddleware = basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>body parser 미들웨어도 app.use에서 꺼내 따로 정의한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</div></pre></td></tr></table></figure>
+<p>위 코드를 아래처럼 바꾼다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> bodyParserMiddleWare = bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)</div></pre></td></tr></table></figure>
+<p>이제 분리한 미들웨어를 필요한 곳에만 주입할 수 있다.<br>인증이 필요한 곳에만, 바디파서가 필요한 곳에만 넣을 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> morgan = <span class="built_in">require</span>(<span class="string">'morgan'</span>)</div><div class="line"><span class="keyword">const</span> basicAuth = <span class="built_in">require</span>(<span class="string">'express-basic-auth'</span>)</div><div class="line"><span class="keyword">const</span> randomstring = <span class="built_in">require</span>(<span class="string">'randomstring'</span>)</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 실무에서는 데이터를 이렇게 관리하지 않는다.</span></div><div class="line"><span class="comment">// 이렇게 만들어진 데이터는 메모리상에서 관리되는 것으로 새로고침시 사라지는 데이터이다.</span></div><div class="line"><span class="keyword">const</span> data = [</div><div class="line">  &#123;<span class="attr">longURL</span>: <span class="string">'http://google.com'</span>, <span class="attr">id</span>:randomstring.generate(<span class="number">6</span>)&#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment">// http://localhost:3000/58DX37</span></div><div class="line"><span class="comment">// 302 응답</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"><span class="keyword">const</span> authMiddleware = basicAuth(&#123;</div><div class="line">  users: &#123; <span class="string">'admin'</span>: <span class="string">'admin'</span> &#125;,</div><div class="line">  challenge: <span class="literal">true</span>,</div><div class="line">  realm: <span class="string">'Imb4T3st4pp'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> bodyParserMiddleWare = bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)</div><div class="line"></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div><div class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>))</div><div class="line">app.use(morgan(<span class="string">'tiny'</span>))</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, authMiddleware, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>, &#123;data&#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/:id'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> id = req.params.id</div><div class="line">  <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === id)</div><div class="line">  <span class="keyword">if</span>(matched) &#123;</div><div class="line">    res.redirect(<span class="number">301</span>, matched.longURL)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">404</span>)</div><div class="line">    res.send(<span class="string">'404 Not Found'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.post(<span class="string">'/'</span>, bodyParserMiddleWare, authMiddleware, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> longURL = req.body.longURL</div><div class="line">  <span class="keyword">let</span> id;</div><div class="line"></div><div class="line">  <span class="comment">// id가 있으면 다시 만들고, 없으면 candidate를 저장하고 빠져나간다.</span></div><div class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">    <span class="comment">// id가 될 후보</span></div><div class="line">    <span class="keyword">const</span> candidate = randomstring.generate(<span class="number">6</span>)</div><div class="line">    <span class="keyword">const</span> matched = data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === candidate)</div><div class="line">    <span class="comment">//matched가 없으면, 잘 된 상황</span></div><div class="line">    <span class="keyword">if</span>(!matched) &#123;</div><div class="line">      id = candidate</div><div class="line">      <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  data.push(&#123;id, longURL&#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h1 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h1><p><a href="https://zeit.co/now" target="_blank" rel="external">now.sh</a>를 이용해 배포한다.</p>
+<p>now를 글로벌로 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ npm install -g now</div><div class="line">$ now</div><div class="line">-&gt; enter email: 이메일을 입력한다.</div><div class="line">-&gt; 받은 메일의 링크로 접속하여 인증한다.</div><div class="line"></div><div class="line">$ now</div><div class="line">-&gt; y 하고 enter</div></pre></td></tr></table></figure>
+<p>now URL을 통해 배포가 완료되며 해당 url로 접속할 수 있다.<br><a href="https://urlshortner-budejegbvb.now.sh" target="_blank" rel="external">urlshortner</a></p>
+<p>이렇게 배포된 서비스는 소스코드가 모두 공개되기 때문에 관리자 아이디와 비밀번호를 외부에서 열람하는 것이 가능하다. 따라서 개인정보는 밖으로 노출되지 않도록 않도록 해야한다.</p>
+<hr>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
+    <div class="sidebar-top">
+        <p>follow</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/Nodejs/nodejs/5. Web form/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            [node] Web form
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/Git/GIT/case1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">[Git] 로컬 저장소와 원격 저장소 연결하기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/5. Web form/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/uuid.png)" alt="[node] Web form" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/5. Web form/" class="title">[node] Web form</a></p>
+                            <p class="item-date"><time datetime="2017-08-30T08:08:08.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/6. service development/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/6. service development/" class="title">[node] URL shortner 만들기</a></p>
+                            <p class="item-date"><time datetime="2017-08-30T08:08:01.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Git/GIT/case1/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1.png)" alt="[Git] 로컬 저장소와 원격 저장소 연결하기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
+                            <p class="item-title"><a href="/2017/Git/GIT/case1/" class="title">[Git] 로컬 저장소와 원격 저장소 연결하기</a></p>
+                            <p class="item-date"><time datetime="2017-08-30T02:22:01.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/4. Template Language/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/4. Template Language/" class="title">[node] 템플릿 언어 ejs</a></p>
+                            <p class="item-date"><time datetime="2017-08-29T15:42:01.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/3. Middleware/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/3. Middleware/" class="title">[node] 미들웨어 express</a></p>
+                            <p class="item-date"><time datetime="2017-08-29T15:40:50.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
+                </h1>
+                <p>&copy; 2017 huusz</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'huuszLog';
+    
+    
+    var disqus_url = 'http://huusz.github.io/2017/Nodejs/nodejs/6. service development/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
