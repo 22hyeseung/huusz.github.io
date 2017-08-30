@@ -130,13 +130,13 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/2.%20http/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/2. http/</id>
     <published>2017-08-29T15:40:30.000Z</published>
-    <updated>2017-08-29T16:12:22.000Z</updated>
+    <updated>2017-08-30T02:20:19.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/WIRESHARK.png?raw=true" alt="WIRESHARK"></p>
-<p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/WIRESHARK2.png?raw=true" alt="WIRESHARK"></p>
-<h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/chromeDevTools.png?raw=true" alt="크롬 개발자도구"></p>
+    <content type="html"><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="../images/WIRESHARK.png" alt="WIRESHARK"></p>
+<p><img src="../images/WIRESHARK2.png" alt="WIRESHARK"></p>
+<h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="../images/chromeDevTools.png" alt="크롬 개발자도구"></p>
 <p><br></p>
-<h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/http.png?raw=true" alt=""></p>
+<h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="../images/http.png" alt=""></p>
 <ul>
 <li>웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약</li>
 <li>최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다.<ul>
@@ -151,7 +151,7 @@
 <p><strong>1996</strong><br>여러 인터넷 서비스 업체들이 자체적으로 사용하던 HTTP 구현들을 모아 HTTP 1.0 발표</p>
 <p><strong>1999</strong><br>1.0의 문제를 해결하고 여러가지 기능을 추가한 HTTP 1.1을 발표. 지금까지 사용되고 있는 버전</p>
 <p><br></p>
-<h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/https.png?raw=true" alt=""></p>
+<h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="../images/https.png" alt=""></p>
 <ul>
 <li>HTTP over SSL</li>
 <li>HTTP 통신을 암호화해 주고 받는 내용을 중간에서 가로챌 수 없도록 한다.</li>
@@ -225,7 +225,7 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; encodeURIComponent(&quot;한글&quot;)</div><div class="line">&quot;%ED%95%9C%EA%B8%80&quot;</div><div class="line">&gt; decodeURIComponent(&quot;%ED%95%9C%EA%B8%80&quot;)</div><div class="line">&quot;한글&quot;</div></pre></td></tr></table></figure>
-<p><img src="https://github.com/huusz/huusz.github.io/blob/master/source/_posts/images/%ED%8D%BC%EC%84%BC%ED%8A%B8%EC%9D%B8%EC%BD%94%EB%94%A9.png?raw=true" alt="퍼센트인코딩"></p>
+<p><img src="../images/퍼센트인코딩.png" alt="퍼센트인코딩"></p>
 <h3 id="5-Request-Target"><a href="#5-Request-Target" class="headerlink" title="5) Request Target"></a>5) Request Target</h3><p>일반적인 경우 아래와 같은 구조가 사용됨  </p>
 <p><code>absolute path + query string + fragment id</code></p>
 <p>절대 경로 + 쿼리스트링 + 해시  </p>
