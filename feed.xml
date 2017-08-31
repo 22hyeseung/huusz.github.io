@@ -244,7 +244,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/case1/"/>
     <id>http://huusz.github.io/2017/Git/GIT/case1/</id>
     <published>2017-08-30T02:22:01.000Z</published>
-    <updated>2017-08-31T04:34:43.000Z</updated>
+    <updated>2017-08-31T04:44:40.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="로컬-저장소를-github-저장소와-연결하기"><a href="#로컬-저장소를-github-저장소와-연결하기" class="headerlink" title="로컬 저장소를 github 저장소와 연결하기"></a>로컬 저장소를 github 저장소와 연결하기</h1><h2 id="로컬-저장소-만들기"><a href="#로컬-저장소-만들기" class="headerlink" title="로컬 저장소 만들기"></a>로컬 저장소 만들기</h2><h3 id="1-프로젝트-폴더-만들기"><a href="#1-프로젝트-폴더-만들기" class="headerlink" title="1. 프로젝트 폴더 만들기"></a>1. 프로젝트 폴더 만들기</h3><p>우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.  </p>
 <p>터미널에서 <code>cd 디렉터리</code> 명령어를 통해 원하는 디렉터리로 이동한다. <code>mkdir 폴더명</code>을 입력하면 현 위치에 새로운 폴더(디렉터리)를 만들어준다. (mkdir은 ‘make directory’이다.) <code>cd</code> 명령어를 이용해 새로 만들어진 폴더로 이동한다.</p>
@@ -284,11 +284,11 @@
 <p>해석해보면 <strong>master 브랜치에 2fb5223이라는 ID를 갖는 커밋 로그가 추가되었으며, 커밋 메시지는 ‘첫번째 버전’이다. 이 커밋으로 1개의 파일이 변화하였으며, 1줄의 삽입(+)이 있었다</strong>라는 의미이다.</p>
 <p><br></p>
 <h2 id="로컬-저장소를-github-저장소에-연결하기"><a href="#로컬-저장소를-github-저장소에-연결하기" class="headerlink" title="로컬 저장소를 github 저장소에 연결하기"></a>로컬 저장소를 github 저장소에 연결하기</h2><p>지금까지는 내 PC에서만 관리 가능한 로컬 저장소를 만들었다. 로컬 저장소만으로는 다른 이들과 프로젝트를 공유할 수 없기 때문에 공동 작업(협업)이 불가하다.</p>
-<p>따라서 협업이나 프로젝트의 공유를 위해서는 특정 서버에 git 저장소를 만들고, 서버를 통해 관리할 필요가 있다. 가장 많이 사용되는 github 홈페이지를 통해 git 원격 저장소를 생성할 수 있다.</p>
+<p>따라서 협업이나 프로젝트의 공유를 위해서는 특정 서버에 git 저장소를 만들고, 서버를 통해 관리할 필요가 있다. 가장 많이 사용되는 깃 클라이언트인 github를 통해 git 원격 저장소를 생성해보도록 한다.</p>
 <h3 id="1-계정-만들기"><a href="#1-계정-만들기" class="headerlink" title="1. 계정 만들기"></a>1. 계정 만들기</h3><p><a href="github.com">github.com</a>에 접속하여 계정을 생성하고 로그인한다.</p>
 <h3 id="2-원격-저장소-생성하기"><a href="#2-원격-저장소-생성하기" class="headerlink" title="2. 원격 저장소 생성하기"></a>2. 원격 저장소 생성하기</h3><p>github에 새 프로젝트를 생성하면 원격 저장소가 만들어진다. 아래 예제에서는 test라는 이름의 원격 저장소를 생성하였다.</p>
 <p><img src="/images/8.png" alt="github에 저장소 만들기">  </p>
-<p>readme.md는 저장소의 프로젝트에 대한 설명을 작성하는 용도로 흔히 사용된다. 지금은 있어도 되고, 없어도 크게 상관 없다.</p>
+<p>readme.md는 저장소의 프로젝트에 대한 설명을 작성하는 용도로 흔히 사용된다. 지금은 있어도 되고, 없어도 크게 상관 없다. (만약 readme.md를 만들어서 원격 저장소를 생성하였다면 아래에서 remote 대신 바로 clone하도록 하자. 이유는 아래 설명되어있다.)</p>
 <h3 id="3-로컬-저장소와-원격-저장소-연결하기"><a href="#3-로컬-저장소와-원격-저장소-연결하기" class="headerlink" title="3. 로컬 저장소와 원격 저장소 연결하기"></a>3. 로컬 저장소와 원격 저장소 연결하기</h3><p>지금까지는 로컬 저장소와 원격 저장소 별개로 존재할 뿐 아직 연결되지 않은 상태이다.</p>
 <h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>git remote는 리모트 저장소를 생성한다. 리모트 저장소란 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다. remote 명령어를 통해 저장소를 추가하는 것은 <strong>네트워크 어딘가에 있는 원격 저장소를 관리할 저장소로 등록하는 행위</strong>이다. remote 명령은 아래와 같이 실행할 수 있다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git remote add 단축이름 원격저장소url</div><div class="line"></div><div class="line">$ git remote</div><div class="line"></div><div class="line">$ git remote -v</div></pre></td></tr></table></figure>
