@@ -244,7 +244,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/case1/"/>
     <id>http://huusz.github.io/2017/Git/GIT/case1/</id>
     <published>2017-08-30T02:22:01.000Z</published>
-    <updated>2017-08-30T14:23:28.000Z</updated>
+    <updated>2017-08-31T01:40:38.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="로컬-저장소를-github-저장소와-연결하기"><a href="#로컬-저장소를-github-저장소와-연결하기" class="headerlink" title="로컬 저장소를 github 저장소와 연결하기"></a>로컬 저장소를 github 저장소와 연결하기</h1><h2 id="로컬-저장소-만들기"><a href="#로컬-저장소-만들기" class="headerlink" title="로컬 저장소 만들기"></a>로컬 저장소 만들기</h2><h3 id="1-프로젝트-폴더-만들기"><a href="#1-프로젝트-폴더-만들기" class="headerlink" title="1. 프로젝트 폴더 만들기"></a>1. 프로젝트 폴더 만들기</h3><p>우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.  </p>
 <p>터미널에서 <code>cd 디렉터리</code> 명령어를 통해 원하는 디렉터리로 이동한다. <code>mkdir 폴더명</code>을 입력하면 현 위치에 새로운 폴더(디렉터리)를 만들어준다. (mkdir은 ‘make directory’이다.) <code>cd</code> 명령어를 이용해 새로 만들어진 폴더로 이동한다.</p>
@@ -269,7 +269,7 @@
 <p>마지막 커밋 이후 아직 아무것도 수정하지 않은 상태에서 어떤 파일이 수정되면 Git은 그 즉시 파일을 Modified 상태로 인식한다. 그리고 이 수정한 파일을 Stage하고 Staged 상태인 파일을 커밋한다. 이 라이프사이클을 그림처럼 계속 반복한다.</p>
 <p><img src="https://git-scm.com/figures/18333fig0201-tn.png" alt="파일의 라이프 사이클"></p>
 <p>status에 대한 더 자세한 내용은 <a href="https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%88%98%EC%A0%95%ED%95%98%EA%B3%A0-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0" target="_blank" rel="external">링크</a>를 참고한다.</p>
-<h2 id="4-git-add"><a href="#4-git-add" class="headerlink" title="4. git add"></a>4. git add</h2><p>commit은 내 로컬 디렉터리에서 감지된 변경 사항을 확정하는 것이다. (HEAD에 반영한다고 말한다.) add는 변화가 감지된 파일들 중에서 git에 반영할(commit할) 후보를 선정하여 목록에 올리는 것이다. 메뉴얼에서는 ‘stage에 올린다’라고 표현한다.</p>
+<h2 id="4-git-add"><a href="#4-git-add" class="headerlink" title="4. git add"></a>4. git add</h2><p>commit은 내 로컬 디렉터리에서 감지된 변경 사항을 확정하는 것이다. add는 변화가 감지된 파일들 중에서 git에 반영할(commit할) 후보를 선정하여 목록에 올리는 것이다. 메뉴얼에서는 ‘stage에 올린다’라고 표현한다.</p>
 <p><img src="/images/git-tree.png" alt="출처: https://rogerdudler.github.io/git-guide/index.ko.html"></p>
 <p>add는 특정 변화만 선택적으로 stage에 올릴 수도 있고, 변화 전체를 한꺼번에 올릴 수도 있다. 아래 예제는 변화된 파일 전체를 스테이지에 올리는 명령이다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add .</div></pre></td></tr></table></figure>
@@ -296,22 +296,20 @@
 <p><code>git remote</code> 명령은 내가 등록한 모든 리모트 저장소 목록을 설정한 단축 이름으로 보여준다.</p>
 <p><code>git remote -v</code>는 단축 이름과 url을 함께 보여준다. </p>
 <p><img src="/images/git-remote.png" alt="git remote"></p>
-<hr>
-<p><code>git clone</code>  </p>
-<p>사실 remote 명령을 생략하고 바로 clone 명령을 사용할 수도 있다. clone은 대상이 되는 원격 저장소를 통째로 나의 로컬 저장소(PC)에 복제해온다. 저장소를 clone하면 origin이라는 이름의 리모트 저장소가 자동으로 등록된다. 따라서 remote하는 과정을 생략하고 바로 <code>git clone 저장소url</code> 명령을 수행하여도 무방하다.</p>
+<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p>remote 명령을 생략하고 바로 clone 명령을 사용할 수도 있다. clone은 대상이 되는 원격 저장소를 통째로 나의 로컬 저장소(PC)에 복제해온다. 이때 커밋 로그도 함께 가져온다. 그리고 저장소를 clone하면 origin이라는 이름의 리모트 저장소가 자동으로 등록된다. 따라서 remote하는 과정을 생략하고 바로 <code>git clone 저장소url</code> 명령을 수행할 수 있다.</p>
 <hr>
 <h3 id="4-로컬-저장소와-원격-저장소-동기화하기"><a href="#4-로컬-저장소와-원격-저장소-동기화하기" class="headerlink" title="4. 로컬 저장소와 원격 저장소 동기화하기"></a>4. 로컬 저장소와 원격 저장소 동기화하기</h3><p>로컬 저장소와 원격 저장소를 동기화 즉, 같은 상태로 만들어주는 방법에는 두 가지가 있다. (사실 더 많지만 일단은 크게 두 가지만 다룬다.)</p>
 <h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>push 명령은 내 로컬 저장소의 확정 변경 사항(commit)을 원격 저장소에도 반영하는 것이다. </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push --<span class="built_in">set</span>-upstream origin master</div></pre></td></tr></table></figure>
 <p><code>--set-upstream</code>은 push할 리모트 저장소를 지정해준다. 위에서는 origin이라는 리모트 저장소의 master 브랜치에 push 명령을 내리겠다는 의미이다. <code>--set-upstream</code>은 한번만 지정해두면 새로운 저장소 브랜치를 set하기 전까지는 <code>git push</code> 입력만으로 간편하게 push 할 수 있다.</p>
 <hr>
-<p><remote +="" push="" 오류=""><br>remote 후 바로 push하는 중 발생할 수 있는 오류 몇 가지를 소개한다!  아래와 같은 에러메시지를 만날 수 있다. </remote></p>
+<p><push 오류=""><br>remote 후 바로 push하는 중 발생할 수 있는 오류를 소개한다!  아래와 같은 에러메시지를 만날 수 있다. </push></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> ! [rejected]        master -&gt; master (non-fast-forward)</div><div class="line">error: failed to push some refs to &apos;https://github.com/huusz/test.git&apos;</div></pre></td></tr></table></figure>
 <p><img src="/images/remote-and-push.png" alt="remote and push">  </p>
 <p><strong>rejected</strong>: push가 거부되었다.<br><strong>master -&gt; master</strong>: 로컬 저장소의 master 브랜치의 변경 사항을 원격 저장소의 master 브랜치에 반영하려 하였는데,<br><strong>non-fast-forward</strong>: 원격 저장소의 master 브랜치가 로컬 저장소의 버전보다 이전 버전이 아니다!  </p>
 <p>라는 의미이다.</p>
 <p>즉, 오류가 발생하게 된 원인은 github에서 새로운 프로젝트를 생성하면서 만들어진 원격 저장소에 함께 만들어진 readme.md 파일 때문이다. 더 정확히 말하면 readme.md 파일의 존재가 문제가 되는 것이 아니고, 원격 저장소에서 이루어진 readme.md를 추가하는 커밋이 로컬 저장소의 커밋 로그에 없기 때문이다.</p>
-<p>push 명령은 로컬 저장소의 commit 목록과 원격 저장소의 commit 목록을 비교한다. 그런 다음 원격 저장소의 마지막 commit id와 동일한 commit id를 가진 로컬 저장소의 commit 시점을 찾아낸 뒤, 원격 저장소의 마지막 커밋과 연결한다. 이제 무엇이 이해가 될 것이다. 원격 저장소의 첫번째이자 마지막 commit인 readme를 추가하는 commit이 원격 저장소에는 존재하지 않고, 따라서 현 상태에서는 둘을 연결할 수 없다.</p>
+<p>push 명령은 로컬 저장소의 commit 목록과 원격 저장소의 commit 목록을 비교한다. 그런 다음 원격 저장소의 마지막 commit id와 동일한 commit id를 가진 로컬 저장소의 commit 시점을 찾아낸 뒤, 원격 저장소의 마지막 커밋과 연결한다. 이제 무엇이 이해가 될 것이다. 원격 저장소의 첫번째이자 마지막 commit인 readme를 추가하는 commit이 로컬 저장소에는 존재하지 않고, 따라서 현 상태에서는 둘을 연결할 수 없다.</p>
 <p>이 상황을 해결하는 방법은,</p>
 <ol>
 <li><p>원격 저장소를 삭제하고 다시 만들거나, (물론 readme 파일 없이 만들어야 합니다. readme 파일을 함께 생성하면 자동으로 커밋이 생성되기 때문이다.)</p>
@@ -330,13 +328,13 @@
 <ul>
 <li>fetch는 리모트 저장소에 있는 내용을 가져오지만 자동으로 내 로컬 저장소에 merge하지 않는다. 원격 저장소의 내용을 확인만 하고 로컬에 병합(merge)하고 싶지는 않을 때 fetch를 사용한다.</li>
 </ul>
-<p>HEAD에는 가장 마지막에 행해진 commit 정보가 담긴다. 마찬가지로 <code>FETCH_HEAD</code>는 리모트 저장소의 가장 최신 commit 이력이 담기게 된다.</p>
+<p>HEAD에는 가장 마지막에 행해진 commit 정보가 담긴다. 더 정확히 말하면 HEAD는 현재 작업중인 워킹디렉터리를 가리키는 포인터이다. checkout 명령을 통해 작업 중인 브랜치를 이동하면 HEAD도 따라서 이동한다. <code>FETCH_HEAD</code>는 리모트 저장소가 가장 최근에 작업했던 디렉터리를 가리킨다. 즉 원격 저장소의 가장 최근에 행해진 commit을 가리키는 포인터이다.</p>
 <p><code>FETCH_HEAD</code>는 이름 없는 브랜치로 로컬에 가져오게 된다. 이 브랜치는 <code>FETCH_HEAD</code>로 checkout도 가능하다.</p>
 <ul>
 <li>pull 명령은 리모트 저장소에 있는 내용을 가져올 뿐 아니라 자동으로 로컬 저장소에 merge한다. 즉, git pull은 git fetch + merge FETCH_HEAD인 셈이다.</li>
 </ul>
-<p>복잡하고 긴 설명 끝에 결론은 어쨌든 연결되는 <strong>공통된 커밋 포인트가 없다</strong>는 것이다. </p>
-<p>결국은 clone으로 원격 저장소를 복제해오는 것이 가장 간단하다.</p>
+<p>복잡하고 긴 설명 끝에 결론은 어쨌든 연결되는 <strong>공통적으로 가리키고 있는 커밋 포인트가 없다</strong>는 것이다. </p>
+<p>결국은 clone으로 원격 저장소를 복제해오는 것이 가장 간단한 해결책이다.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone 저장소url</div></pre></td></tr></table></figure>
 <p>이렇게 하면 원격 저장소의 커밋이 내 로컬 저장소에 복사된다. 이후 add -&gt; commit -&gt; push를 통해 내 로컬 저장소에 있던 커밋 로그를 clone으로 불러온 커밋 로그 뒤에 merge할 수 있으며 이를 원격 저장소에도 반영할 수 있게 된다.</p>
 <blockquote>
@@ -346,6 +344,7 @@
 <p>Reference</p>
 <ul>
 <li><a href="https://git-scm.com/book/ko/v1/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98" target="_blank" rel="external">git-scm.com</a>  </li>
+<li><a href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80" target="_blank" rel="external">git-scm.com - 브랜치란 무엇인가</a>  </li>
 <li><a href="https://stackoverflow.com/questions/9237348/what-does-fetch-head-in-git-mean" target="_blank" rel="external">stack overflow</a>  </li>
 <li><a href="https://backlogtool.com/git-tutorial/kr/stepup/stepup3_2.html" target="_blank" rel="external">git tutorial - fetch</a></li>
 </ul>
