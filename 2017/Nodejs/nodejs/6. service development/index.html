@@ -8,18 +8,18 @@
     
         <meta name="keywords" content="urlshortner" />
     
-    <meta name="description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+    <meta name="description" content="요구사항 시나리오화면설계 데이터 설계 프로젝트 세팅1) project folder 생성2) npm init3) git init3) .gitignore - node로 생성vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&amp;gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitig">
 <meta name="keywords" content="urlshortner">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[node] URL shortner 만들기">
 <meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/6. service development/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+<meta property="og:description" content="요구사항 시나리오화면설계 데이터 설계 프로젝트 세팅1) project folder 생성2) npm init3) git init3) .gitignore - node로 생성vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&amp;gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitig">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2017-08-30T08:21:26.000Z">
+<meta property="og:updated_time" content="2017-08-31T05:18:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[node] URL shortner 만들기">
-<meta name="twitter:description" content="요구사항 시나리오화면설계  로그인    목록   현재 생성된 URL: 3 url = 0 ? 현재 생성된 URL이 없습니다.    데이터 설계 짧은 URL의 slug ex. goo.gl/59DX78 긴 URL 1번은 68AB12 긴 URL 1번도 56DX78 에 연결  =&amp;gt; 데이터 구조 {긴url, 짧url}  프로젝트 세팅1) project folde">
+<meta name="twitter:description" content="요구사항 시나리오화면설계 데이터 설계 프로젝트 세팅1) project folder 생성2) npm init3) git init3) .gitignore - node로 생성vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&amp;gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitig">
     
 
     
@@ -179,43 +179,15 @@ ga('send', 'pageview');
         
         <div class="article-entry" itemprop="articleBody">
             <h1 id="요구사항"><a href="#요구사항" class="headerlink" title="요구사항"></a>요구사항</h1><p><br></p>
-<h2 id="시나리오"><a href="#시나리오" class="headerlink" title="시나리오"></a>시나리오</h2><h1 id="화면설계"><a href="#화면설계" class="headerlink" title="화면설계"></a>화면설계</h1><ul>
-<li><ol>
-<li>로그인</li>
-</ol>
-</li>
-<li><ol>
-<li>목록</li>
-</ol>
-<ul>
-<li>현재 생성된 URL: 3</li>
-<li>url = 0 ? 현재 생성된 URL이 없습니다.<br><br></li>
-</ul>
-</li>
-</ul>
-<h1 id="데이터-설계"><a href="#데이터-설계" class="headerlink" title="데이터 설계"></a>데이터 설계</h1><ul>
-<li>짧은 URL의 slug ex. goo.gl/59DX78</li>
-<li>긴 URL 1번은 68AB12</li>
-<li>긴 URL 1번도 56DX78 에 연결</li>
-</ul>
-<p>=&gt; 데이터 구조 {긴url, 짧url}</p>
-<p><br></p>
+<h2 id="시나리오"><a href="#시나리오" class="headerlink" title="시나리오"></a>시나리오</h2><h2 id="화면설계"><a href="#화면설계" class="headerlink" title="화면설계"></a>화면설계</h2><p><br></p>
+<h2 id="데이터-설계"><a href="#데이터-설계" class="headerlink" title="데이터 설계"></a>데이터 설계</h2><p><br></p>
 <h1 id="프로젝트-세팅"><a href="#프로젝트-세팅" class="headerlink" title="프로젝트 세팅"></a>프로젝트 세팅</h1><p>1) project folder 생성<br>2) npm init<br>3) git init<br>3) .gitignore - node로 생성<br>vscode의 gitignore 플러그인을 설치, cmd+shift+p를 눌러서 add gitignore -&gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitignore를 생성할 수 있다.</p>
 <blockquote>
 <p>node_modules는 깃 저장소에 넣지 않는 것이 원칙이다.</p>
 </blockquote>
-<ul>
-<li>node_modules를 깃에 올리지 않는 이유?<ul>
-<li><ol>
+<h3 id="node-modules를-깃에-올리지-않는-이유"><a href="#node-modules를-깃에-올리지-않는-이유" class="headerlink" title="node_modules를 깃에 올리지 않는 이유?"></a>node_modules를 깃에 올리지 않는 이유?</h3><ul>
 <li>git 저장소는 내 프로젝트의 코드를 관리하기 위한 곳이지 외부 패키지를 관리하기 위한 것이 아니다.</li>
-</ol>
-</li>
-<li><ol>
 <li>git 저장소의 용량이 커지고 git이 추적해야 할 파일이 많아지기 때문에 느려질 수 있다.</li>
-</ol>
-</li>
-</ul>
-</li>
 </ul>
 <p>4) first commit</p>
 <p>5) git history<br>vscode의 git History 플러그인을 설치하면 깃 로그를 볼 수 있다. cmd+shift+p -&gt; git log -&gt; 로그를 볼 브랜치 선택/ 실행</p>
