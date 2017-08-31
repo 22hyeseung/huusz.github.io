@@ -17,7 +17,7 @@
 <meta property="og:description" content="로컬 저장소를 github 저장소와 연결하기로컬 저장소 만들기1. 프로젝트 폴더 만들기우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.   터미널에서 cd 디렉터리 명령어를 통해 원하는 디렉터리로 이동한다. mkdir 폴더명을 입력하면 현 위치에 새로운 폴더(디렉터리)를 만들어준다. (mkdir은 ‘make directory’이다.) cd">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="http://huusz.github.io/images/1.png">
-<meta property="og:updated_time" content="2017-08-31T04:30:46.000Z">
+<meta property="og:updated_time" content="2017-08-31T04:34:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Git] 로컬 저장소와 원격 저장소 연결하기">
 <meta name="twitter:description" content="로컬 저장소를 github 저장소와 연결하기로컬 저장소 만들기1. 프로젝트 폴더 만들기우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.   터미널에서 cd 디렉터리 명령어를 통해 원하는 디렉터리로 이동한다. mkdir 폴더명을 입력하면 현 위치에 새로운 폴더(디렉터리)를 만들어준다. (mkdir은 ‘make directory’이다.) cd">
@@ -256,7 +256,7 @@ ga('send', 'pageview');
 <p>한번에 해결되면 좋겠지만, 안타깝게도 또다른 오류가 발생한다.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fetal: refusing to merge unrelated histories</div></pre></td></tr></table></figure>
 <p><img src="/images/pull-error.png" alt="pull error"></p>
-<p>에러 내용은 원격 저장소의 master 브랜치에서 로컬 저장소의 FETCH_HEAD를 merge하는 것이 거부되었다. 커밋 히스토리가 서로 관련이 없다. 즉 서로 관련성이 없기 때문에 merge할 수 없다는 것이다. 뒤에서도 설명하겠지만, pull 명령은 fetch + merge 작업을 한번에 처리한다. 현 상황은 fetch는 되었지만, merge가 되지 않은 상태이다.</p>
+<p>원격 저장소(리모트 저장소)의 master 브랜치에서 데이터를 불러와(fetch) 로컬 저장소의 <code>FETCH_HEAD</code>에 담아둔 상태에서, 이를 로컬 저장소 master에 병합(merge)하려 하였는데, 병합하는 것이 거부된 상황이다. 커밋 히스토리가 서로 관련이 없다. 즉 서로 관련성이 없기 때문에 merge할 수 없다는 것이다. 뒤에서도 설명하겠지만, pull 명령은 fetch + merge 작업을 한번에 처리한다. 현 상황은 fetch는 되었지만, merge가 되지 않은 상태이다.</p>
 <p>기본적으로 merge는 원격 저장소와 로컬 저장소가 공통으로 가지고 있는 commit 지점이 존재해야 한다. 그 지점부터 병합을 시도하기 때문이다. 애초에 공통되는 commit 지점이 존재하지 않아 pull 명령도 사용할 수 없는 것이다. </p>
 <p>해결하기 앞서 상황을 이해하기 위해 간단하게 짚고 넘어갈 개념이 있다. pull과 fetch이다.</p>
 <ul>
