@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>[node] Express Middleware | Huusz&#39;s Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="middleware" />
+    
+    <meta name="description" content="Express Middleware익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다. 미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응">
+<meta name="keywords" content="middleware">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[node] Express Middleware">
+<meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/7. Express Middleware/index.html">
+<meta property="og:site_name" content="Huusz&#39;s Log">
+<meta property="og:description" content="Express Middleware익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다. 미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://huusz.github.io/2017/Nodejs/nodejs/images/middleware.png">
+<meta property="og:updated_time" content="2017-09-09T09:41:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[node] Express Middleware">
+<meta name="twitter:description" content="Express Middleware익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다. 미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응">
+<meta name="twitter:image" content="http://huusz.github.io/2017/Nodejs/nodejs/images/middleware.png">
+    
+
+    
+        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/css/images/favi.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104157265-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a class="logo" href="https://huusz.github.io">
+                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'post',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs/7. Express Middleware" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        [node] Express Middleware
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="article-date">
+            <time datetime="2017-09-09T09:04:11.000Z" itemprop="datePublished">2017-09-09</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/middleware/">middleware</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="Express-Middleware"><a href="#Express-Middleware" class="headerlink" title="Express Middleware"></a>Express Middleware</h1><p>익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다.</p>
+<p>미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응답 오브젝트(res)’, 그리고 애플리케이션의 요청-응답 주기 중 ‘다음 미들웨어 함수(next)’에 대한 액세스 권한을 갖는 함수이다.</p>
+<p><img src="../images/middleware.png" alt="middelware"></p>
+<p>미들웨어는 인수로 요청 오브젝트(request 객체)와 응답 오브젝트(response 객체), next 함수를 인자로 받는다. 요청 오브젝트와 응답 오브젝트를 조작해서 기능을 구현하며, next 함수는 다음 미들웨어를 동작시키기 위해 사용되며, 인자 없이 호출된다.</p>
+<p>미들웨어는 기본적으로 <strong>함수</strong>이다. 따라서 내부에서 <strong>어떤 작업이든</strong> 가능하다. 미들웨어 함수로 수행하는 일은 아래와 같다.</p>
+<ul>
+<li>로깅</li>
+<li>HTTP body를 객체로 변환</li>
+<li>사용자 인증</li>
+<li>권한 관리 등</li>
+</ul>
+<p><br></p>
+<h2 id="app-use"><a href="#app-use" class="headerlink" title="app.use()"></a>app.use()</h2><p><code>app.use()</code>는 미들웨어 함수를 로드하기 위해 사용되는 메소드이다. 미들웨어 함수를 지정하고, <code>app.use()</code>를 통해 호출할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//미들웨어 - 함수</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">helloMiddleware</span>(<span class="params">res, req, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">  next();</div><div class="line">&#125;</div><div class="line"></div><div class="line">app.use(helloMiddleware);</div></pre></td></tr></table></figure>
+<p>위 예제는 hello를 콘솔에 출력하는 helloMiddleware 함수를 정의하고, <code>app.use()</code>를 통해 로드하였다. 위와 같은 로드 방식은 앱 전체에서 동작하게 하는 방식이다. 첫번째 인자로 경로를 지정하면, 특정 경로에서만 동작하게 할 수도 있다. 아래 예제를 참고하자.</p>
+<ul>
+<li>앱 전체에서 동작하게 하기</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(helloMiddleware);</div></pre></td></tr></table></figure>
+<ul>
+<li>특정 경로에서만 동작하게 하기</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// some-path라는 경로 안에서만 동작하도록 로드</span></div><div class="line">app.use(<span class="string">'/some-path'</span>, helloMiddleware);</div></pre></td></tr></table></figure>
+<ul>
+<li>한 번에 여러 개 로드하기</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 다수의 미들웨어를 한번에 호출</span></div><div class="line">app.use(middleware1, middleware2, middleware3, ...)</div></pre></td></tr></table></figure>
+<h2 id="호출-순서"><a href="#호출-순서" class="headerlink" title="호출 순서"></a>호출 순서</h2><p>미들웨어의 실행 순서는 호출 순서에 의해 결정된다. 즉, 먼저 호출되는 것이 먼저 실행된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mylogger.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line"><span class="keyword">const</span> myLogger = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'LOGGED'</span>);</div><div class="line">  next();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">app.use(myLogger);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">'Hello World'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// console</span></div><div class="line">% node mylogger.js</div><div class="line">LOGGED</div></pre></td></tr></table></figure>
+<p>위 예제는 라우팅 이전에 myLogger가 로드되었다. 실행하면 콘솔창에 LOGGED를 출력할 것이다.</p>
+<p>그런데 만약 myLogger가 라우팅 이후에 로드되었다면?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line"><span class="keyword">const</span> myLogger = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'LOGGED'</span>);</div><div class="line">  next();</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 루트경로에 대한 라우팅</span></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">'Hello World'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// myLogger 미들웨어를 라우팅 이후에 로드하였다.</span></div><div class="line">app.use(myLogger);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>이 경우, 루트 경로의 라우트 핸들러가 요청-응답 주기를 종료하므로 요청은 myLogger에 도달하지도 못한다. 따라서 LOGGED를 출력하지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// console</span></div><div class="line">% node mylogger.js</div><div class="line"><span class="comment">// 아무것도 출력하지 않는다.</span></div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="자주-사용되는-미들웨어"><a href="#자주-사용되는-미들웨어" class="headerlink" title="자주 사용되는 미들웨어"></a>자주 사용되는 미들웨어</h2><h3 id="1-static-미들웨어"><a href="#1-static-미들웨어" class="headerlink" title="1. static 미들웨어"></a>1. static 미들웨어</h3><p>static 미들웨어는 특정 폴더의 파일들을 특정 패스로 접근할 수 있도록 만들어준다.</p>
+<p>static 미들웨어는 외장 모듈로 만들어져 있기 때문에 npm을 통해 설치해야 한다. 터미널이나 명령 프롬프트(cmd)에서 아래 명령을 통해 설치한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install serve-static --save</div></pre></td></tr></table></figure>
+<p>아래는 static 사용의 예시이다. public 폴더에 있는 모든 파일을 웹 서버의 루트 패스로 접근할 수 있도록 하고 싶을 때 아래처럼 사용한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'serve-static'</span>);</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">app.use(<span class="keyword">static</span>(path.join(__dirname, <span class="string">'public'</span>)));</div></pre></td></tr></table></figure>
+<p>이 코드는 public 폴더 안에 있는 파일들을 클라이언트에서 바로 접근할 수 있게 한다. 예를 들어 프로젝트 폴더 안에 다음과 같은 폴더나 파일이 들어 있다면,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ExpressExample/public/index.html</div><div class="line">ExpressExample/public/house.png</div><div class="line">ExpressExample/public/main.js</div><div class="line">ExpressExample/public/style.css</div></pre></td></tr></table></figure>
+<p>웹 브라우저에서 다음과 같은 주소로 바로 접근할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">http://localhost:3000/index.html</div><div class="line">http://localhost:3000/house.png</div><div class="line">http://localhost:3000/main.js</div><div class="line">http://localhost:3000/style.css</div></pre></td></tr></table></figure>
+<p>만약 파일을 사이트의 /public 패스로 접근하게 만들고 싶다면 위의 코드에서 첫번째 인자에 요청 패스 <code>/public</code>을 추가해주면 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="string">'/public'</span>, <span class="keyword">static</span>(path.join(__dirname, <span class="string">'public'</span>)));</div></pre></td></tr></table></figure>
+<p><sub> * __dirname: 현재 디렉토리</sub></p>
+<p>이렇게 하면 요청 패스와 특정 폴더(static 함수를 이용해 지정한 디렉터리)가 매핑(Mapping)되어 접근할 수 있게 된다.</p>
+<h3 id="2-body-parser"><a href="#2-body-parser" class="headerlink" title="2. body-parser"></a>2. body-parser</h3><p>클라이언트의 요청(request) 방식에는 대표적으로 GET방식과 POST 방식이 있다.<br>GET 방식은 주소 문자열에 요청 파라미터가 들어가므로 url을 통해 확인이 가능하다. 그에 반해 POST 방식은 본문인 Body 영역에 요청 파라미터가 들어간다. 따라서 GET 방식과는 다른 방식으로 요청 파라미터를 파싱해야 한다.</p>
+<p><code>body-parser</code> 미들웨어는 POST 방식으로 요청할 때 body에 들어있는 요청 파라미터들을 파싱하여 request 객체의 body 속성에 넣어준다.</p>
+<p><code>body-parser</code> 미들웨어 역시 외부 모듈이므로, npm을 통해 다운로드해야 사용할 수 있다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install body-parser --save</div></pre></td></tr></table></figure>
+<p>public 폴더 생성 후 그 안에login.html 파일을 생성한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>login test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>로그인<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">label</span>&gt;</span>아이디<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">label</span>&gt;</span>비밀번호<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span> = <span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"전송"</span> <span class="attr">name</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"></div><div class="line"><span class="comment">// Express 기본 모듈 불러오기</span></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Express의 미들웨어 불러오기</span></div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'save-static'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 익스프레스 객체 생성</span></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line"><span class="comment">// 기본 속성 설정</span></div><div class="line">app.set(<span class="string">'port'</span>, process.env.PORT || <span class="number">3000</span>);</div><div class="line"></div><div class="line"><span class="comment">// body-parser로 application/x-www-form-urlencoded 파싱</span></div><div class="line"><span class="comment">// .urlencoded() 메소드를 호출하면서 미들웨어를 설정하면, 'application/x-www-form-urlencoded' 형식으로 전달된 요청 파라미터를 파싱할 수 있다.</span></div><div class="line"><span class="comment">// 이 형식은 일반적인 요청 파라미터의 형식이다.</span></div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</div><div class="line"></div><div class="line"><span class="comment">// body-parser를 사용해 application/json 파싱</span></div><div class="line"><span class="comment">// .json() 메소드를 호출하면서 미들웨어를 설정하면 application/json 형식으로 전달된 요청 파라미터를 참조할 수 있다.</span></div><div class="line">app.use(bodyParser.json());</div><div class="line"></div><div class="line">app.use(<span class="keyword">static</span>(path.join(__dirname, <span class="string">'public'</span>)));</div><div class="line"></div><div class="line"><span class="comment">// 미들웨어에서 파라미터 확인</span></div><div class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'첫번째 미들웨어에서 요청을 처리'</span>);</div><div class="line"></div><div class="line">  <span class="comment">// body 안에 있는 요청 파라미터를 참조한다.</span></div><div class="line">  <span class="comment">// 만약 클라이언트가 요청하는 방식이 GET 방식인지 POST 방식으로 요청할지 모른다면</span></div><div class="line">  <span class="comment">// 두 가지 경우를 모두 고려해 두 가지 요청 파라미터를 모두 검사한다.</span></div><div class="line">  <span class="keyword">const</span> paramId = req.body.id || req.query.id;</div><div class="line">  <span class="keyword">const</span> paramPassword = req.body.password || req.query.password;</div><div class="line"></div><div class="line">  res.writeHead(<span class="string">'200'</span>, &#123;<span class="string">'Content-Type'</span>:<span class="string">'text/html;charset=utf-8'</span>&#125;);</div><div class="line">  res.write(<span class="string">'&lt;h1&gt;Express 서버에 응답한 결과입니다. &lt;/h1&gt;'</span>);</div><div class="line">  res.write(<span class="string">'&lt;div&gt;&lt;p&gt;Param id: '</span>+ paramId + <span class="string">'&lt;/p&gt;&lt;/div&gt;'</span>);</div><div class="line">  res.write(<span class="string">'&lt;div&gt;&lt;p&gt;Param password: '</span> + paramPassword + <span class="string">'&lt;/p&gt;&lt;/div&gt;'</span>);</div><div class="line">  res.end();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node server.js</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost:3000/login.html 접속</div></pre></td></tr></table></figure>
+<p>서버 코드에서 use() 메소드로 설정한 함수는 login.html 문서에 접근할 때는 호출되지 않는다. 처음에는 login.html 문서가 웹 브라우저에 보이고, 전송 버튼을 클릭해 POST로 요청했을 때 use() 메소드로 설정한 함수가 호출된다.</p>
+<p>전송 버튼을 누르면 POST 방식으로 요청을 보낼 때도 GET 방식과 마찬가지로 요청 파라미터를 확인할 수 있다.  </p>
+<p><br></p>
+<h2 id="Middleware를-사용하는-이유"><a href="#Middleware를-사용하는-이유" class="headerlink" title="Middleware를 사용하는 이유"></a>Middleware를 사용하는 이유</h2><p>미들웨어로 할 수 있는 모든 일은 사실 라우트 핸들러에서도 할 수 있다. 그럼에도 미들웨어를 사용하는 이유는 여러 라우터에서 사용해야 하는 기능을 중복 작성하는 불편을 덜고, <strong>코드를 재사용</strong>하기 위함이다.</p>
+<h2 id="Middleware-생태계"><a href="#Middleware-생태계" class="headerlink" title="Middleware 생태계"></a>Middleware 생태계</h2><p><a href="https://expressjs.com/ko/resources/middleware.html" target="_blank" rel="external">Express resource</a><br><a href="https://www.npmjs.com/search?q=express+middleware" target="_blank" rel="external">NPM search</a></p>
+<h2 id="미들웨어-예제"><a href="#미들웨어-예제" class="headerlink" title="미들웨어 예제"></a>미들웨어 예제</h2><p>middlewares.js 파일에서 작성한 미들웨어를 server.js에서 불러와 사용하고 있다. 각각 어떤 방식으로 미들웨어를 사용하고 있는지 확인해보자.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// middlewares.js</span></div><div class="line">exports.ipLoggingMiddleware = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`request ip: <span class="subst">$&#123;req.ip&#125;</span>`</span>)</div><div class="line">  next()</div><div class="line">&#125;</div><div class="line"></div><div class="line">exports.urlLoggingMiddleware = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`request url: <span class="subst">$&#123;req.originalUrl&#125;</span>`</span>)</div><div class="line">  next()</div><div class="line">&#125;</div><div class="line"></div><div class="line">exports.resLocalMiddleware = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  res.locals.myVar = <span class="string">'FASTCAMPUS!'</span></div><div class="line">  next()</div><div class="line">&#125;</div><div class="line"></div><div class="line">exports.lock = <span class="function"><span class="params">key</span> =&gt;</span> (req, res, next) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (req.query.key === key) &#123;</div><div class="line">    next()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.status(<span class="number">403</span>)</div><div class="line">    res.send(<span class="string">'403 Forbidden'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> &#123;</div><div class="line">  ipLoggingMiddleware, </div><div class="line">  urlLoggingMiddleware, </div><div class="line">  resLocalMiddleware,</div><div class="line">  lock</div><div class="line">&#125; = <span class="built_in">require</span>(<span class="string">'./middlewares'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 앱 단위 미들웨어는 모든 라우트 핸들러에서 실행됩니다.</span></div><div class="line"><span class="comment">// 미들웨어는 등록된 순서대로 실행됩니다.</span></div><div class="line"><span class="comment">// 아래 미들웨어 적용 순서를 바꿔보세요.</span></div><div class="line">app.use(urlLoggingMiddleware)</div><div class="line">app.use(ipLoggingMiddleware)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 라우트 단위 미들웨어는 적용된 라우트에서만 실행됩니다.</span></div><div class="line">app.get(<span class="string">'/'</span>, resLocalMiddleware, (req, res) =&gt; &#123;</div><div class="line">  res.render(<span class="string">'index.ejs'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/secret'</span>, lock(<span class="string">'thisisthekey'</span>), (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">'my secret is...'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'listening...'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// views/index.ejs</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">  &lt;<span class="regexp">/head&gt;</span></div><div class="line"><span class="regexp">  &lt;body&gt;</span></div><div class="line"><span class="regexp">    &lt;div&gt;</span></div><div class="line"><span class="regexp">      &lt;%= myVar %&gt;</span></div><div class="line"><span class="regexp">    &lt;/</span>div&gt;</div><div class="line">  &lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div></pre></td></tr></table></figure>
+<p><strong>next</strong></p>
+<p>미들웨어는 <code>req</code>, <code>res</code>에 더해서 <code>next</code>라는 함수를 추가로 인자로 받는다. <code>next</code> 함수를 호출하면 다음 미들웨어로 처리를 넘기는 효과가 있다. 만약에 미들웨어가 <code>next</code> 함수를 호출하지도 않고, 응답도 보내지 않으면 클라이언트는 응답을 받지 못하게 된다.</p>
+<p><strong>App Local, Response Local</strong></p>
+<p><code>app.locals</code>와 <code>res.locals</code>는 특별한 객체를 담고 있다. 템플릿에서는 <code>res.render</code>를 통해 명시적으로 주입받지 않아도 저 두 객체의 속성에 바로 접근할 수 있다.</p>
+<p>템플릿을 가리지 않고 사용되는 정보들, 예를 들어 ‘현재 로그인 중인 사용자 정보’ 같은 것을 <code>res.render</code>에 매번 인자로 넘기는 것은 귀찮을 뿐더러 빠뜨리기도 쉽다. 그런 정보들을 템플릿에서 쉽게 사용하기 위해 <code>app.locals</code>나 <code>res.locals</code>에 우리가 원하는 이름으로 속성을 주입할 수 있습니다.</p>
+<p><code>app.locals</code>는 앱 단위로 공통적으로 쓰이는 정보를 담는 목적으로 사용된다. <code>res.locals</code>는 각 요청마다 달라지는 정보를 담는 목적으로 사용된다.</p>
+<p><code>app.local</code> 객체를 조작하는 것은 매우 쉽다. <code>res</code> 객체는 매 요청마다 새로 생성되어 미들웨어 바깥에서 접근할 수 있는 방법이 없으므로, <code>res.locals</code>를 조작하려면 미들웨어를 사용해야 한다.</p>
+<h2 id="미들웨어-VS-라우트-핸들러"><a href="#미들웨어-VS-라우트-핸들러" class="headerlink" title="미들웨어 VS 라우트 핸들러"></a>미들웨어 VS 라우트 핸들러</h2><p>라우트 핸들러도 미들웨어이다. 즉, next 함수를 인자로 받는 것이 가능하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.get(<span class="string">'/'</span>, (req, res, next) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span>(!someCondition) &#123;</div><div class="line">    next(); <span class="comment">// 요청을 처리하지 않고 다른 핸들러로 넘긴다.</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    res.send(<span class="string">'hello'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>Example: custom 404</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// views/404.ejs</span></div><div class="line">My Awesome <span class="number">404</span>!</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 요청이 라우트 핸들러가 등록된 어떤 경로와도 일치하지 않을 때,</span></div><div class="line"><span class="comment">// 맨 마지막 미들웨어를 실행시킬 수 있습니다. 이를 이용해 우리만의 404 페이지를 보여줄 수 있습니다.</span></div><div class="line"><span class="comment">// [참고](http://expressjs.com/ko/starter/faq.html)</span></div><div class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  res.render(<span class="string">'404.ejs'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="오류처리-미들웨어"><a href="#오류처리-미들웨어" class="headerlink" title="오류처리 미들웨어"></a>오류처리 미들웨어</h2><p>다른 미들웨어 함수와 정의하는 방법은 동일하지만, err라는 인수를 추가로 받는다는(총 4개의 인수) 차이가 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="function">(<span class="params">err, req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.error(err.stack);</div><div class="line">  res.status(<span class="number">500</span>).send(<span class="string">'Something broke!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>오류 처리 미들웨어는 다른 app.use() 및 라우트 호출을 정의한 후에 <strong>마지막으로 정의</strong>해야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> methodOverride = <span class="built_in">require</span>(<span class="string">'method-override'</span>);</div><div class="line"></div><div class="line">app.use(bodyParser());</div><div class="line">app.use(methodOverride());</div><div class="line">app.use(<span class="function">(<span class="params">err, req, res, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// logic</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>미들웨어 함수 내부로부터의 응답은 HTML 오류 페이지, 단순 메시지, JSON 문자열 등으로, 클라이언트가 원하는 형식으로 설정할 수 있다.  </p>
+<p>오류처리 미들웨어 함수 역시 일반적인 미들웨어 함수처럼 직접 정의할 수 있다. 아래는 XHR을 이용한 요청 및 그렇지 않은 요청에 대한 오류처리 미들웨어 함수를 정의한 예이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> methodOverride = <span class="built_in">require</span>(<span class="string">'method-override'</span>);</div><div class="line"></div><div class="line">app.use(bodyParser());</div><div class="line">app.use(methodOverride());</div><div class="line">app.use(logErrors);</div><div class="line">app.use(clientErrorHandler);</div><div class="line">app.use(errorHandler);</div></pre></td></tr></table></figure>
+<p>logError는 요청 및 오류 정보를 stderr에 기록할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 오류정보를 기록하는 함수</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">logErrors</span> (<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(err.stack);</div><div class="line">  next(err);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 오류인 경우 500 error를 보내고 아닌 경우 다음 오류처리 미들웨어로 넘기는 함수</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">clientErrorHandler</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(req.xhr) &#123;</div><div class="line">    res.status(<span class="number">500</span>).send(&#123; <span class="attr">error</span>: <span class="string">'Something failed!'</span>&#125;);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next(err);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>모든 오류를 처리하는(catch-all) errorHandler 함수는 다음과 같이 구현할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">errorHandler</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  res.status(<span class="number">500</span>);</div><div class="line">  res.render(<span class="string">'error'</span>, &#123; <span class="attr">error</span>: err &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p><a href="http://expressjs.com/ko/guide/writing-middleware.html" target="_blank" rel="external">expressjs.com</a></p>
+<p><a href="https://expressjs.com/ko/guide/error-handling.html" target="_blank" rel="external">expressjs.com - 오류처리 미들웨어</a></p>
+<p><a href="seungha-kim.github.io">강사님 강의자료</a></p>
+<p><a href="http://www.easyspub.co.kr/20_Menu/BookView/A001/127/PUB" target="_blank" rel="external">참고서적: Do it! Node.js 프로그래밍</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
+    <div class="sidebar-top">
+        <p>follow</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/Nodejs/nodejs/8. cookie/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            [node] Cookie
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/Nodejs/nodejs/5. Web form/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">[node] Web form</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/POST VS PUT/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/9. session/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/9. session/" class="title">[node]  세션 Session</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:16:41.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/8. cookie/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/8. cookie/" class="title">[node] Cookie</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:05:09.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../images/middleware.png)" alt="[node] Express Middleware" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="title">[node] Express Middleware</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:04:11.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/5. Web form/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/uuid.png)" alt="[node] Web form" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/5. Web form/" class="title">[node] Web form</a></p>
+                            <p class="item-date"><time datetime="2017-08-30T08:08:08.000Z" itemprop="datePublished">2017-08-30</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
+                </h1>
+                <p>&copy; 2017 huusz</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'huuszLog';
+    
+    
+    var disqus_url = 'http://huusz.github.io/2017/Nodejs/nodejs/7. Express Middleware/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

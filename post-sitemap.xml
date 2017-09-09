@@ -7,8 +7,32 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/case1/</loc>
-        <lastmod>2017-09-09T07:33:59.000Z</lastmod>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/POST%20VS%20PUT/</loc>
+        <lastmod>2017-09-09T09:44:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/9.%20session/</loc>
+        <lastmod>2017-09-09T09:42:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/8.%20cookie/</loc>
+        <lastmod>2017-09-09T09:42:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/</loc>
+        <lastmod>2017-09-09T09:41:53.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,6 +40,14 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/6.%20service%20development/</loc>
+        <lastmod>2017-09-09T09:38:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/case1/</loc>
         <lastmod>2017-09-09T07:33:59.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
