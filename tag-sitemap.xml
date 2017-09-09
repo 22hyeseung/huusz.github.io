@@ -80,21 +80,42 @@
 
     <url>
         <loc>http://huusz.github.io/tags/github/</loc>
-        <lastmod>2017-09-06T15:18:04.000Z</lastmod>
+        <lastmod>2017-09-09T07:33:59.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/urlshortner/</loc>
-        <lastmod>2017-09-09T06:50:51.000Z</lastmod>
+        <lastmod>2017-09-09T09:38:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/middleware/</loc>
+        <lastmod>2017-09-09T09:41:53.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/cookie/</loc>
+        <lastmod>2017-09-09T09:42:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/session/</loc>
+        <lastmod>2017-09-09T09:42:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/idempotent/</loc>
-        <lastmod>2017-09-09T07:25:38.000Z</lastmod>
+        <lastmod>2017-09-09T11:11:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
