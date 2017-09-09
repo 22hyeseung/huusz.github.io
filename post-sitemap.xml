@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/</loc>
+        <lastmod>2017-09-09T07:19:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/post-vs-put/</loc>
         <lastmod>2017-09-09T07:15:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
