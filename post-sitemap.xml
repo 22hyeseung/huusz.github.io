@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/</loc>
+        <lastmod>2017-09-09T11:12:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/8.%20cookie/</loc>
+        <lastmod>2017-09-09T11:12:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/POST%20VS%20PUT/</loc>
-        <lastmod>2017-09-09T11:11:20.000Z</lastmod>
+        <lastmod>2017-09-09T11:12:40.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,22 +33,6 @@
     <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/9.%20session/</loc>
         <lastmod>2017-09-09T09:42:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/8.%20cookie/</loc>
-        <lastmod>2017-09-09T09:42:24.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/</loc>
-        <lastmod>2017-09-09T09:41:53.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

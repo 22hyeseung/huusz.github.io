@@ -93,20 +93,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/middleware/</loc>
-        <lastmod>2017-09-09T09:41:53.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/cookie/</loc>
-        <lastmod>2017-09-09T09:42:24.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/session/</loc>
         <lastmod>2017-09-09T09:42:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -115,7 +101,21 @@
 
     <url>
         <loc>http://huusz.github.io/tags/idempotent/</loc>
-        <lastmod>2017-09-09T11:11:20.000Z</lastmod>
+        <lastmod>2017-09-09T11:12:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/cookie/</loc>
+        <lastmod>2017-09-09T11:12:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/middleware/</loc>
+        <lastmod>2017-09-09T11:12:47.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

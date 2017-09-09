@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-09-09T11:11:20.000Z</updated>
+  <updated>2017-09-09T11:12:40.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/POST%20VS%20PUT/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/POST VS PUT/</id>
     <published>2017-09-09T09:42:28.000Z</published>
-    <updated>2017-09-09T11:11:20.000Z</updated>
+    <updated>2017-09-09T11:12:40.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p>
 <p>정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가?</p>
@@ -150,11 +150,11 @@
   </entry>
   
   <entry>
-    <title>[node] Cookie</title>
+    <title>[node] 쿠키 Cookie</title>
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/8.%20cookie/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/8. cookie/</id>
     <published>2017-09-09T09:05:09.000Z</published>
-    <updated>2017-09-09T09:42:24.000Z</updated>
+    <updated>2017-09-09T11:12:44.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="쿠키"><a href="#쿠키" class="headerlink" title="쿠키"></a>쿠키</h1><p>쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 <code>cookie-parser</code> 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다.</p>
 <h2 id="쿠키의-필요성"><a href="#쿠키의-필요성" class="headerlink" title="쿠키의 필요성"></a>쿠키의 필요성</h2><p>개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우</p>
@@ -221,11 +221,11 @@
   </entry>
   
   <entry>
-    <title>[node] Express Middleware</title>
+    <title>[node] Middleware 미들웨어</title>
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/7. Express Middleware/</id>
     <published>2017-09-09T09:04:11.000Z</published>
-    <updated>2017-09-09T09:41:53.000Z</updated>
+    <updated>2017-09-09T11:12:47.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Express-Middleware"><a href="#Express-Middleware" class="headerlink" title="Express Middleware"></a>Express Middleware</h1><p>익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다.</p>
 <p>미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응답 오브젝트(res)’, 그리고 애플리케이션의 요청-응답 주기 중 ‘다음 미들웨어 함수(next)’에 대한 액세스 권한을 갖는 함수이다.</p>
