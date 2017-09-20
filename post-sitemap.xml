@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/React/React/01/</loc>
+        <lastmod>2017-09-20T11:32:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/</loc>
         <lastmod>2017-09-09T11:12:47.000Z</lastmod>
         <changefreq>weekly</changefreq>
