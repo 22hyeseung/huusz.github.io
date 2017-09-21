@@ -42,7 +42,7 @@
 <p>결국 컴포넌트가 업데이트 될 때, 레이아웃 계산(reflow)이 한번만 이루어지므로 속도 저하 문제를 개선할 수 있게 되는 것이다.</p>
 <p>하지만, Virtual DOM이 모든 경우에서 무조건 더 좋은 퍼포먼스를 내는 것은 아니다. 오히려 단순 라우팅만 있는 정적 웹페이지의 경우 React를 쓰지 않는 편이 더 낫기도 하다. (React는 지속적으로 데이터가 변화하는 대규모 애플리케이션 구축에 적절하다고 공식 매뉴얼에서 밝히고 있다.)  </p>
 <p>React와 Virtual DOM이 주는 최고의 편의성은 <strong>간결한 업데이트 처리</strong>이다. UI를 업데이트 하는 과정에서 발생하는 복잡함을 해소해줄 뿐 아니라, 업데이트에 쉽게 접근할 수 있게 해준다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line"></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react@latest/dist/react.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react-dom@latest/dist/react-dom.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/head&gt;</span></div><div class="line"><span class="regexp">&lt;body&gt;</span></div><div class="line"><span class="regexp">  &lt;h1&gt;Welcome to React&lt;/</span>h1&gt;</div><div class="line">  &lt;div id=<span class="string">"react-app"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">  &lt;script type=<span class="string">"text/babel"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        &lt;div&gt;</div><div class="line">          This is a blog post</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  reactDOM.render(</span></div><div class="line"><span class="regexp">  &lt;BlogPost/</span>&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'react-app'</span>);</div><div class="line">  );</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line"></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react@latest/dist/react.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react-dom@latest/dist/react-dom.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;<span class="regexp">/head&gt;</span></div><div class="line"><span class="regexp">&lt;body&gt;</span></div><div class="line"><span class="regexp">  &lt;h1&gt;Welcome to React&lt;/</span>h1&gt;</div><div class="line">  &lt;div id=<span class="string">"react-app"</span>&gt;&lt;/div&gt;</div><div class="line">  &lt;script type=<span class="string">"text/babel"</span>&gt;&lt;/script&gt;</div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        &lt;div&gt;</div><div class="line">          This is a blog post</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  reactDOM.render(</span></div><div class="line"><span class="regexp">  &lt;BlogPost/</span>&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'react-app'</span>);</div><div class="line">  );</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div></pre></td></tr></table></figure>
 <h2 id="create-react-app"><a href="#create-react-app" class="headerlink" title="create-react-app"></a><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a></h2><p>간편하게 React 앱을 만들수 있도록 자동으로 빌드해주는 도구이다. 이 패키지를 이용하면 Webpack이나 Babel을 설치하고 구성하는 복잡한 빌드 과정을 생략할 수 있다.   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm으로 create-react-app 패키지 설치</span></div><div class="line">$ npm install -g create-react-app</div><div class="line"></div><div class="line"><span class="comment"># 패키지를 통해 react 프로젝트를 생성</span></div><div class="line">$ create-react-app my-app(프로젝트이름)</div></pre></td></tr></table></figure>
 <p>명령을 통해 my-app 프로젝트 폴더가 생성된다. 폴더 구조는 아래와 같다.</p>
@@ -72,7 +72,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><br></p>
 <h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><p><a href="https://www.webpackbin.com/bins/-KeVMcQWGocAn5VJL6XL" target="_blank" rel="external">webpackbin.com</a>을 통해 간단한 react project를 확인해 볼 수 있다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HelloWorld.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="comment">// stateless Function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;h1&gt;Hello <span class="keyword">from</span> React!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span> <span class="comment">// JSX 문법</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HelloWorld.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="comment">// stateless Function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;h1&gt;Hello <span class="keyword">from</span> React!&lt;/h1&gt; <span class="comment">// JSX 문법</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
 <p>React는 일반 js문법과는 다른 xml형태의 JSX 문법을 사용한다. JSX는 자바스크립트로 만든 xml로, HTML과 매우 유사한 모양을 하고 있다. 위 예제에서 자바스크립트 코드 내부에  <code>&quot;</code>나 <code>&#39;</code>없이 HTML 코드가 섞여있는 것을 볼 수 있다. 이와 같은 모양을 JSX라고 하며, React는 JSX문법을 사용하여 UI를 템플릿화한다. 이 코드는 webpack의 babel-loader를 통해 자바스크립트 코드로 번들링된다. 위 코드는 아래와 같이 변환된다.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">return React.createElement(</div><div class="line">  &quot;h1&quot;,</div><div class="line">  null,</div><div class="line">  &quot;Hello from React!&quot;</div><div class="line">);</div></pre></td></tr></table></figure>
 <p>JSX 문법을 취함으로써 얻는 이점은 다음과 같다.</p>
@@ -82,7 +82,7 @@
 <li>HTML에 익숙하다면 더 쉽고 빠르게 템플릿을 작성할 수 있다.</li>
 </ul>
 <p><br></p>
-<h2 id="컴포넌트-로드하기"><a href="#컴포넌트-로드하기" class="headerlink" title="컴포넌트 로드하기"></a>컴포넌트 로드하기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./HelloWorld.js'</span>;</div><div class="line"></div><div class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">HelloWorld</span>/&gt;</span></span>, <span class="built_in">document</span>.querySelector(<span class="string">'#app'</span>));</div></pre></td></tr></table></figure>
+<h2 id="컴포넌트-로드하기"><a href="#컴포넌트-로드하기" class="headerlink" title="컴포넌트 로드하기"></a>컴포넌트 로드하기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./HelloWorld.js'</span>;</div><div class="line"></div><div class="line">render(&lt;HelloWorld/&gt;, <span class="built_in">document</span>.querySelector(<span class="string">'#app'</span>));</div></pre></td></tr></table></figure>
 <p>main.js파일은 webpack의 entry 파일(진입점)으로 번들링 작업이 이루어지는 중심 지점이다. HelloWorld.js에서 만든 컴포넌트를 import하고, 기타 import한 파일들을 재귀적으로 불러와 하나의 파일로 합치는 작업을 수행한 후 페이지에 렌더링한다.</p>
 <p>React 컴포넌트를 페이지에 렌더링할 때는 react-dom 모듈을 불러와 render 함수를 통해 처리한다. render 함수의 첫번째 파라미터는 렌더링할 JSX 형태의 코드로, 여기서는 HelloWorld 컴포넌트를 렌더링한다. 컴포넌트를 만들면 <code>&lt;컴포넌트이름 /&gt;</code>의 형태(HTML의 태그처럼)로 작성할 수 있다. 두번째 파라미터는 렌더링할 HTML 요소이다. 위에서는 <code>index.html</code>의 id값이 app인 요소에 렌더링하도록 설정되었다.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 여기에 렌더링한다. --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -190,9 +190,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/POST%20VS%20PUT/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/POST VS PUT/</id>
     <published>2017-09-09T09:42:28.000Z</published>
-    <updated>2017-09-21T05:51:38.000Z</updated>
+    <updated>2017-09-21T06:06:46.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p>
 <p>정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가?</p>
 <h2 id="Idempotent"><a href="#Idempotent" class="headerlink" title="Idempotent"></a>Idempotent</h2><p>첫번째 차이는 <a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성(Idempotent)</a>이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한 성질을 수식으로 표현하면 아래와 같다.  </p>
@@ -220,8 +220,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;REST-API-POST-VS-PUT&quot;&gt;&lt;a href=&quot;#REST-A
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;REST-API-POST-VS-PUT&quot;&gt;&lt;a href=&quot;#REST-API-POST-VS-PUT
     
     </summary>
     
@@ -237,9 +237,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/9.%20session/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/9. session/</id>
     <published>2017-09-09T09:16:41.000Z</published>
-    <updated>2017-09-21T05:51:35.000Z</updated>
+    <updated>2017-09-21T06:06:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="세션-Session"><a href="#세션-Session" class="headerlink" title="세션 Session"></a>세션 Session</h1><h3 id="세션의-의미"><a href="#세션의-의미" class="headerlink" title="세션의 의미"></a>세션의 의미</h3><p><strong>사전적 의미</strong><br>1) (특정한 활동을 위한) 시간<br>2) (의회 등의) 회기; (법정의) 개정 (기간)</p>
 <p><strong>실질적 의미</strong><br>1) 시작 조건과 종료 조건이 있는 시간, 또는 회기<br>2) 정보 교환이 지속되는 시간, 또는 회기</p>
 <h3 id="세션의-예"><a href="#세션의-예" class="headerlink" title="세션의 예"></a>세션의 예</h3><p><strong>HTTP session</strong>: 요청 - 응답</p>
@@ -311,8 +311,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;세션-Session&quot;&gt;&lt;a href=&quot;#세션-Session&quot; clas
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;세션-Session&quot;&gt;&lt;a href=&quot;#세션-Session&quot; class=&quot;headerlink&quot;
     
     </summary>
     
@@ -328,9 +328,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/8.%20cookie/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/8. cookie/</id>
     <published>2017-09-09T09:05:09.000Z</published>
-    <updated>2017-09-21T05:51:32.000Z</updated>
+    <updated>2017-09-21T06:06:51.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="쿠키"><a href="#쿠키" class="headerlink" title="쿠키"></a>쿠키</h1><p>쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 <code>cookie-parser</code> 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다.</p>
 <h2 id="쿠키의-필요성"><a href="#쿠키의-필요성" class="headerlink" title="쿠키의 필요성"></a>쿠키의 필요성</h2><p>개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우</p>
 <ul>
@@ -384,8 +384,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;쿠키&quot;&gt;&lt;a href=&quot;#쿠키&quot; class=&quot;headerlink&quot; t
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;쿠키&quot;&gt;&lt;a href=&quot;#쿠키&quot; class=&quot;headerlink&quot; title=&quot;쿠키&quot;&gt;&lt;/a&gt;
     
     </summary>
     
@@ -401,9 +401,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/7.%20Express%20Middleware/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/7. Express Middleware/</id>
     <published>2017-09-09T09:04:11.000Z</published>
-    <updated>2017-09-21T05:51:29.000Z</updated>
+    <updated>2017-09-21T06:06:53.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="Express-Middleware"><a href="#Express-Middleware" class="headerlink" title="Express Middleware"></a>Express Middleware</h1><p>익스프레스는 개발자가 다양한 기능을 사용할 수 있도록 미리 만들어 둔 여러가지 미들웨어를 제공한다. npm을 통해서 다른 개발자들이 만든 미들웨어를 쉽게 다운 받아 사용할 수도 있다. 반대로 프로젝트 내에서 내가 직접 정의하고 로드(app.use)하여 사용하는 것도 가능하다.</p>
 <p>미들웨어 함수는 ‘요청 오브젝트(req)’와 ‘응답 오브젝트(res)’, 그리고 애플리케이션의 요청-응답 주기 중 ‘다음 미들웨어 함수(next)’에 대한 액세스 권한을 갖는 함수이다.</p>
 <p><img src="../images/middleware.png" alt="middelware"></p>
@@ -504,8 +504,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Express-Middleware&quot;&gt;&lt;a href=&quot;#Express-
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Express-Middleware&quot;&gt;&lt;a href=&quot;#Express-Middleware&quot; cl
     
     </summary>
     
@@ -521,9 +521,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/5.%20Web%20form/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/5. Web form/</id>
     <published>2017-08-30T08:08:08.000Z</published>
-    <updated>2017-09-21T05:51:19.000Z</updated>
+    <updated>2017-09-21T06:06:57.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="HTML-Form"><a href="#HTML-Form" class="headerlink" title="HTML Form"></a>HTML Form</h1><h2 id="1-기본-동작"><a href="#1-기본-동작" class="headerlink" title="1. 기본 동작"></a>1. 기본 동작</h2><p>HTML form을 전송하면, 입력된 정보가 기본적으로 percent encoding 되어 요청됨</p>
 <ul>
 <li>GET method</li>
@@ -583,8 +583,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;HTML-Form&quot;&gt;&lt;a href=&quot;#HTML-Form&quot; class=
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;HTML-Form&quot;&gt;&lt;a href=&quot;#HTML-Form&quot; class=&quot;headerlink&quot; t
     
     </summary>
     
@@ -600,9 +600,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/6.%20service%20development/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/6. service development/</id>
     <published>2017-08-30T08:08:01.000Z</published>
-    <updated>2017-09-21T05:51:24.000Z</updated>
+    <updated>2017-09-21T06:06:55.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="프로젝트-세팅"><a href="#프로젝트-세팅" class="headerlink" title="프로젝트 세팅"></a>프로젝트 세팅</h1><p>1) project folder 생성<br>2) npm init<br>3) git init<br>3) .gitignore - node로 생성</p>
 <p><strong>node_modules는 깃 저장소에 넣지 않는 것이 원칙이다.</strong></p>
 <p>vscode의 gitignore 플러그인을 설치, cmd+shift+p -&gt; add gitignore -&gt; node를 선택하여 node_modules의 변경사항을 무시하는 gitignore를 생성할 수 있다.</p>
@@ -703,8 +703,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;프로젝트-세팅&quot;&gt;&lt;a href=&quot;#프로젝트-세팅&quot; class=&quot;hea
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;프로젝트-세팅&quot;&gt;&lt;a href=&quot;#프로젝트-세팅&quot; class=&quot;headerlink&quot; title
     
     </summary>
     
@@ -847,9 +847,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/4.%20Template%20Language/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/4. Template Language/</id>
     <published>2017-08-29T15:42:01.000Z</published>
-    <updated>2017-09-21T05:51:12.000Z</updated>
+    <updated>2017-09-21T06:06:58.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="Template-Language"><a href="#Template-Language" class="headerlink" title="Template Language"></a>Template Language</h1><h2 id="Web-Page"><a href="#Web-Page" class="headerlink" title="Web Page"></a>Web Page</h2><h3 id="1-Static-Web-Page"><a href="#1-Static-Web-Page" class="headerlink" title="1) Static Web Page"></a>1) Static Web Page</h3><p>누가 어떻게 요청하든 미리 저장되어 있던 HTML 파일을 그대로 응답</p>
 <h3 id="2-Dynamic-Web-Page"><a href="#2-Dynamic-Web-Page" class="headerlink" title="2) Dynamic Web Page"></a>2) Dynamic Web Page</h3><p>요청한 사람과 요청한 내용에 따라 <strong>각각 다른 내용으로 편집한 HTML을 응답</strong></p>
 <h2 id="Template-Engine"><a href="#Template-Engine" class="headerlink" title="Template Engine"></a>Template Engine</h2><p>템플릿과 데이터를 결합해 문서를 생성하는 프로그램, 혹은 라이브러리. 템플릿을 작성할 때 사용하는 언어를 템플릿 언어라고 한다.</p>
@@ -908,8 +908,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Template-Language&quot;&gt;&lt;a href=&quot;#Template-
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Template-Language&quot;&gt;&lt;a href=&quot;#Template-Language&quot; clas
     
     </summary>
     
@@ -925,9 +925,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/3.%20Middleware/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/3. Middleware/</id>
     <published>2017-08-29T15:40:50.000Z</published>
-    <updated>2017-09-21T05:51:06.000Z</updated>
+    <updated>2017-09-21T06:07:01.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h1><h2 id="1-Express"><a href="#1-Express" class="headerlink" title="1. Express"></a>1. <a href="https://expressjs.com/ko/" target="_blank" rel="external">Express</a></h2><ul>
 <li>Node.js 생태계에서 가장 널리 쓰이는 웹 프레임워크</li>
 <li>내장하고 있는 기능은 매우 적으나, 미들웨어를 주입하는 방식으로 기능을 확장하는 생태계를 가지고 있음</li>
@@ -945,8 +945,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Middleware&quot;&gt;&lt;a href=&quot;#Middleware&quot; clas
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Middleware&quot;&gt;&lt;a href=&quot;#Middleware&quot; class=&quot;headerlink&quot;
     
     </summary>
     
@@ -962,9 +962,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/2.%20http/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/2. http/</id>
     <published>2017-08-29T15:40:30.000Z</published>
-    <updated>2017-09-21T05:51:00.000Z</updated>
+    <updated>2017-09-21T06:07:01.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="/images/WIRESHARK.png" alt="WIRESHARK"></p>
 <p><img src="/images/WIRESHARK2.png" alt="WIRESHARK"></p>
 <h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="/images/chromeDevTools.png" alt="크롬 개발자도구"></p>
@@ -1105,8 +1105,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;HTTP&quot;&gt;&lt;a href=&quot;#HTTP&quot; class=&quot;headerlin
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;HTTP&quot;&gt;&lt;a href=&quot;#HTTP&quot; class=&quot;headerlink&quot; title=&quot;HTTP
     
     </summary>
     
@@ -1122,9 +1122,9 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/1.%20basic/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/1. basic/</id>
     <published>2017-08-29T15:40:12.000Z</published>
-    <updated>2017-09-21T05:50:46.000Z</updated>
+    <updated>2017-09-21T06:07:02.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+    <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="nvm-node-version-manager"><a href="#nvm-node-version-manager" class="headerlink" title="nvm(node version manager)"></a>nvm(node version manager)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 주석: `#`으로 시작하는 명령은 bash에서 무시됩니다.</span></div><div class="line"><span class="comment"># 아래 명령을 한 줄씩 차례대로 입력하세요</span></div><div class="line">$ nvm install 8.4</div><div class="line">$ nvm use 8.4</div><div class="line">$ nvm <span class="built_in">alias</span> default 8.4 <span class="comment"># nvm-windows는 필요없음</span></div></pre></td></tr></table></figure>
 <h1 id="Node-js-REPL"><a href="#Node-js-REPL" class="headerlink" title="Node.js REPL"></a>Node.js REPL</h1><p>REPL(Read Eval Print Loop): 윈도우 커맨드, 혹은 UNIX/LINUX Shell처럼 사용자가 커맨드를 입력하면 시스템이 값을 반환하는 환경을 일컫는다. </p>
 <p>Node.js는 REPL 환경과 함께 제공되며 다음과 같은 기능을 수행할 수 있다.</p>
@@ -1325,8 +1325,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;nvm-node-version-manager&quot;&gt;&lt;a href=&quot;#nv
+      &lt;p&gt;&lt;img src=&quot;http://allvectorlogo.com/img/2016/05/node-js-logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;nvm-node-version-manager&quot;&gt;&lt;a href=&quot;#nvm-node-version
     
     </summary>
     
@@ -1527,7 +1527,7 @@
     <link href="http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/"/>
     <id>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</id>
     <published>2017-08-07T05:03:41.000Z</published>
-    <updated>2017-09-21T06:00:35.000Z</updated>
+    <updated>2017-09-21T06:04:54.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/data/stickers/sass/sass.sh.png" alt=""></p>
 <h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><h2 id="1-Nesting"><a href="#1-Nesting" class="headerlink" title="1. Nesting"></a>1. Nesting</h2><p>Sass의 유용한 확장 기능으로 중첩(Nesting)이 있다. CSS는 후손 셀렉터의 경우 부모요소를 기술하여야 한다.</p>
