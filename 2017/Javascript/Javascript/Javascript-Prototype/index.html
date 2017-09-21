@@ -8,20 +8,20 @@
     
         <meta name="keywords" content="prototype" />
     
-    <meta name="description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
+    <meta name="description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Ob">
 <meta name="keywords" content="prototype">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JS] 프로토타입 Prototype">
 <meta property="og:url" content="http://huusz.github.io/2017/Javascript/Javascript/Javascript-Prototype/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
+<meta property="og:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Ob">
 <meta property="og:locale" content="ko">
-<meta property="og:image" content="http://poiemaweb.com/img/object_literal_prototype_chaining.png">
-<meta property="og:updated_time" content="2017-09-20T11:31:12.000Z">
+<meta property="og:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
+<meta property="og:updated_time" content="2017-09-21T05:53:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JS] 프로토타입 Prototype">
-<meta name="twitter:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Obj">
-<meta name="twitter:image" content="http://poiemaweb.com/img/object_literal_prototype_chaining.png">
+<meta name="twitter:description" content="Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.   12var objectMadeByLiteral = &amp;#123;&amp;#125;;var objectMadeByConstructor = new Object(); 리터럴은 Ob">
+<meta name="twitter:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
     
 
     
@@ -180,7 +180,8 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="Prototype-프로토타입과-객체지향"><a href="#Prototype-프로토타입과-객체지향" class="headerlink" title="Prototype 프로토타입과 객체지향"></a>Prototype 프로토타입과 객체지향</h1><h3 id="객체-Object"><a href="#객체-Object" class="headerlink" title="객체(Object)"></a><strong>객체(Object)</strong></h3><p>자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.  </p>
+            <p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p>
+<h1 id="Prototype-프로토타입과-객체지향"><a href="#Prototype-프로토타입과-객체지향" class="headerlink" title="Prototype 프로토타입과 객체지향"></a>Prototype 프로토타입과 객체지향</h1><h3 id="객체-Object"><a href="#객체-Object" class="headerlink" title="객체(Object)"></a><strong>객체(Object)</strong></h3><p>자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> objectMadeByLiteral = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> objectMadeByConstructor = <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
 <p>리터럴은 Object 타입의 객체를 만들어내는 일종의 숏컷이고 두 번째 라인의 생성자를 이용한 코드 역시 Object 생성자이기 때문에 사실 위 예제는 구조면에서 동일한 객체를 만든다. 둘 다 Object타입을 갖는 객체로 Object타입의 메서드들을 사용할 수 있다. Object타입은 모든 객체의 최상위 타입이다. 사실 다른 객체지향언어의 관점에서 보면 위 코드는 Object객체의 인스턴스를 만든 것에 불과하니 상속받았다고 표현하기 어렵다. 하지만 자바스크립트에서는 조금 다른 개념으로 생각해야 한다. 지금 만들어진 객체가 Object 타입의 인스턴스 객체인 것도 맞지만 프로토 타입을 이용한 상속받은 객체라고 표현하는게 더 정확한 표현이다. 사실 상속이라는 표현도 OOP의 관점에서 사용하는 단어로 표현하고자 한 것일 뿐 실제로는 링크드 리스트 형태의 창조를 통한 객체끼리의 연결에 가깝고 클래스 매커니즘처럼 정적이지 않고 매우 동적이다.</p>
 <h2 id="1-프로토타입-객체"><a href="#1-프로토타입-객체" class="headerlink" title="1. 프로토타입 객체"></a>1. 프로토타입 객체</h2><p>자바스크립트의 모든 객체는 부모가 존재한다. 그런데 객체가 생성자 함수를 통해 생성되었다고 하여 객체의 부모가 생성자함수인 것은 아니다. 모든 객체의 부모는 prototype 객체이다. 함수도 객체이다. 다만 함수 객체는 일반 객체와 달리 prototype이라는 프로퍼티를 특별히 가지고 있다. 생성자 함수는 함수 객체이다. 따라서 prototype 프로퍼티가 존재한다. 생성자 함수의 prototype 프로퍼티는 생성자 함수가 생산한 객체의 부모가 되는 prototype 객체를 가리킨다.</p>
@@ -445,7 +446,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/POST VS PUT/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
     
     
 </a>
@@ -465,7 +466,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/9. session/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
     
     
 </a>
@@ -485,7 +486,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/8. cookie/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] 쿠키 Cookie" class="thumbnail-image"></span>
     
     
 </a>
@@ -505,7 +506,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="thumbnail">
     
     
-        <span style="background-image:url(../images/middleware.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
     
     
 </a>

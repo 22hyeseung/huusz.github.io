@@ -2,13 +2,6 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://huusz.github.io/tags/sass-syntax/</loc>
-        <lastmod>2017-08-08T14:56:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/nesting/</loc>
         <lastmod>2017-08-28T14:12:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -16,113 +9,120 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/closure/</loc>
-        <lastmod>2017-08-28T14:13:02.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/object/</loc>
-        <lastmod>2017-08-28T14:13:20.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/ejs/</loc>
-        <lastmod>2017-08-29T15:43:15.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/express/</loc>
-        <lastmod>2017-08-29T15:43:20.000Z</lastmod>
+        <loc>http://huusz.github.io/tags/react/</loc>
+        <lastmod>2017-09-21T05:47:31.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/nvm/</loc>
-        <lastmod>2017-08-29T15:43:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/asynchronous/</loc>
-        <lastmod>2017-08-29T15:43:40.000Z</lastmod>
+        <lastmod>2017-09-21T05:50:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/http/</loc>
-        <lastmod>2017-08-30T02:25:21.000Z</lastmod>
+        <lastmod>2017-09-21T05:51:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/express/</loc>
+        <lastmod>2017-09-21T05:51:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/ejs/</loc>
+        <lastmod>2017-09-21T05:51:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/webform/</loc>
-        <lastmod>2017-08-30T08:11:02.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/github/</loc>
-        <lastmod>2017-09-09T07:33:59.000Z</lastmod>
+        <lastmod>2017-09-21T05:51:19.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/urlshortner/</loc>
-        <lastmod>2017-09-09T09:38:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/session/</loc>
-        <lastmod>2017-09-09T09:42:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/idempotent/</loc>
-        <lastmod>2017-09-09T11:12:40.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/cookie/</loc>
-        <lastmod>2017-09-09T11:12:44.000Z</lastmod>
+        <lastmod>2017-09-21T05:51:24.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/middleware/</loc>
-        <lastmod>2017-09-09T11:12:47.000Z</lastmod>
+        <lastmod>2017-09-21T05:51:29.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/cookie/</loc>
+        <lastmod>2017-09-21T05:51:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/session/</loc>
+        <lastmod>2017-09-21T05:51:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/idempotent/</loc>
+        <lastmod>2017-09-21T05:51:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/asynchronous/</loc>
+        <lastmod>2017-09-21T05:52:43.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/closure/</loc>
+        <lastmod>2017-09-21T05:52:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/object/</loc>
+        <lastmod>2017-09-21T05:52:59.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/prototype/</loc>
-        <lastmod>2017-09-20T11:31:12.000Z</lastmod>
+        <lastmod>2017-09-21T05:53:03.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/react/</loc>
-        <lastmod>2017-09-21T05:47:31.000Z</lastmod>
+        <loc>http://huusz.github.io/tags/github/</loc>
+        <lastmod>2017-09-21T05:56:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/sass-syntax/</loc>
+        <lastmod>2017-09-21T05:58:09.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -8,20 +8,20 @@
     
         <meta name="keywords" content="asynchronous" />
     
-    <meta name="description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적">
+    <meta name="description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
 <meta name="keywords" content="asynchronous">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JS] 비동기모델과 이벤트루프">
 <meta property="og:url" content="http://huusz.github.io/2017/Javascript/Javascript/Javascript-Async,EventLoop/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적">
+<meta property="og:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
 <meta property="og:locale" content="ko">
-<meta property="og:image" content="http://d2.naver.com/content/images/2015/06/helloworld-59361-1.png">
-<meta property="og:updated_time" content="2017-08-29T15:43:40.000Z">
+<meta property="og:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
+<meta property="og:updated_time" content="2017-09-21T05:52:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JS] 비동기모델과 이벤트루프">
-<meta name="twitter:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적">
-<meta name="twitter:image" content="http://d2.naver.com/content/images/2015/06/helloworld-59361-1.png">
+<meta name="twitter:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
+<meta name="twitter:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
     
 
     
@@ -180,7 +180,8 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="비동기식-처리-모델과-이벤트-루프"><a href="#비동기식-처리-모델과-이벤트-루프" class="headerlink" title="비동기식 처리 모델과 이벤트 루프"></a>비동기식 처리 모델과 이벤트 루프</h1><h2 id="1-브라우저-동작-원리"><a href="#1-브라우저-동작-원리" class="headerlink" title="1. 브라우저 동작 원리"></a>1. 브라우저 동작 원리</h2><h3 id="1-브라우저의-주요-기능"><a href="#1-브라우저의-주요-기능" class="headerlink" title="1) 브라우저의 주요 기능"></a>1) 브라우저의 주요 기능</h3><p>브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적으로 브라우저는 서버로부터 HTML, CSS, Javascript 파일을 응답받는다. (자원의 주소는 URI에 의해 정해진다.)<br>브라우저는 W3C(웹 표준화 기구)에서 정한 HTML과 CSS 표준 명세에 따라 HTML 파일을 해석해서 표시한다.</p>
+            <p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p>
+<h1 id="비동기식-처리-모델과-이벤트-루프"><a href="#비동기식-처리-모델과-이벤트-루프" class="headerlink" title="비동기식 처리 모델과 이벤트 루프"></a>비동기식 처리 모델과 이벤트 루프</h1><h2 id="1-브라우저-동작-원리"><a href="#1-브라우저-동작-원리" class="headerlink" title="1. 브라우저 동작 원리"></a>1. 브라우저 동작 원리</h2><h3 id="1-브라우저의-주요-기능"><a href="#1-브라우저의-주요-기능" class="headerlink" title="1) 브라우저의 주요 기능"></a>1) 브라우저의 주요 기능</h3><p>브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적으로 브라우저는 서버로부터 HTML, CSS, Javascript 파일을 응답받는다. (자원의 주소는 URI에 의해 정해진다.)<br>브라우저는 W3C(웹 표준화 기구)에서 정한 HTML과 CSS 표준 명세에 따라 HTML 파일을 해석해서 표시한다.</p>
 <p><br></p>
 <h3 id="2-브라우저의-기본-구조"><a href="#2-브라우저의-기본-구조" class="headerlink" title="2) 브라우저의 기본 구조"></a>2) 브라우저의 기본 구조</h3><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-1.png" alt="브라우저의 구성 요소"></p>
 <ol>
@@ -429,7 +430,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/POST VS PUT/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
     
     
 </a>
@@ -449,7 +450,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/9. session/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
     
     
 </a>
@@ -469,7 +470,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/8. cookie/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] 쿠키 Cookie" class="thumbnail-image"></span>
     
     
 </a>
@@ -489,7 +490,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="thumbnail">
     
     
-        <span style="background-image:url(../images/middleware.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
     
     
 </a>

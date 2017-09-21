@@ -8,18 +8,20 @@
     
         <meta name="keywords" content="idempotent" />
     
-    <meta name="description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한">
+    <meta name="description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
 <meta name="keywords" content="idempotent">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[node]  REST API: POST VS PUT">
 <meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/POST VS PUT/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한">
+<meta property="og:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2017-09-09T11:12:40.000Z">
+<meta property="og:image" content="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png">
+<meta property="og:updated_time" content="2017-09-21T05:51:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[node]  REST API: POST VS PUT">
-<meta name="twitter:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한">
+<meta name="twitter:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
+<meta name="twitter:image" content="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png">
     
 
     
@@ -178,7 +180,8 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p>
+            <p><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt=""></p>
+<h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p>
 <p>정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가?</p>
 <h2 id="Idempotent"><a href="#Idempotent" class="headerlink" title="Idempotent"></a>Idempotent</h2><p>첫번째 차이는 <a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성(Idempotent)</a>이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한 성질을 수식으로 표현하면 아래와 같다.  </p>
 <h3 id="f-f-x-f-x"><a href="#f-f-x-f-x" class="headerlink" title="ƒ(ƒ(x)) = ƒ(x)"></a><em>ƒ(ƒ(x)) = ƒ(x)</em></h3><p>한마디로, 같은 연산을 무한정 반복해도 결과는 <strong>항상 동일한 값을 갖는다</strong>는 말이다.  </p>
@@ -369,7 +372,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/POST VS PUT/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
     
     
 </a>
@@ -389,7 +392,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/9. session/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
     
     
 </a>
@@ -409,7 +412,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/8. cookie/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] 쿠키 Cookie" class="thumbnail-image"></span>
     
     
 </a>
@@ -429,7 +432,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="thumbnail">
     
     
-        <span style="background-image:url(../images/middleware.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
     
     
 </a>

@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="Huusz&#39;s Log">
 <meta property="og:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x">
 <meta property="og:locale" content="ko">
-<meta property="og:image" content="http://poiemaweb.com/img/closure.png">
-<meta property="og:updated_time" content="2017-08-28T14:13:02.000Z">
+<meta property="og:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
+<meta property="og:updated_time" content="2017-09-21T05:52:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JS] 클로져 Closure">
 <meta name="twitter:description" content="클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다. 12345678function outerFunc() &amp;#123;  //...(1)  var x">
-<meta name="twitter:image" content="http://poiemaweb.com/img/closure.png">
+<meta name="twitter:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
     
 
     
@@ -180,7 +180,8 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h1><h2 id="1-클로저의-개념"><a href="#1-클로저의-개념" class="headerlink" title="1. 클로저의 개념"></a>1. 클로저의 개념</h2><p>클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다.</p>
+            <p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p>
+<h1 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h1><h2 id="1-클로저의-개념"><a href="#1-클로저의-개념" class="headerlink" title="1. 클로저의 개념"></a>1. 클로저의 개념</h2><p>클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params"></span>) </span>&#123;  <span class="comment">//...(1)</span></div><div class="line">  <span class="keyword">var</span> x = <span class="number">10</span>; </div><div class="line">  <span class="keyword">var</span> innerFunc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//...(2)</span></div><div class="line">    <span class="built_in">console</span>.log(x); <span class="comment">//...(3)</span></div><div class="line">  &#125;;</div><div class="line">  innerFunc();</div><div class="line">&#125;</div><div class="line">outerFunc();</div></pre></td></tr></table></figure>
 <p>위 예제를 통해 살펴보면, outerFunc 함수가 선언되었고 …(1)<br>그 내부 함수로 innerFunc가 선언되었다. …(2)<br>innerFunc는 자신을 포함하고 있는 outerFunc의 지역 변수 x에 접근할 수 있다. …(3)  </p>
 <p>자바스크립트 엔진은 Scope-chain을 통해 중첩된 함수의 scope 레퍼런스를 차례대로 검색한다.  </p>
@@ -404,7 +405,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/POST VS PUT/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
     
     
 </a>
@@ -424,7 +425,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/9. session/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
     
     
 </a>
@@ -444,7 +445,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/8. cookie/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] 쿠키 Cookie" class="thumbnail-image"></span>
     
     
 </a>
@@ -464,7 +465,7 @@ ga('send', 'pageview');
                             <a href="/2017/Nodejs/nodejs/7. Express Middleware/" class="thumbnail">
     
     
-        <span style="background-image:url(../images/middleware.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
+        <span style="background-image:url(https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)" alt="[node] Middleware 미들웨어" class="thumbnail-image"></span>
     
     
 </a>
