@@ -7,6 +7,30 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/Sass/SCSS/3.sassScript/</loc>
+        <lastmod>2017-09-21T06:20:31.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Sass/SCSS/2.extensions/</loc>
+        <lastmod>2017-09-21T06:20:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/React/React/1.%20basic/</loc>
+        <lastmod>2017-09-21T06:19:43.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/1.%20basic/</loc>
         <lastmod>2017-09-21T06:07:02.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -87,22 +111,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</loc>
-        <lastmod>2017-09-21T06:04:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-SassScript/</loc>
-        <lastmod>2017-09-21T06:00:28.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/2017/Git/GIT/git-connect-github/</loc>
         <lastmod>2017-09-21T05:56:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -137,14 +145,6 @@
     <url>
         <loc>http://huusz.github.io/2017/Javascript/Javascript/Javascript-Async,EventLoop/</loc>
         <lastmod>2017-09-21T05:52:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/React/React/01.%20%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</loc>
-        <lastmod>2017-09-21T05:47:31.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

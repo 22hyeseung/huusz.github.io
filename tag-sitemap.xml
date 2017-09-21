@@ -2,13 +2,6 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://huusz.github.io/tags/react/</loc>
-        <lastmod>2017-09-21T05:47:31.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/asynchronous/</loc>
         <lastmod>2017-09-21T05:52:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -39,20 +32,6 @@
     <url>
         <loc>http://huusz.github.io/tags/github/</loc>
         <lastmod>2017-09-21T05:56:07.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/sass-syntax/</loc>
-        <lastmod>2017-09-21T06:00:28.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/nesting/</loc>
-        <lastmod>2017-09-21T06:04:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -123,6 +102,27 @@
     <url>
         <loc>http://huusz.github.io/tags/nvm/</loc>
         <lastmod>2017-09-21T06:07:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/react/</loc>
+        <lastmod>2017-09-21T06:19:43.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/nesting/</loc>
+        <lastmod>2017-09-21T06:20:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/sass-syntax/</loc>
+        <lastmod>2017-09-21T06:20:31.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
