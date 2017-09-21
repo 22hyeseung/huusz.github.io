@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</loc>
+        <lastmod>2017-09-21T06:00:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-SassScript/</loc>
-        <lastmod>2017-09-21T05:58:09.000Z</lastmod>
+        <lastmod>2017-09-21T06:00:28.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -137,14 +145,6 @@
     <url>
         <loc>http://huusz.github.io/2017/React/React/01.%20%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</loc>
         <lastmod>2017-09-21T05:47:31.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/SASS-Extensions/</loc>
-        <lastmod>2017-08-28T14:12:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
