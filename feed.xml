@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-09-20T12:28:57.000Z</updated>
+  <updated>2017-09-21T05:43:15.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>[React] 리액트 입문하기</title>
-    <link href="http://huusz.github.io/2017/React/React/01/"/>
-    <id>http://huusz.github.io/2017/React/React/01/</id>
+    <link href="http://huusz.github.io/2017/React/React/01.%20%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%86%E1%85%AE%E1%86%AB%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/"/>
+    <id>http://huusz.github.io/2017/React/React/01. 리액트 입문하기/</id>
     <published>2017-09-20T11:32:01.000Z</published>
-    <updated>2017-09-20T12:28:57.000Z</updated>
+    <updated>2017-09-21T05:43:15.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg" alt=""></p>
 <h2 id="1-What-is-React"><a href="#1-What-is-React" class="headerlink" title="1. What is React?"></a>1. What is React?</h2><p>React는 페이스북에서 개발한 자바스크립트 라이브러리이다. 공식 문서에서는 <strong>사용자 인터페이스(User Interface)를 구축하기위한 선언적(declarative)이고 효율적(efficient)이며 유연한(flexible) JavaScript 라이브러리</strong>라고 설명하고있다. React는 ‘컴포넌트’단위로 재사용 가능한 UI 템플릿을 만든다. 현재 페이스북, 인스타그램, MS 등 대형 서비스에서도 사용되고있는 견고한 라이브러리이다.  </p>
