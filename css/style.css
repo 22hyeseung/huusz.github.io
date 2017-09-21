@@ -979,7 +979,7 @@ code {
 }
 .article-summary .article-summary-inner .thumbnail .comment-counter:before {
   top: 3px;
-  left: -16px;
+  left: -17.8px;
   content: '';
   position: absolute;
   display: inline-block;

@@ -44,13 +44,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/session/</loc>
-        <lastmod>2017-09-21T06:06:49.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/cookie/</loc>
         <lastmod>2017-09-21T06:06:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -108,21 +101,28 @@
 
     <url>
         <loc>http://huusz.github.io/tags/react/</loc>
-        <lastmod>2017-09-21T06:19:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/nesting/</loc>
-        <lastmod>2017-09-21T06:20:01.000Z</lastmod>
+        <lastmod>2017-09-21T06:22:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/tags/sass-syntax/</loc>
-        <lastmod>2017-09-21T06:20:31.000Z</lastmod>
+        <lastmod>2017-09-21T06:22:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/nesting/</loc>
+        <lastmod>2017-09-21T06:22:28.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/session/</loc>
+        <lastmod>2017-09-21T06:22:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
