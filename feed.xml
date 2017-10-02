@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-09-21T06:22:12.000Z</updated>
+  <updated>2017-10-02T08:46:28.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[삽질Log] semantic-ui-react와 css-module을 같이 사용할 수 없을까?</title>
+    <link href="http://huusz.github.io/2017/Log/Log/01.dada-log-01/"/>
+    <id>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</id>
+    <published>2017-10-02T07:31:11.000Z</published>
+    <updated>2017-10-02T08:46:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="semantic-ui-react와-css-module을-같이-사용할-수-없을까"><a href="#semantic-ui-react와-css-module을-같이-사용할-수-없을까" class="headerlink" title="semantic-ui-react와 css-module을 같이 사용할 수 없을까?"></a>semantic-ui-react와 css-module을 같이 사용할 수 없을까?</h1><h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p>팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 이게 .. 너무 귀찮을 것 같았다. 모든 클래스네임을 <code>home-header</code> <code>home-header-search</code> 이런 걸 직접 해야 하다니? </p>
+<p><strong><em>자동으로 해주는 게 없을까?</em></strong></p>
+<p>css를 자동으로 모듈화 해주는 방법에 css-module이라는게 있다는 것을 알게 되었고, webpack에서 <code>css-loader</code>에 <code>module: true</code> 설정을 추가해주었다.<br>(참고한 사이트: <a href="https://velopert.com/3447" target="_blank" rel="external">React-styling</a>)</p>
+<h2 id="semantic은-안-되더라"><a href="#semantic은-안-되더라" class="headerlink" title="semantic은 안 되더라.."></a>semantic은 안 되더라..</h2><p><code>yarn eject</code> 명령 후 webpack config에 직접 설정을 추가해 주었다. 안 됐다. semantic-ui-css가 적용되지 않는 요상한 문제가 생긴다.</p>
+<p><img src="&#39;../images/origin&#39;" alt="semantic이 적용된 원래 화면"></p>
+<p><img src="&#39;../images/error&#39;" alt="semantic이 사라진(!) 화면"></p>
+<p>으악!</p>
+<h2 id="module-true-때문이다"><a href="#module-true-때문이다" class="headerlink" title="module: true 때문이다."></a>module: true 때문이다.</h2><p><a href="https://github.com/css-modules/css-modules/pull/65" target="_blank" rel="external">How to use css-modules with other global css (discussion please don’t merge it)</a></p>
+<p>모듈화된 css를 쓰겠다고 웹팩 설정에서 css-loader 설정을 <code>module:true</code>로 바꾸면, global 한 css(node-modules에 있는 semantic-ui-css)도 불러온 component에 따라 이름을 바꾸기 때문에 시맨틱 css 연결이 끊어진다는.. 에러는 안 나지만 시맨틱 스타일 적용한 것들이 없어져 버린 것..</p>
+<p>윗 글에서는 css-loader에 두 가지로 분류해서 로딩. global로 쓸 css는 그대로 하되, local 한 모듈에 쓸 css들은 app.module.css 라고 명명, 별도로 처리하게끔하는 꼼수(?)를 쓴 것.</p>
+<h2 id="이렇게까지-css-module을-써야하나"><a href="#이렇게까지-css-module을-써야하나" class="headerlink" title="이렇게까지 css-module을 써야하나"></a>이렇게까지 css-module을 써야하나</h2><p>선택지는</p>
+<p><strong>1. Semantic-ui를 쓴다.</strong></p>
+<ol>
+<li>semantic-ui + pure css를 쓴다. 클래스 네임을 직접. 수동으로. 명명해서 css를 모듈화 한다.</li>
+<li>semantic-ui + styled-components를 쓴다. (웹 팩 설정이 필요 없다.)</li>
+<li>위 방법 처럼 꼼수(?)를 써서 css-module + semantic-ui를 쓴다.</li>
+</ol>
+<p><strong>2. Semnatic-ui를 안 쓴다.</strong></p>
+<ol>
+<li>모든 것이 평화롭게 해결된다.</li>
+</ol>
+<p>당장의 마음같아서는 semantic을 안 쓰고 싶지만, 우리에게 허락된 기한이 길지 않고 할 일은 많기에, 스타일링에 너무 많은 시간을 쓸 수 없다. 당장 이번주 내로 (화/수/목/금 동안) 정적 페이지 제작이 끝나야 한다. 프레임워크는 그대로 쓰기로 한다..</p>
+<p>시맨틱을 사용한다고 했을 때, 마지막 꼼수(?)는 영 불안하다. styled-components는 기존의 css문법과 약간 다르다. react와 css를 섞어 놓은 듯한 문법이라 학습+적응 시간이 필요할 것 같은데, 빠르게 페이지를 만들어야 하는 지금 상황에서 그다지 좋은 선택지는 아닌 것 같다. 게다가 시맨틱도 컴포넌트이고 styled-components도 컴포넌트라서 시맨틱 컴포넌트 내부에 스타일링을 적용해야 하는 경우에는 결국 인라인스타일을 쓰게 되더라.. 근데 이런게 많아지면, styled-components를 적용하는 의미가 없어지니.. 별론 것 같았다. 컴포넌트화된 CSS 프레임워크랑 같이 쓰기에는 퓨어css가 가장 괜찮은 선택지인 것 같았다.</p>
+<p>결국 처음 고민하던 시점으로 돌아갔다.. <strong>css 프레임워크 + pure css + 수동 컴포넌트화</strong>를 채택하기로 했다.</p>
+<p>하루를 몽땅 써서 삽질한 결과가 제자리로 돌아오는 것이어서 너무나 허무했지만, 그래도 이렇게 고민했던 결과가 나중에 스타일링 방식을 선택해야 하는 상황이 다시 올 때 좋은 밑거름이 되겠지(..)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;semantic-ui-react와-css-module을-같이-사용할-수-없을까&quot;&gt;&lt;a href=&quot;#semantic-ui-react와-css-module을-같이-사용할-수-없을까&quot; class=&quot;headerlink&quot; title=&quot;semant
+    
+    </summary>
+    
+      <category term="Log" scheme="http://huusz.github.io/categories/Log/"/>
+    
+    
+      <category term="semantic-ui-react" scheme="http://huusz.github.io/tags/semantic-ui-react/"/>
+    
+  </entry>
   
   <entry>
     <title>[React] 리액트 입문하기</title>
