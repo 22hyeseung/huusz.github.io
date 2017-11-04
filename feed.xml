@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-11-04T18:06:51.000Z</updated>
+  <updated>2017-11-04T18:08:21.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huusz.github.io/2017/Log/Log/01.dada-log-01/"/>
     <id>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</id>
     <published>2017-10-02T07:31:11.000Z</published>
-    <updated>2017-11-04T18:06:51.000Z</updated>
+    <updated>2017-11-04T18:08:21.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p><a href="https://github.com/huusz/Da-Da" target="_blank" rel="external">팀 프로젝트</a>를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 … 너무 귀찮을 것 같았다. 모든 클래스네임을 수동으로 <code>home-header</code> <code>home-header-search</code> 이런 식으로 지정해 주는, 이런 걸 반복 해야 하다니? </p>
 <p><strong><em>자동으로 해주는 게 없을까?</em></strong></p>
@@ -51,7 +51,6 @@
 <p>결국 처음 고민하던 시점으로 돌아가, <strong>pure css + css 프레임워크</strong>를 쓰기로 했다.</p>
 <p><br></p>
 <hr>
-<p><br></p>
 <h4 id="프로젝트가-끝나가는-시점에서"><a href="#프로젝트가-끝나가는-시점에서" class="headerlink" title="프로젝트가 끝나가는 시점에서.."></a>프로젝트가 끝나가는 시점에서..</h4><p>위에서도 말했듯, 처음 고민하던 시점으로 돌아가서 <strong>pure css + css 프레임워크</strong>를 쓰려고 하였고 적용해보려는 시도도 했다. 그런데 결국 채택한 방식은 <strong>컴포넌트 인라인 스타일 + pure css + css 프레임워크</strong> 방식이다. styled 컴포넌츠를 약간 (정말 약간) 모방하여 Styled<em>*</em>.js라는 이름으로 인라인 스타일 객체만 모아둔 파일을 각 페이지 폴더 내부에 하나씩 두는 방식으로 하였다. 여기까지 오기까지 나름 치열한(?) 고민을 했기 때문에, 기록해두려고 한다.</p>
 <h3 id="인라인-스타일-방식을-선택한-이유는"><a href="#인라인-스타일-방식을-선택한-이유는" class="headerlink" title="인라인 스타일 방식을 선택한 이유는,"></a>인라인 스타일 방식을 선택한 이유는,</h3><p>일단 className을 부여하는 방식으로는 semantic의 기본 스타일을 커스터마이징하는 데 한계가 있었다. semantic ui가 스타일링 하는 방식을 개발자 도구로 열어보면, 아래처럼 클래스 여러개를 중첩하여 선언하는 방식이다.</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* semantic-ui class(className) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span></div></pre></td></tr></table></figure>
