@@ -17,7 +17,7 @@
 <meta property="og:description" content="삽질의 발단…팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png">
-<meta property="og:updated_time" content="2017-11-04T18:08:21.000Z">
+<meta property="og:updated_time" content="2017-11-04T18:13:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?">
 <meta name="twitter:description" content="삽질의 발단…팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (">
@@ -230,7 +230,7 @@ ga('send', 'pageview');
 <p>HTML의 id 선택자와 같은 맥락으로 사용할 수 있는 id는 없었다. 그래서 다음 선택지인 인라인 스타일을 적용하기로 하였다. </p>
 <p><br></p>
 <h4 id="인라인-스타일-O"><a href="#인라인-스타일-O" class="headerlink" title="인라인 스타일 (O)"></a>인라인 스타일 (O)</h4><p>인라인 스타일은 캐스캐이딩에서 <code>!important</code>를 제외하고 두 번째 우선순위를 갖는다. 따라서 중첩된 클래스보다 항상 우위에 있을 것이고, 문제가 없을 것이라 생각했다. 그런데 여기에도 문제가 있었다.</p>
-<p>대부분의 컴포넌트가 <code>div</code>로 실제 시맨틱 태그를 감싸고 있어 인라인 스타일을 주어도 적용되지 않는 경우가 많았다. 예를 들어 <code>Input</code>이나 <code>Search</code> 컴포넌트의 경우, 실제 <code>&lt;input&gt;</code> 태그가 <code>&lt;div&gt;&lt;/div&gt;</code>로 두번 감싸져 있었다.</p>
+<p>대부분의 컴포넌트가 <code>div</code>로 실제 시맨틱 태그를 감싸고 있어 인라인 스타일을 주어도 적용되지 않는 경우가 많았다. 예를 들어 <code>Input</code>이나 <code>Search</code> 컴포넌트의 경우, <code>&lt;input&gt;</code> 태그를 <code>&lt;div&gt;&lt;/div&gt;</code>가 감싸고 있다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
 <p>이런 식이라 인라인으로 스타일을 부여하면 <code>&lt;input&gt;</code>이 아니라 가장 바깥의 <code>&lt;div&gt;</code>로 스타일 코드가 적용되었다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div style=<span class="string">"border: 1px solid blue;"</span>&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
