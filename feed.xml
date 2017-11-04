@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-11-04T17:51:06.000Z</updated>
+  <updated>2017-11-04T18:06:51.000Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huusz.github.io/2017/Log/Log/01.dada-log-01/"/>
     <id>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</id>
     <published>2017-10-02T07:31:11.000Z</published>
-    <updated>2017-11-04T17:51:06.000Z</updated>
+    <updated>2017-11-04T18:06:51.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p><a href="https://github.com/huusz/Da-Da" target="_blank" rel="external">팀 프로젝트</a>를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 … 너무 귀찮을 것 같았다. 모든 클래스네임을 수동으로 <code>home-header</code> <code>home-header-search</code> 이런 식으로 지정해 주는, 이런 걸 반복 해야 하다니? </p>
 <p><strong><em>자동으로 해주는 게 없을까?</em></strong></p>
@@ -49,22 +49,19 @@
 <h4 id="2-styled-components"><a href="#2-styled-components" class="headerlink" title="2. styled-components?"></a>2. styled-components?</h4><p>styled-components는 기존의 css문법과 약간 다르다. react와 css를 섞어 놓은 듯한 문법이라 학습+적응 시간이 필요할 것 같은데, 빠르게 페이지를 만들어야 하는 지금 상황에서 그다지 좋은 선택지는 아닌 것 같다. 게다가 시맨틱도 컴포넌트이고 styled-components도 컴포넌트라서 시맨틱 컴포넌트 내부에 스타일링을 적용해야 하는 경우에는 결국 인라인스타일을 쓰게 된다. 이런게 많아지면, styled-components를 적용하는 의미가 없어지는 것 같았다. 그럴바엔 그냥 전부 inline style로 하면 되는 것 아닌가? 라는 생각이 들었다.</p>
 <h4 id="3-css-module-semantic-ui"><a href="#3-css-module-semantic-ui" class="headerlink" title="3. css-module + semantic-ui?"></a>3. css-module + semantic-ui?</h4><p>어차피 css를 쓸거라면 위 방법을 써서 css-module을 사용하는 것도 좋겠지만, 사실 이것 하나 때문에 <code>eject</code>로 웹팩 config 파일 및 script 설정 파일 등등을 풀어헤친다는 게 석연치 않았다. (불안하기도 했고..)</p>
 <p>결국 처음 고민하던 시점으로 돌아가, <strong>pure css + css 프레임워크</strong>를 쓰기로 했다.</p>
+<p><br></p>
 <hr>
+<p><br></p>
 <h4 id="프로젝트가-끝나가는-시점에서"><a href="#프로젝트가-끝나가는-시점에서" class="headerlink" title="프로젝트가 끝나가는 시점에서.."></a>프로젝트가 끝나가는 시점에서..</h4><p>위에서도 말했듯, 처음 고민하던 시점으로 돌아가서 <strong>pure css + css 프레임워크</strong>를 쓰려고 하였고 적용해보려는 시도도 했다. 그런데 결국 채택한 방식은 <strong>컴포넌트 인라인 스타일 + pure css + css 프레임워크</strong> 방식이다. styled 컴포넌츠를 약간 (정말 약간) 모방하여 Styled<em>*</em>.js라는 이름으로 인라인 스타일 객체만 모아둔 파일을 각 페이지 폴더 내부에 하나씩 두는 방식으로 하였다. 여기까지 오기까지 나름 치열한(?) 고민을 했기 때문에, 기록해두려고 한다.</p>
-<h3 id="인라인-스타일-방식을-선택한-이유는"><a href="#인라인-스타일-방식을-선택한-이유는" class="headerlink" title="인라인 스타일 방식을 선택한 이유는,"></a>인라인 스타일 방식을 선택한 이유는,</h3><p>일단 className을 부여하는 방식으로는 semantic의 기본 스타일을 커스터마이징하는 데 한계가 있었다. </p>
-<p>semantic ui가 스타일링 하는 방식을 개발자 도구로 열어보면, 아래처럼 클래스 여러개를 중첩하여 선언하는 방식이다.</p>
+<h3 id="인라인-스타일-방식을-선택한-이유는"><a href="#인라인-스타일-방식을-선택한-이유는" class="headerlink" title="인라인 스타일 방식을 선택한 이유는,"></a>인라인 스타일 방식을 선택한 이유는,</h3><p>일단 className을 부여하는 방식으로는 semantic의 기본 스타일을 커스터마이징하는 데 한계가 있었다. semantic ui가 스타일링 하는 방식을 개발자 도구로 열어보면, 아래처럼 클래스 여러개를 중첩하여 선언하는 방식이다.</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* semantic-ui class(className) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span></div></pre></td></tr></table></figure>
 <p>여기다가 아래처럼 직접 커스텀한 className을 부여하여도, </p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* custom class(className) 추가하는 경우 */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span> <span class="selector-class">.foodSearchInput</span></div></pre></td></tr></table></figure>
 <p>결국 캐스캐이딩(cascading) 우선 순위에서 밀리기 때문에 (명시도 면에서 중첩 선언된 기존의 semantic 방식보다 더 하위가 된다.) 적용되지 않는 경우가 많았다.</p>
-<blockquote>
-<p>커스텀 css의 캐스캐이딩 우선 순위가 semantic-ui 프레임워크보다 항상 우위에 있도록 할 수 있는 방법은 없을까? </p>
-</blockquote>
-<p>일단 <a href="http://poiemaweb.com/css3-inheritance-cascading" target="_blank" rel="external">cascading의 명시도</a> 면에서</p>
-<p><code>!important &gt; 인라인 스타일 &gt; 아이디 선택자 &gt; 클래스/어트리뷰트/가상 선택자 &gt; 태그 선택자 &gt; 전체 선택자 &gt; 상위 요소에 의해 상속된 속성</code> 순으로 우선 순위에서 우위를 가져간다. </p>
-<p>여기서, <a href="https://speckyboy.com/good-bad-css-practices/" target="_blank" rel="external"><code>!important</code>를 사용하는 방법은 최대한 배제</a>하기로 하였다. 그러면 남은 것은 인라인 스타일과 아이디 선택자를 사용하는 방법이 남는다.</p>
-<p>우선 아이디 선택자를 사용하는 방법에서,</p>
-<ul>
+<p><strong><em>커스텀 css의 캐스캐이딩 우선 순위가 semantic-ui 프레임워크보다 항상 우위에 있도록 할 수 있는 방법은 없을까?</em></strong></p>
+<p>일단 <a href="http://poiemaweb.com/css3-inheritance-cascading" target="_blank" rel="external">cascading의 명시도</a> 면에서 <code>!important &gt; 인라인 스타일 &gt; 아이디 선택자 &gt; 클래스/어트리뷰트/가상 선택자 &gt; 태그 선택자 &gt; 전체 선택자 &gt; 상위 요소에 의해 상속된 속성</code> 순으로 우선 순위에서 우위를 가져간다. 여기서, <a href="https://speckyboy.com/good-bad-css-practices/" target="_blank" rel="external"><code>!important</code>를 사용하는 방법은 최대한 배제</a>하기로 하였다. 그러면 남은 것은 인라인 스타일과 아이디 선택자를 사용하는 방법이 남는다.</p>
+<p><br></p>
+<h4 id="아이디-선택자-X"><a href="#아이디-선택자-X" class="headerlink" title="아이디 선택자 (X)"></a>아이디 선택자 (X)</h4><ul>
 <li>리액트에서는 <a href="https://velopert.com/1148" target="_blank" rel="external">html의 id와 아주 약간 비슷한 <code>ref</code>라는 것을 지원</a>한다.</li>
 <li>하지만 <code>ref</code>가 단순히 스타일링에 사용할 용도로 나온 것도 아니며, <code>ref</code>를 자주 사용하는 것 자체가 좋지 못하다고 한다.</li>
 </ul>
@@ -73,7 +70,9 @@
 <li><a href="https://hjnilsson.com/2015/09/24/doing-ids-in-react/" target="_blank" rel="external">react-html-id</a> 모듈을 사용하는 방법이 있었다.</li>
 <li>하지만 이 역시 스타일링을 위한 id가 아니다.</li>
 </ul>
-<p>HTML의 id 선택자와 같은 맥락으로 사용할 수 있는 id는 없었다. 그래서 다음 선택지인 인라인 스타일을 적용하기로 하였다. 인라인 스타일은 캐스캐이딩에서 두 번째 우선순위(important 제외)를 가지므로, 중첩된 클래스보다 항상 우위에 있을 것이고, 문제가 없을 것이라 생각했다. 그런데 여기에도 문제가 있었다.</p>
+<p>HTML의 id 선택자와 같은 맥락으로 사용할 수 있는 id는 없었다. 그래서 다음 선택지인 인라인 스타일을 적용하기로 하였다. </p>
+<p><br></p>
+<h4 id="인라인-스타일-O"><a href="#인라인-스타일-O" class="headerlink" title="인라인 스타일 (O)"></a>인라인 스타일 (O)</h4><p>인라인 스타일은 캐스캐이딩에서 <code>!important</code>를 제외하고 두 번째 우선순위를 갖는다. 따라서 중첩된 클래스보다 항상 우위에 있을 것이고, 문제가 없을 것이라 생각했다. 그런데 여기에도 문제가 있었다.</p>
 <p>대부분의 컴포넌트가 <code>div</code>로 실제 시맨틱 태그를 감싸고 있어 인라인 스타일을 주어도 적용되지 않는 경우가 많았다. 예를 들어 <code>Input</code>이나 <code>Search</code> 컴포넌트의 경우, 실제 <code>&lt;input&gt;</code> 태그가 <code>&lt;div&gt;&lt;/div&gt;</code>로 두번 감싸져 있었다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
 <p>이런 식이라 인라인으로 스타일을 부여하면 <code>&lt;input&gt;</code>이 아니라 가장 바깥의 <code>&lt;div&gt;</code>로 스타일 코드가 적용되었다.</p>
