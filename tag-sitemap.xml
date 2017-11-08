@@ -30,13 +30,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/github/</loc>
-        <lastmod>2017-09-21T05:56:07.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/idempotent/</loc>
         <lastmod>2017-09-21T06:06:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -79,14 +72,14 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/http/</loc>
+        <loc>http://huusz.github.io/tags/express/</loc>
         <lastmod>2017-09-21T06:07:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/tags/express/</loc>
+        <loc>http://huusz.github.io/tags/http/</loc>
         <lastmod>2017-09-21T06:07:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -129,7 +122,14 @@
 
     <url>
         <loc>http://huusz.github.io/tags/semantic-ui-react/</loc>
-        <lastmod>2017-11-05T13:38:17.000Z</lastmod>
+        <lastmod>2017-11-05T13:40:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/github/</loc>
+        <lastmod>2017-11-08T09:53:47.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
