@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>[node] 쿠키 Cookie | Huusz&#39;s Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="cookie" />
+    
+    <meta name="description" content="쿠키쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 cookie-parser 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다. 쿠키의 필요성개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우  장바구니 로그인/로그아웃 방문 기록 등   HTTP Cookie 서버가 응답을 통해">
+<meta name="keywords" content="cookie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[node] 쿠키 Cookie">
+<meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/08.cookie/index.html">
+<meta property="og:site_name" content="Huusz&#39;s Log">
+<meta property="og:description" content="쿠키쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 cookie-parser 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다. 쿠키의 필요성개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우  장바구니 로그인/로그아웃 방문 기록 등   HTTP Cookie 서버가 응답을 통해">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
+<meta property="og:updated_time" content="2017-09-21T06:06:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[node] 쿠키 Cookie">
+<meta name="twitter:description" content="쿠키쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 cookie-parser 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다. 쿠키의 필요성개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우  장바구니 로그인/로그아웃 방문 기록 등   HTTP Cookie 서버가 응답을 통해">
+<meta name="twitter:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
+    
+
+    
+        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/css/images/favi.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104157265-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a class="logo" href="https://huusz.github.io">
+                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'post',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs/08.cookie" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        [node] 쿠키 Cookie
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/Nodejs/nodejs/08.cookie/" class="article-date">
+            <time datetime="2017-09-09T09:05:09.000Z" itemprop="datePublished">2017-09-09</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/cookie/">cookie</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
+<h1 id="쿠키"><a href="#쿠키" class="headerlink" title="쿠키"></a>쿠키</h1><p>쿠키는 클라이언트 웹 브라우저에 저장되는 정보이다. 일정 기간 동안 저장하고 싶을 때 사용한다. 익스프레스에서는 <code>cookie-parser</code> 미들웨어를 사용하면 쿠키를 설정하거나 확인할 수 있다.</p>
+<h2 id="쿠키의-필요성"><a href="#쿠키의-필요성" class="headerlink" title="쿠키의 필요성"></a>쿠키의 필요성</h2><p>개별 클라이언트의 여러 요청에 걸친 정보의 유지가 필요한 경우</p>
+<ul>
+<li>장바구니</li>
+<li>로그인/로그아웃</li>
+<li>방문 기록 등</li>
+</ul>
+<p><br></p>
+<h2 id="HTTP-Cookie"><a href="#HTTP-Cookie" class="headerlink" title="HTTP Cookie"></a>HTTP Cookie</h2><ul>
+<li>서버가 응답을 통해 웹 브라우저에 저장하는 이름+값 형태의 정보</li>
+<li>웹 브라우저는 쿠키를 저장하기 위한 <strong>저장소</strong>를 가지고 있다.</li>
+<li>저장소는 자료의 유효기간과 접근 권한에 대한 다양한 옵션을 제공한다.</li>
+</ul>
+<p><br></p>
+<h2 id="쿠키-전송-절차"><a href="#쿠키-전송-절차" class="headerlink" title="쿠키 전송 절차"></a>쿠키 전송 절차</h2><h4 id="1-Set-Cookie-헤더"><a href="#1-Set-Cookie-헤더" class="headerlink" title="1. Set-Cookie 헤더"></a>1. Set-Cookie 헤더</h4><p>  서버가 브라우저에 <strong>저장하고 싶은 정보를 응답과 같이 실어 보낸다.</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Set-Cookie: cookieName = cookieValue; Secure; Max-Age = 60000</div><div class="line">...</div></pre></td></tr></table></figure>
+<h4 id="2-Cookie-헤더"><a href="#2-Cookie-헤더" class="headerlink" title="2. Cookie 헤더"></a>2. Cookie 헤더</h4><p>  브라우저는 같은 서버에 요청이 일어날 때 마다 해당 정보를 요청에 같이 실어서 서버에 보낸다.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET / HTTP/1.1</div><div class="line">Cookie: cookieName=cookieValue; anotherName=anotherValue</div><div class="line">...</div></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="3-Set-Cookie-Options"><a href="#3-Set-Cookie-Options" class="headerlink" title="3. Set-Cookie Options"></a>3. Set-Cookie Options</h4><p><strong>Expires, Max-Age</strong>: 쿠키의 지속 시간 설정</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// maxAge 옵션은 쿠키가 해당 시간이 지났을 때 삭제되도록 합니다.</span></div><div class="line">app.get(<span class="string">'/maxAge'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'maxAgeCookie'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    maxAge: <span class="number">5000</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>Secure</strong>: HTTPS를 통해서만 쿠키가 전송되도록 설정</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// secure 옵션은 http 프로토콜을 통한 요청에는 쿠키가 포함되지 않게 합니다. (https로 했을 때만 포함시킴)</span></div><div class="line">app.get(<span class="string">'/secure'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'secureCookie'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    secure: <span class="literal">true</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>HttpOnly</strong>: 자바스크립트에서 쿠키를 읽지 못하도록 설정</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// httpOnly 옵션은 해당 쿠키를 자바스크립트에서 접근할 수 없게 합니다.</span></div><div class="line">app.get(<span class="string">'/httpOnly'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'httpOnlyCookie'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    httpOnly: <span class="literal">true</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>자바스크립트에서 쿠키를 읽지 못하게 해야 하는 이유는 누군가 악의적으로 웹사이트의 게시글에 스크립트 태그를 심을 가능성이 있기 때문이다. 이를 Cross-site Scripting(XSS)이라고 한다. 만약 로그인정보가 포함되어 있다면 이 공격에 의해 로그인 정보가 유출되는 위험이 발생할 수 있다.</p>
+<p><strong>Domain, Path</strong>: 쿠키의 scope 설정 (쿠키가 전송되는 URL을 제한)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// domain 옵션은 해당 도메인 및 서브도메인으로 쿠키가 전송되도록 합니다.</span></div><div class="line">app.get(<span class="string">'/domain'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'domainCookie'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    domain: <span class="string">'glitch.me'</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// path 옵션은 쿠키가 지정된 경로 및 그 하위 경로에 요청이 일어났을 때만 전송되도록 합니다.</span></div><div class="line">app.get(<span class="string">'/path'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'pathCookie'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    path: <span class="string">'/somePath'</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>multiple-options</strong>: 위 옵션들을 한번에 다중으로 지정할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 여러 옵션을 한꺼번에 지정할 수도 있습니다.</span></div><div class="line">app.get(<span class="string">'/multiple-options'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.cookie(<span class="string">'multipleOption'</span>, <span class="string">'value'</span>, &#123;</div><div class="line">    secure: <span class="literal">true</span>,</div><div class="line">    httpOnly: <span class="literal">true</span>,</div><div class="line">    maxAge: <span class="number">5000</span></div><div class="line">  &#125;)</div><div class="line">  res.redirect(<span class="string">'/'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="4-Express-Cookie"><a href="#4-Express-Cookie" class="headerlink" title="4. Express + Cookie"></a>4. Express + Cookie</h4><p><strong>쿠키 읽기 - req.cookies</strong></p>
+<p>요청에 실려온 쿠키가 객체로 변환되어 <code>req.cookies</code>에 저장됨 (<code>cookie-parser</code> 미들웨어 필요)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// req.cookies를 사용하려면</span></div><div class="line"><span class="comment">// cookieParser라는 미들웨어가 필요하다.</span></div><div class="line"><span class="keyword">const</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>)</div><div class="line">app.use(cookieParser())</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(req.cookies)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/somePath'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(req.cookies)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>쿠키 쓰기 - res.cookie(name, value)</strong></p>
+<p>쿠키의 생성 혹은 수정</p>
+<p><br></p>
+<h4 id="5-쿠키-예제-Link"><a href="#5-쿠키-예제-Link" class="headerlink" title="5. 쿠키 예제: Link"></a>5. 쿠키 예제: <a href="https://glitch.com/edit/#!/wpsn-cookie-example" target="_blank" rel="external">Link</a></h4><p><br></p>
+<h2 id="JavaScript-Cookie"><a href="#JavaScript-Cookie" class="headerlink" title="JavaScript + Cookie"></a>JavaScript + Cookie</h2><p>자바스크립트로도 쿠키를 읽고 쓰는 방법이 존재하지만, 보안 상 문제를 일으킬 수 있으므로 이런 접근 방식은 거의 사용되지 않는다.</p>
+<p>자바스크립트에서 쿠키에 접근하지 못하도록 <code>HttpOnly</code>를 항상 설정하는 것이 best practice</p>
+<p><br></p>
+<h2 id="쿠키의-한계점"><a href="#쿠키의-한계점" class="headerlink" title="쿠키의 한계점"></a>쿠키의 한계점</h2><ul>
+<li><p>US-ASCII 밖에 저장하지 못해서 한글 표시가 안 된다. 한글 표시를 위해서 보통 percent encoding을 사용한다.</p>
+</li>
+<li><p>4000 바이트 내외(영문 4000자, percent encoding 된 한글 444자 가량)밖에 저장하지 못한다.</p>
+</li>
+<li><p>브라우저에 저장된다. 즉, 여러 브라우저에 걸쳐 공유되어야 하는 정보, 혹은 웹 브라우저가 아닌 클라이언트(모바일 앱)에 저장되어야 하는 정보를 다루기에는 부적절하다. (예를 들어 장바구니를 쿠키를 이용해서 구현하면, 다른 브라우저에서 켰을 때 보이지 않는 경우가 발생한다. 이런 한계가 존재하기 때문에, 쿠키로 모든 것을 다 할 수는 없다.)</p>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+    <div class="a2a_kit a2a_default_style">
+    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <span class="a2a_divider"></span>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_button_google_plus"></a>
+    <a class="a2a_button_pinterest"></a>
+    <a class="a2a_button_tumblr"></a>
+</div>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<style>
+    .a2a_menu {
+        border-radius: 4px;
+    }
+    .a2a_menu a {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 4px;
+        color: inherit !important;
+        font-family: 'Microsoft Yahei';
+    }
+    #a2apage_dropdown {
+        margin: 10px 0;
+    }
+    .a2a_mini_services {
+        padding: 10px;
+    }
+    a.a2a_i,
+    i.a2a_i {
+        width: 122px;
+        line-height: 16px;
+    }
+    a.a2a_i .a2a_svg,
+    a.a2a_more .a2a_svg {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        vertical-align: top;
+        background-size: 16px;
+    }
+    a.a2a_i {
+        border: none !important;
+    }
+    a.a2a_menu_show_more_less {
+        margin: 0;
+        padding: 10px 0;
+        line-height: 16px;
+    }
+    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .a2a_mini_services{*+height:1%;}
+</style>
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
+    <div class="sidebar-top">
+        <p>follow</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/Nodejs/nodejs/09.session/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            [node]  세션 Session
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/Nodejs/nodejs/07.Express Middleware/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">[node] Middleware 미들웨어</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Git/GIT/02.diffrence-branch-command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
+                            <p class="item-title"><a href="/2017/Git/GIT/02.diffrence-branch-command/" class="title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</a></p>
+                            <p class="item-date"><time datetime="2017-10-19T17:10:46.000Z" itemprop="datePublished">2017-10-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Log/Log/01.dada-log-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png)" alt="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Log/">Log</a></p>
+                            <p class="item-title"><a href="/2017/Log/Log/01.dada-log-01/" class="title">Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</a></p>
+                            <p class="item-date"><time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/React/React/01.basic/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg)" alt="[React] 리액트 입문하기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/React/">React</a></p>
+                            <p class="item-title"><a href="/2017/React/React/01.basic/" class="title">[React] 리액트 입문하기</a></p>
+                            <p class="item-date"><time datetime="2017-09-20T11:32:01.000Z" itemprop="datePublished">2017-09-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/Nodejs/nodejs/09.session/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2017/Nodejs/nodejs/09.session/" class="title">[node]  세션 Session</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T09:16:41.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/semantic-ui-react/" style="font-size: 10px;">semantic-ui-react</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
+                </h1>
+                <p>&copy; 2017 huusz</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'huuszLog';
+    
+    
+    var disqus_url = 'http://huusz.github.io/2017/Nodejs/nodejs/08.cookie/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
