@@ -6,11 +6,11 @@
   <meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그">
   <meta name="keyword" content="huusz, frontend">
   
-    <link rel="shortcut icon" href="/css/images/logo.png">
+    <link rel="shortcut icon" href="/css/images/favi.png">
   
   <title>
     
-      [node] 쿠키 Cookie | 휴지 개발 블로그
+      [node] 쿠키 Cookie | 휴지블로그
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
   <div class="header-container">
     <a class="home-link" href="/">
       <div class="logo"></div>
-      <span>휴지 개발 블로그</span>
+      <span>휴지블로그</span>
     </a>
     <ul class="right-list">
       
@@ -166,9 +166,7 @@
     </div>
     <!-- QR code END -->
     
-      <!-- Gitment START -->
-      <div id="comments"></div>
-      <!-- Gitment END -->
+      <!-- No Comment -->
     
   </article>
   <!-- Article END -->
@@ -241,15 +239,15 @@
     });
 
     // gitment
-    var gitmentConfig = "huusz";
+    var gitmentConfig = "";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
         id: "[node] 쿠키 Cookie",
-        owner: "huusz",
-        repo: "huusz.github.io",
+        owner: "",
+        repo: "",
         oauth: {
-          client_id: "d3a0f59f7ed9d7912d34",
-          client_secret: "1e6eda5594a1d8399f6da40da0582ba24fc74bb3"
+          client_id: "",
+          client_secret: ""
         },
         theme: {
           render(state, instance) {
