@@ -7,6 +7,11 @@
     </sitemap>
 
     <sitemap>
+        <loc>http://huusz.github.io/page-sitemap.xml</loc>
+        <lastmod>2017-11-17T08:31:59.220Z</lastmod>
+    </sitemap>
+
+    <sitemap>
         <loc>http://huusz.github.io/category-sitemap.xml</loc>
         <lastmod>2017-09-21T05:53:03.000Z</lastmod>
     </sitemap>
