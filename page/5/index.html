@@ -1,597 +1,246 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그">
+  <meta name="keyword" content="huusz, frontend">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
     
-    <title>Huusz&#39;s Log</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      휴지 개발 블로그
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Huusz&#39;s Log">
-<meta property="og:url" content="http://huusz.github.io/page/5/index.html">
-<meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:locale" content="ko">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Huusz&#39;s Log">
-    
-
-    
-        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
-    
-
-    
-        <link rel="icon" href="/css/images/favi.png" />
-    
-
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-104157265-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-    
-    
-
-
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
 </head>
-<body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a class="logo" href="https://huusz.github.io">
-                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
-                                    
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
 </div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'post',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'tag',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
 
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>휴지 개발 블로그</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <em class="page-title-link" data-url="home">Home</em>
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            
 
-    
-    
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/Javascript/Javascript/03.Closure/">[JS] 클로져 Closure</a>
+      </h2>
+      <p class="article-date">2017년 8월 8일</p>
+      
         
-        
-        <section class="archives-wrap">
-            <!-- <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div> -->
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/Sass/SCSS/02.extensions/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/data/stickers/sass/sass.sh.png)" alt="[SASS] Extensions" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://huusz.github.io/2017/Sass/SCSS/02.extensions/">0</span>
-    
-</span>
+  <a href="/tags#closure" >
+    <span class="tag-code">closure</span>
+  </a>
 
-
-    
-</a>
-
+      
+      <div class="article-summary">
         
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Sass/">Sass</a>
-            </div>
-            <div class="date"><time datetime="2017-08-07T05:03:41.000Z" itemprop="datePublished">2017-08-07</time></div>
-        </div>
+          
+클로저1. 클로저의 개념클로저는 자바스크립트에서 중요한 개념 중 하나이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어에서 사용되는 중요한 속성이다. 클로저란, 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수이다 ...
         
-    
-        <h1 class="article-title" itemprop="name">
+      </div>
+      <a class="more" href="/2017/Javascript/Javascript/03.Closure/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2017/Sass/SCSS/02.extensions/">[SASS] Extensions</a>
-        </h1>
-    
+      </h2>
+      <p class="article-date">2017년 8월 7일</p>
+      
+        
+  <a href="/tags#nesting" >
+    <span class="tag-code">nesting</span>
+  </a>
 
-        <p class="article-excerpt">
-            
+      
+      <div class="article-summary">
+        
+          
 Extensions1. NestingSass의 유용한 확장 기능으로 중첩(Nesting)이 있다. CSS는 후손 셀렉터의 경우 부모요소를 기술하여야 한다.
-12345678910111213141516#navbar &#123;  width: 80%;  height: 23px;&#125;#navbar ul &#123;  list-style-type: none;
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
+12345678910111213141516#navbar &#123;  width: 80%;  height ...
         
-        <a href="/2017/Sass/SCSS/03.sassScript/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/data/stickers/sass/sass.sh.png)" alt="[SASS] Sass Script" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://huusz.github.io/2017/Sass/SCSS/03.sassScript/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Sass/">Sass</a>
-            </div>
-            <div class="date"><time datetime="2017-08-06T07:56:57.000Z" itemprop="datePublished">2017-08-06</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
+      </div>
+      <a class="more" href="/2017/Sass/SCSS/02.extensions/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2017/Sass/SCSS/03.sassScript/">[SASS] Sass Script</a>
-        </h1>
-    
+      </h2>
+      <p class="article-date">2017년 8월 6일</p>
+      
+        
+  <a href="/tags#sass syntax" >
+    <span class="tag-code">sass syntax</span>
+  </a>
 
-        <p class="article-excerpt">
-            
+      
+      <div class="article-summary">
+        
+          
 Sass Script1. Data Type프로퍼티값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
 
 숫자형e.g) 1.2, 13, 10px
 
-문자열CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우(“Lucida Grande”, ‘http://sass-lan
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
+문자열CSS는 2종류의 문자열을 사용 ...
         
-        <a href="/2017/Javascript/Javascript/02.Prototype/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg)" alt="[JS] 프로토타입 Prototype" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://huusz.github.io/2017/Javascript/Javascript/02.Prototype/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-            </div>
-            <div class="date"><time datetime="2017-08-06T01:53:50.000Z" itemprop="datePublished">2017-08-06</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
+      </div>
+      <a class="more" href="/2017/Sass/SCSS/03.sassScript/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2017/Javascript/Javascript/02.Prototype/">[JS] 프로토타입 Prototype</a>
-        </h1>
-    
+      </h2>
+      <p class="article-date">2017년 8월 6일</p>
+      
+        
+  <a href="/tags#prototype" >
+    <span class="tag-code">prototype</span>
+  </a>
 
-        <p class="article-excerpt">
-            
+      
+      <div class="article-summary">
+        
+          
 Prototype 프로토타입과 객체지향객체(Object)자바스크립트에서는 객체를 만드는 방법으로 객체리터럴 방식과 생성자(Object() 함수, 일반 생성자 함수)를 이용한 방식이 있다.  
-12var objectMadeByLiteral = &#123;&#125;;var objectMadeByConstructor = new Object();
-리터럴은 Ob
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
+12var objectMadeByLiteral = &#123;&#12 ...
         
-        <a href="/2017/Javascript/Javascript/01.Object/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg)" alt="[JS] 객체 Object" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://huusz.github.io/2017/Javascript/Javascript/01.Object/">0</span>
-    
-</span>
+      </div>
+      <a class="more" href="/2017/Javascript/Javascript/02.Prototype/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/page/4/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a href="/page/6/">Next<span class="page-arrow"> →</span></a>
+  
+</div>
+  
+</main>
 
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-            </div>
-            <div class="date"><time datetime="2017-08-05T11:16:16.000Z" itemprop="datePublished">2017-08-05</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/Javascript/Javascript/01.Object/">[JS] 객체 Object</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-Object1. 객체(Object)란?자바스크립트는 객체(Object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. 기본 자료형(primitives)을 제외한 나머지 값들(함수, 배열, 정규표현식 등)은 모두 객체이다. 
-
-primitives프리미티브: 객체도 아니고 메소드도 아닌 데이터. string/number/bo
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">Page 5 of 5</span>
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
-    <div class="sidebar-top">
-        <p>follow</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-    <div class="widgets-container">
-        
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/02.diffrence-branch-command/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/02.diffrence-branch-command/" class="title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</a></p>
-                            <p class="item-date"><time datetime="2017-10-19T17:10:46.000Z" itemprop="datePublished">2017-10-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Log/Log/01.dada-log-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png)" alt="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Log/">Log</a></p>
-                            <p class="item-title"><a href="/2017/Log/Log/01.dada-log-01/" class="title">Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</a></p>
-                            <p class="item-date"><time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/React/React/01.basic/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg)" alt="[React] 리액트 입문하기" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/React/">React</a></p>
-                            <p class="item-title"><a href="/2017/React/React/01.basic/" class="title">[React] 리액트 입문하기</a></p>
-                            <p class="item-date"><time datetime="2017-09-20T11:32:01.000Z" itemprop="datePublished">2017-09-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
-                            <p class="item-title"><a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
-                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Nodejs/nodejs/09.session/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  세션 Session" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
-                            <p class="item-title"><a href="/2017/Nodejs/nodejs/09.session/" class="title">[node]  세션 Session</a></p>
-                            <p class="item-date"><time datetime="2017-09-09T09:16:41.000Z" itemprop="datePublished">2017-09-09</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/semantic-ui-react/" style="font-size: 10px;">semantic-ui-react</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
-                </h1>
-                <p>&copy; 2017 huusz</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
 </footer>
-        
-    
-    <script>
-    var disqus_shortname = 'huuszLog';
-    
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
 
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
 
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
-</body>
+<script src="/js/script.js"></script>
+  </body>
 </html>
