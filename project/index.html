@@ -32,7 +32,7 @@
     <header class="header fixed-header">
   <div class="header-container">
     <a class="home-link" href="/">
-      <div class="logo"></div>
+      <!--<div class="logo"></div>-->
       <span>휴지블로그</span>
     </a>
     <ul class="right-list">
@@ -113,7 +113,7 @@
 
     <div id="article-banner">
   <h2>Projects</h2>
-  <p class="post-date"> </p>
+  <p class="post-date">Not Forked</p>
 </div>
 <main class="app-body project-app">
   <div class="card-container" id="all-project"></div>
@@ -132,8 +132,10 @@
       success: function (data) {
         var repos = data.sort(function(a, b) {
           return (b.stargazers_count - a.stargazers_count)
-        }).slice(0, 6)
+        })
+        // .slice(0, 6)
         var cardHtml = repos.map(function(item) {
+          if(!item.fork){
           var description = item.description || ""
           if (description.replace(/[\u0391-\uFFE5]/g, "aa").length > 72) {
             description = description.slice(0, 72) + '...'
@@ -151,6 +153,7 @@
               '</a>' +
             '</section>'
           )
+          }
         }).join('')
         $('#all-project').html(cardHtml)
         $('.card-header').each(function() {
