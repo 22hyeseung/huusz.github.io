@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-11-17T08:28:49.000Z</updated>
+  <updated>2017-11-17T08:49:21.356Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/03.inner/"/>
     <id>http://huusz.github.io/2017/Git/GIT/03.inner/</id>
     <published>2017-10-21T19:21:58.000Z</published>
-    <updated>2017-11-17T08:28:49.000Z</updated>
+    <updated>2017-11-17T08:49:21.356Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <p>git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.</p>
@@ -77,16 +77,16 @@
       <category term="Git" scheme="http://huusz.github.io/categories/Git/"/>
     
     
-      <category term="github" scheme="http://huusz.github.io/tags/github/"/>
+      <category term="git" scheme="http://huusz.github.io/tags/git/"/>
     
   </entry>
   
   <entry>
-    <title>git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</title>
+    <title>git remote prune, git prune, git fetch --prune 명령들 간 무슨 차이가 있나요?</title>
     <link href="http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/"/>
     <id>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</id>
     <published>2017-10-19T17:10:46.000Z</published>
-    <updated>2017-11-08T09:53:47.000Z</updated>
+    <updated>2017-11-17T08:49:58.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <blockquote>
@@ -126,7 +126,9 @@
       <category term="Git" scheme="http://huusz.github.io/categories/Git/"/>
     
     
-      <category term="github" scheme="http://huusz.github.io/tags/github/"/>
+      <category term="git" scheme="http://huusz.github.io/tags/git/"/>
+    
+      <category term="prune" scheme="http://huusz.github.io/tags/prune/"/>
     
   </entry>
   
@@ -926,7 +928,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/01.git-connect-github/"/>
     <id>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</id>
     <published>2017-08-30T02:22:01.000Z</published>
-    <updated>2017-09-21T05:56:07.000Z</updated>
+    <updated>2017-11-17T08:49:34.052Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <h1 id="로컬-저장소를-github-저장소와-연결하기"><a href="#로컬-저장소를-github-저장소와-연결하기" class="headerlink" title="로컬 저장소를 github 저장소와 연결하기"></a>로컬 저장소를 github 저장소와 연결하기</h1><h2 id="로컬-저장소-만들기"><a href="#로컬-저장소-만들기" class="headerlink" title="로컬 저장소 만들기"></a>로컬 저장소 만들기</h2><h3 id="1-프로젝트-폴더-만들기"><a href="#1-프로젝트-폴더-만들기" class="headerlink" title="1. 프로젝트 폴더 만들기"></a>1. 프로젝트 폴더 만들기</h3><p>우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.  </p>
@@ -1045,6 +1047,10 @@
     
     
       <category term="github" scheme="http://huusz.github.io/tags/github/"/>
+    
+      <category term="git" scheme="http://huusz.github.io/tags/git/"/>
+    
+      <category term="remote" scheme="http://huusz.github.io/tags/remote/"/>
     
   </entry>
   
