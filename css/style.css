@@ -2,29 +2,6 @@
   font-family: 'Source Sans Pro';
   src: url("../fonts/SourceSansPro.ttf");
 }
-@font-face {
-  font-family: 'Nanum Square';
-  font-weight: 300;
-  src: url("../fonts/NanumSquareLight.eot");
-  src: url("../fonts/NanumSquareLight.eot?#iefix") format('embedded-opentype'), url("../fonts/NanumSquareLight.woff") format('woff'), url("../fonts/NanumSquareLight.woff2") format('woff2');
-}
-@font-face {
-  font-family: 'Nanum Square';
-  font-weight: 400;
-  src: url("../fonts/NanumSquareRegular.eot");
-  src: url("../fonts/NanumSquareRegular.eot?#iefix") format('embedded-opentype'), url("../fonts/NanumSquareRegular.woff") format('woff'), url("../fonts/NanumSquareRegular.woff2") format('woff2');
-}
-@font-face {
-  font-family: 'Nanum Square';
-  font-weight: 600;
-  src: url("../fonts/NanumSquareBold.eot");
-  src: url("../fonts/NanumSquareBold.eot?#iefix") format('embedded-opentype'), url("../fonts/NanumSquareBold.woff") format('woff'), url("../fonts/NanumSquareBold.woff2") format('woff2');
-}
-@font-face {
-  font-family: 'Nanum Square';
-  font-weight: 700;
-  src: url("../fonts/NanumSquareExtraBold.eot?#iefix") format('embedded-opentype'), url("../fonts/NanumSquareExtraBold.woff") format('woff'), url("../fonts/NanumSquareExtraBold.woff2") format('woff2');
-}
 ::selection {
   background: #8d83a3;
   color: #fff;
