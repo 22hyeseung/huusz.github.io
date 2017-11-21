@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300,400");
 @font-face {
   font-family: 'Nanum Square';
   font-weight: 300;
@@ -37,6 +38,7 @@ body {
   margin: 0;
   color: #34495e;
   font-size: 16px;
+  line-height: 1.5rem;
 }
 @media screen and (max-width: 480px) {
   body {
@@ -97,7 +99,7 @@ pre {
   font-weight: 400;
 }
 .tag-code {
-  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-family: 'Roboto Mono', courier, monospace;
   font-size: 0.8em;
   display: inline-block;
   background-color: #f4f7f9;
@@ -133,7 +135,7 @@ h2.article-head {
   color: #34495e;
 }
 .more {
-  font-weight: 400;
+  font-weight: 600;
   display: inline-block;
   transition: all 0.3s;
 }
