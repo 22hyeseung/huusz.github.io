@@ -1,22 +1,22 @@
 @font-face {
   font-family: 'Nanum Square';
   font-weight: 300;
-  src: url("../fonts/NanumSquare/NanumSquareLight.woff");
+  src: url("../fonts/NanumSquare/NanumSquareLight.eot");
 }
 @font-face {
   font-family: 'Nanum Square';
   font-weight: 400;
-  src: url("../fonts/NanumSquare/NanumSquareRegular.woff");
+  src: url("../fonts/NanumSquare/NanumSquareRegular.eot");
 }
 @font-face {
   font-family: 'Nanum Square';
   font-weight: 600;
-  src: url("../fonts/NanumSquare/NanumSquareBold.woff");
+  src: url("../fonts/NanumSquare/NanumSquareBold.eot");
 }
 @font-face {
   font-family: 'Nanum Square';
   font-weight: 700;
-  src: url("../fonts/NanumSquare/NanumSquareExtraBold.woff");
+  src: url("../fonts/NanumSquare/NanumSquareExtraBold.eot");
 }
 @font-face {
   font-family: 'Source Sans Pro';
