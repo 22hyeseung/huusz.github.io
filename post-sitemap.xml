@@ -79,7 +79,7 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/02.http/</loc>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/03.Middleware/</loc>
         <lastmod>2017-09-21T06:07:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -87,7 +87,7 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/03.Middleware/</loc>
+        <loc>http://huusz.github.io/2017/Nodejs/nodejs/02.http/</loc>
         <lastmod>2017-09-21T06:07:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
