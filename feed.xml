@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-11-08T09:53:47.000Z</updated>
+  <updated>2017-11-27T13:50:56.781Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -16,11 +16,77 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>`.git`의 정체: git의 내부</title>
+    <link href="http://huusz.github.io/2017/Git/GIT/03.inner/"/>
+    <id>http://huusz.github.io/2017/Git/GIT/03.inner/</id>
+    <published>2017-10-21T19:21:58.000Z</published>
+    <updated>2017-11-27T13:50:56.781Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
+<p>git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.</p>
+<ol>
+<li>Content-addressable 파일 시스템</li>
+<li>데이터 전송 원리</li>
+<li>저장소 관리법</li>
+</ol>
+<p><br></p>
+<hr>
+<h2 id="Plumbing-명령과-Porcelain명령"><a href="#Plumbing-명령과-Porcelain명령" class="headerlink" title="Plumbing 명령과 Porcelain명령"></a>Plumbing 명령과 Porcelain명령</h2><p>git은 본래 VCS라기보다, <strong>VCS를 위한 툴킷(tool kit)</strong>입니다. 기본적으로 매우 많은 저수준 명령어로 구성되어 있습니다. (저수준이란 사용자보다 컴퓨터에게 더 친숙함을 의미합니다.) 저수준 명령어들을 UNIX 스타일로 엮어 실행하거나 스크립트로 만들어 사용하도록 설계되어 있습니다. Plumbing 명령어는 이러한 저수준 명령어를 일컫는 말이며, Porcelain 명령은 사용자에게 친숙한 명령어를 의미합니다. 흔히 사용하는 <code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git checkout</code> 등의 명령어들은 사용자에게 더 친숙한 Porcelain 명령어 입니다.</p>
+<ul>
+<li><p><strong>Plumbing</strong> : 저수준의 명령어.</p>
+</li>
+<li><p><strong>Porcelain</strong> : 사용자에게 친숙한 사용자용 명령어. 일반적으로 사용하는 git 명령어들(<code>add</code>, <code>commit</code>, <code>push</code>, <code>checkout</code> 등)이 이에 해당합니다.</p>
+</li>
+</ul>
+<h2 id="Git의-내부-구조"><a href="#Git의-내부-구조" class="headerlink" title="Git의 내부 구조"></a>Git의 내부 구조</h2><p>Plumbing 명령을 사용하면 git의 내부 구조에 접근할 수 있습니다. 그리고 git이 왜, 그렇게 작동하는지도 확인할 수 있습니다. Plumbing 명령어는 직접 커맨드라인에서 실행하기보다 새로운 도구를 만들거나 각자 필요한 스크립트를 작성할 때 사용합니다.</p>
+<p>새로 만든 디렉토리나 이미 파일이 있는 디렉토리에서 <code>git init</code> 명령을 실행하면 git은 데이터를 저장하고 관리하는 <code>.git</code> 디렉토리가 생성됩니다.</p>
+<h3 id="git"><a href="#git" class="headerlink" title=".git"></a><code>.git</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.git/</div><div class="line"> HEAD</div><div class="line"> config*</div><div class="line"> description</div><div class="line"> hooks/</div><div class="line"> info/</div><div class="line"> objects/</div><div class="line"> refs/</div></pre></td></tr></table></figure>
+<p>위 파일 구조는 <code>git init</code> 명령 실행 직후 보이는 새 저장소의 모습입니다. </p>
+<ul>
+<li><p><code>config</code> : 해당 프로젝트에만 적용되는 설정 옵션이 들어 있습니다. </p>
+</li>
+<li><p><code>info/</code> : <code>.gitignore</code>처럼 무시할 파일의 패턴을 적어 두는 곳입니다. 하지만 <code>.gitignore</code>와 달리 git으로 관리되지 않습니다.</p>
+</li>
+<li><p><code>hooks/</code> : 클라이언트 훅이나 서버 훅이 위치합니다. </p>
+</li>
+</ul>
+<p><br></p>
+<p>이제 아래 4가지 항목이 git의 핵심입니다.</p>
+<p><br></p>
+<ul>
+<li><p><code>objects/</code> : 모든 컨텐츠를 저장하는 데이터베이스이다.</p>
+</li>
+<li><p><code>refs/</code> : 커밋 개체의 포인터(pointer)를 저장합니다.</p>
+</li>
+<li><p><code>HEAD</code> : 현재 checkout한 브랜치를 가리킵니다.</p>
+</li>
+<li><p><code>index</code> : Staging Area의 정보를 저장합니다.</p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;git은 Content-addressable 파일 시
+    
+    </summary>
+    
+      <category term="Git" scheme="http://huusz.github.io/categories/Git/"/>
+    
+    
+      <category term="github" scheme="http://huusz.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
     <title>git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</title>
     <link href="http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/"/>
     <id>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</id>
     <published>2017-10-19T17:10:46.000Z</published>
-    <updated>2017-11-08T09:53:47.000Z</updated>
+    <updated>2017-11-27T13:50:56.780Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <blockquote>
@@ -69,7 +135,7 @@
     <link href="http://huusz.github.io/2017/Log/Log/01.dada-log-01/"/>
     <id>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</id>
     <published>2017-10-02T07:31:11.000Z</published>
-    <updated>2017-11-05T13:40:26.000Z</updated>
+    <updated>2017-11-16T16:13:11.788Z</updated>
     
     <content type="html"><![CDATA[<h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p><a href="https://github.com/huusz/Da-Da" target="_blank" rel="external">팀 프로젝트</a>를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 … 너무 귀찮을 것 같았다. 모든 클래스네임을 수동으로 <code>home-header</code> <code>home-header-search</code> 이런 식으로 지정해 주는, 이런 걸 반복 해야 하다니? </p>
 <p><strong><em>자동으로 해주는 게 없을까?</em></strong></p>
@@ -160,7 +226,7 @@
     <link href="http://huusz.github.io/2017/React/React/01.basic/"/>
     <id>http://huusz.github.io/2017/React/React/01.basic/</id>
     <published>2017-09-20T11:32:01.000Z</published>
-    <updated>2017-09-21T06:22:12.000Z</updated>
+    <updated>2017-11-27T13:50:56.782Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg" alt=""></p>
 <h2 id="1-What-is-React"><a href="#1-What-is-React" class="headerlink" title="1. What is React?"></a>1. What is React?</h2><p>React는 페이스북에서 개발한 자바스크립트 라이브러리이다. 공식 문서에서는 <strong>사용자 인터페이스(User Interface)를 구축하기위한 선언적(declarative)이고 효율적(efficient)이며 유연한(flexible) JavaScript 라이브러리</strong>라고 설명하고있다. React는 ‘컴포넌트’단위로 재사용 가능한 UI 템플릿을 만든다. 현재 페이스북, 인스타그램, MS 등 대형 서비스에서도 사용되고있는 견고한 라이브러리이다.  </p>
@@ -182,7 +248,7 @@
 <p>결국 컴포넌트가 업데이트 될 때, 레이아웃 계산(reflow)이 한번만 이루어지므로 속도 저하 문제를 개선할 수 있게 되는 것이다.</p>
 <p>하지만, Virtual DOM이 모든 경우에서 무조건 더 좋은 퍼포먼스를 내는 것은 아니다. 오히려 단순 라우팅만 있는 정적 웹페이지의 경우 React를 쓰지 않는 편이 더 낫기도 하다. (React는 지속적으로 데이터가 변화하는 대규모 애플리케이션 구축에 적절하다고 공식 매뉴얼에서 밝히고 있다.)  </p>
 <p>React와 Virtual DOM이 주는 최고의 편의성은 <strong>간결한 업데이트 처리</strong>이다. UI를 업데이트 하는 과정에서 발생하는 복잡함을 해소해줄 뿐 아니라, 업데이트에 쉽게 접근할 수 있게 해준다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line"></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react@latest/dist/react.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react-dom@latest/dist/react-dom.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;<span class="regexp">/head&gt;</span></div><div class="line"><span class="regexp">&lt;body&gt;</span></div><div class="line"><span class="regexp">  &lt;h1&gt;Welcome to React&lt;/</span>h1&gt;</div><div class="line">  &lt;div id=<span class="string">"react-app"</span>&gt;&lt;/div&gt;</div><div class="line">  &lt;script type=<span class="string">"text/babel"</span>&gt;&lt;/script&gt;</div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        &lt;div&gt;</div><div class="line">          This is a blog post</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  reactDOM.render(</span></div><div class="line"><span class="regexp">  &lt;BlogPost/</span>&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'react-app'</span>);</div><div class="line">  );</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line"></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react@latest/dist/react.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/react-dom@latest/dist/react-dom.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  &lt;script src=<span class="string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/head&gt;</span></div><div class="line"><span class="regexp">&lt;body&gt;</span></div><div class="line"><span class="regexp">  &lt;h1&gt;Welcome to React&lt;/</span>h1&gt;</div><div class="line">  &lt;div id=<span class="string">"react-app"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">  &lt;script type=<span class="string">"text/babel"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        &lt;div&gt;</div><div class="line">          This is a blog post</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  reactDOM.render(</span></div><div class="line"><span class="regexp">  &lt;BlogPost/</span>&gt;,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'react-app'</span>);</div><div class="line">  );</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div></pre></td></tr></table></figure>
 <h2 id="create-react-app"><a href="#create-react-app" class="headerlink" title="create-react-app"></a><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a></h2><p>간편하게 React 앱을 만들수 있도록 자동으로 빌드해주는 도구이다. 이 패키지를 이용하면 Webpack이나 Babel을 설치하고 구성하는 복잡한 빌드 과정을 생략할 수 있다.   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm으로 create-react-app 패키지 설치</span></div><div class="line">$ npm install -g create-react-app</div><div class="line"></div><div class="line"><span class="comment"># 패키지를 통해 react 프로젝트를 생성</span></div><div class="line">$ create-react-app my-app(프로젝트이름)</div></pre></td></tr></table></figure>
 <p>명령을 통해 my-app 프로젝트 폴더가 생성된다. 폴더 구조는 아래와 같다.</p>
@@ -212,7 +278,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><br></p>
 <h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><p><a href="https://www.webpackbin.com/bins/-KeVMcQWGocAn5VJL6XL" target="_blank" rel="external">webpackbin.com</a>을 통해 간단한 react project를 확인해 볼 수 있다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HelloWorld.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="comment">// stateless Function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;h1&gt;Hello <span class="keyword">from</span> React!&lt;/h1&gt; <span class="comment">// JSX 문법</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HelloWorld.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="comment">// stateless Function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;h1&gt;Hello <span class="keyword">from</span> React!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span> <span class="comment">// JSX 문법</span></div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
 <p>React는 일반 js문법과는 다른 xml형태의 JSX 문법을 사용한다. JSX는 자바스크립트로 만든 xml로, HTML과 매우 유사한 모양을 하고 있다. 위 예제에서 자바스크립트 코드 내부에  <code>&quot;</code>나 <code>&#39;</code>없이 HTML 코드가 섞여있는 것을 볼 수 있다. 이와 같은 모양을 JSX라고 하며, React는 JSX문법을 사용하여 UI를 템플릿화한다. 이 코드는 webpack의 babel-loader를 통해 자바스크립트 코드로 번들링된다. 위 코드는 아래와 같이 변환된다.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">return React.createElement(</div><div class="line">  &quot;h1&quot;,</div><div class="line">  null,</div><div class="line">  &quot;Hello from React!&quot;</div><div class="line">);</div></pre></td></tr></table></figure>
 <p>JSX 문법을 취함으로써 얻는 이점은 다음과 같다.</p>
@@ -222,7 +288,7 @@
 <li>HTML에 익숙하다면 더 쉽고 빠르게 템플릿을 작성할 수 있다.</li>
 </ul>
 <p><br></p>
-<h2 id="컴포넌트-로드하기"><a href="#컴포넌트-로드하기" class="headerlink" title="컴포넌트 로드하기"></a>컴포넌트 로드하기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./HelloWorld.js'</span>;</div><div class="line"></div><div class="line">render(&lt;HelloWorld/&gt;, <span class="built_in">document</span>.querySelector(<span class="string">'#app'</span>));</div></pre></td></tr></table></figure>
+<h2 id="컴포넌트-로드하기"><a href="#컴포넌트-로드하기" class="headerlink" title="컴포넌트 로드하기"></a>컴포넌트 로드하기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./HelloWorld.js'</span>;</div><div class="line"></div><div class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">HelloWorld</span>/&gt;</span></span>, <span class="built_in">document</span>.querySelector(<span class="string">'#app'</span>));</div></pre></td></tr></table></figure>
 <p>main.js파일은 webpack의 entry 파일(진입점)으로 번들링 작업이 이루어지는 중심 지점이다. HelloWorld.js에서 만든 컴포넌트를 import하고, 기타 import한 파일들을 재귀적으로 불러와 하나의 파일로 합치는 작업을 수행한 후 페이지에 렌더링한다.</p>
 <p>React 컴포넌트를 페이지에 렌더링할 때는 react-dom 모듈을 불러와 render 함수를 통해 처리한다. render 함수의 첫번째 파라미터는 렌더링할 JSX 형태의 코드로, 여기서는 HelloWorld 컴포넌트를 렌더링한다. 컴포넌트를 만들면 <code>&lt;컴포넌트이름 /&gt;</code>의 형태(HTML의 태그처럼)로 작성할 수 있다. 두번째 파라미터는 렌더링할 HTML 요소이다. 위에서는 <code>index.html</code>의 id값이 app인 요소에 렌더링하도록 설정되었다.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 여기에 렌더링한다. --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -377,7 +443,7 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/09.session/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/09.session/</id>
     <published>2017-09-09T09:16:41.000Z</published>
-    <updated>2017-09-21T06:22:37.000Z</updated>
+    <updated>2017-11-27T13:50:56.782Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="세션-Session"><a href="#세션-Session" class="headerlink" title="세션 Session"></a>세션 Session</h1><h3 id="세션의-의미"><a href="#세션의-의미" class="headerlink" title="세션의 의미"></a>세션의 의미</h3><p><strong>사전적 의미</strong><br>1) (특정한 활동을 위한) 시간<br>2) (의회 등의) 회기; (법정의) 개정 (기간)</p>
@@ -860,7 +926,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/01.git-connect-github/"/>
     <id>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</id>
     <published>2017-08-30T02:22:01.000Z</published>
-    <updated>2017-09-21T05:56:07.000Z</updated>
+    <updated>2017-11-27T13:50:56.779Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <h1 id="로컬-저장소를-github-저장소와-연결하기"><a href="#로컬-저장소를-github-저장소와-연결하기" class="headerlink" title="로컬 저장소를 github 저장소와 연결하기"></a>로컬 저장소를 github 저장소와 연결하기</h1><h2 id="로컬-저장소-만들기"><a href="#로컬-저장소-만들기" class="headerlink" title="로컬 저장소 만들기"></a>로컬 저장소 만들기</h2><h3 id="1-프로젝트-폴더-만들기"><a href="#1-프로젝트-폴더-만들기" class="headerlink" title="1. 프로젝트 폴더 만들기"></a>1. 프로젝트 폴더 만들기</h3><p>우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.  </p>
@@ -2070,131 +2136,6 @@
     
     
       <category term="prototype" scheme="http://huusz.github.io/tags/prototype/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[JS] 객체 Object</title>
-    <link href="http://huusz.github.io/2017/Javascript/Javascript/01.Object/"/>
-    <id>http://huusz.github.io/2017/Javascript/Javascript/01.Object/</id>
-    <published>2017-08-05T11:16:16.000Z</published>
-    <updated>2017-09-21T05:52:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p>
-<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><h2 id="1-객체-Object-란"><a href="#1-객체-Object-란" class="headerlink" title="1. 객체(Object)란?"></a>1. 객체(Object)란?</h2><p>자바스크립트는 객체(Object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. <strong>기본 자료형(primitives)을 제외한</strong> 나머지 값들(함수, 배열, 정규표현식 등)은 모두 객체이다. </p>
-<blockquote>
-<p><strong><a href="https://developer.mozilla.org/ko/docs/Glossary/Primitive" target="_blank" rel="external">primitives</a></strong><br>프리미티브: 객체도 아니고 메소드도 아닌 데이터. string/number/boolean/null/undefined/symbol로 6개의 기본 데이터 타입이 있다.<br>null과 undefined를 제외하고 모든 프리미티브 값은 래퍼 객체를 갖는다.</p>
-<ul>
-<li>string을 위한 String객체</li>
-<li>number를 위한 Number객체</li>
-<li>boolean을 위한 Boolean객체</li>
-<li>Symbol을 위한 Symbol객체</li>
-</ul>
-<p>모두 Bulit-in Object(자바스크립트 내장객체)이다.</p>
-</blockquote>
-<p>객체는 데이터와 데이터 관련 동작을 모두 포함할 수 있는 개념적 존재이다. 이름(키)과 값으로 구성된 데이터를 의미하는 프로퍼티(property)와 동작을 나타내는 메서드(method)를 포함하고 있는 독립적 주체이다. </p>
-<p>객체는 흩어져있는 것들을 모은다는 관점에서 매우 유용하다. 객체 하나는 다른 객체를 포함할 수 있기 때문에 그래프나 트리와 같은 자료구조를 쉽게 표현할 수 있다.</p>
-<p><br></p>
-<h3 id="1-프로퍼티-property"><a href="#1-프로퍼티-property" class="headerlink" title="1) 프로퍼티(property)"></a>1) 프로퍼티(property)</h3><p>객체는 프로퍼티들을 포함하는 컨테이너라고 할 수 있다. 프로퍼티는 객체의 속성을 나타내는 접근 가능한 이름과 활용 가능한 값을 가지는 특별한 형태이다. 프로퍼티는 객체를 활용함에 있어 매우 유용한 존재이다. 특정 객체가 가진 정보에 직접적으로 접근할 수 있게 해주기 때문이다.</p>
-<ul>
-<li>프로퍼티 이름 명명 규칙: 빈 문자열을 포함하는 문자열과 숫자</li>
-<li>프로퍼티 값: <code>undefined</code> 제외, 모든 값 가능</li>
-</ul>
-<p>프로퍼티는 기본적으로 이름과 값으로 구성된다. 프로퍼티에 대한 접근 연산자는 <code>.</code>이다. 이 연산자를 통해 프로퍼티에 접근할 수도 있고 프로퍼티를 추가할 수도 있다.</p>
-<p><strong><em>Q. 만약 프로퍼티에 아무런 값도 할당하지 않으면 어떻게 될까?</em></strong><br>변수는 값을 할당하지 않고 선언만 할 경우 자바스크립트 엔진이 강제로 <code>undefined</code> 를 할당한다. 하지만 프로퍼티는 값이 할당되지 않는다면 존재 이유가 없다. 객체의 정보를 담고 있어야 하는 요소가 아무 정보도 갖지 않는다면 객체로써는 이 프로퍼티가 쓸모가 없기 때문이다. 그렇기 때문에 프로퍼티를 추가하면서 값을 할당하지 않으면 <code>syntax error</code> 가 발생한다. 만약 값을 비워둬야 한다면 빈문자열(<code>&#39;&#39;</code>)을 넣는 것이 바람직하다.</p>
-<p><br></p>
-<h3 id="2-메서드-Method"><a href="#2-메서드-Method" class="headerlink" title="2) 메서드(Method)"></a>2) 메서드(Method)</h3><p>메서드는 <strong>객체에 제한되어 있는 함수</strong>를 의미한다. 따라서 메서드 함수의 호출은 객체에 의해서만 가능하다.(=메서드를 호출하는 주체가 해당 함수를 프로퍼티로 가지고 있는 객체이다.) <em><sup>1)</sup>함수를 객체의 프로퍼티로 할당하고, 그 프로퍼티를 사용하여 참조에 의한 호출이 일어나면, 함수는 그 객체의 메서드로 호출된다.</em> 즉 <strong>프로퍼티 값이 함수일 경우</strong>, 일반 함수와 구분하기 위해 메서드라 칭한다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;&#125;; <span class="comment">//Object</span></div><div class="line">foo.whatever = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;; <span class="comment">//method of foo(Object)</span></div><div class="line">foo.whatever();</div></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="2-객체-생성-방법"><a href="#2-객체-생성-방법" class="headerlink" title="2. 객체 생성 방법"></a>2. 객체 생성 방법</h2><p>자바에서는 클래스를 사전에 정의하고 필요한 시점에 new 연산자를 사용하여 인스턴스를 생성하는 방식으로 객체를 생성한다. 하지만 자바스크립트는 클래스 개념이 없고 별도의 객체 생성 방법이 존재한다.</p>
-<h3 id="1-객체-리터럴"><a href="#1-객체-리터럴" class="headerlink" title="1) 객체 리터럴"></a>1) 객체 리터럴</h3><p>가장 일반적이며 간편한 자바스크립트 객체 생성 방식이다. 중괄호(<code>{}</code>)를 이용하여 객체를 생성하는데 <code>{}</code> 내에 아무것도 기술하지 않으면 빈 객체가 생성된다. {} 내에 <strong><code>프로퍼티이름: 프로퍼티값</code></strong> 을 기술하면 해당 프로퍼티가 추가된 객체를 생성할 수 있다. 객체 리터럴 방식의 특징은 new 연산자를 사용할 필요없이 선언과 동시에 인스턴스가 생성된다는 것이다.</p>
-<blockquote>
-<p><code>{name:value}</code> 형태의 구성 방식을 <strong>JSON(javascript object notation) 방식</strong>이라고 한다. </p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> emptyObject = &#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> emptyObject); <span class="comment">// object</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  name: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">  sayHello: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hi! My name is '</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> person); <span class="comment">// object</span></div><div class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name: 'Lee', gender: 'male', sayHello: [Function: sayHello] &#125;</span></div><div class="line"></div><div class="line">person.sayHello(); <span class="comment">// Hi! My name is Lee</span></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
-<p><br></p>
-<h3 id="2-Object-생성자-함수"><a href="#2-Object-생성자-함수" class="headerlink" title="2) Object() 생성자 함수"></a>2) Object() 생성자 함수</h3><p>object를 만드는 함수이다. new 연산자를 반드시 함께 사용해야 한다. new 연산자와 함께 사용하여 빈 객체를 생성할 수 있다. 우선 빈 객체를 생성하고, 이후에 프로퍼티와 메서드를 추가하여 객체를 완성하는 방법이다.</p>
-<p>객체의 프로퍼티에 새로운 값을 할당하면, 프로퍼티 값은 갱신된다. 객체가 소유하고 있지 않은 프로퍼티에 값을 할당하면, 해당 객체에 프로퍼티 추가하고 값을 할당을 한다. 아래와 같은 방식으로 선언한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// obj에는 빈 객체가 들어온다.</span></div><div class="line"><span class="comment">//프로퍼티 추가</span></div><div class="line">person.name = <span class="string">'Lee'</span>; <span class="comment">//name 프로퍼티에 'Lee'값을 할당한다.</span></div><div class="line">person.gender = <span class="string">'male'</span>;</div><div class="line">person.sayHello = <span class="string">'Hello'</span>;</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>이 방식은 별로 유용하지 않아 보인다.<br>반드시 new 연산자와 Object() 생성자 함수를 사용하여 빈객체를 생성해야 하는 것은 아니다. 객체를 생성하는 방법은 객체 리터럴을 사용하는 것이 더 간편하다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;&#125;;</div><div class="line">person.name = <span class="string">'Lee'</span>;</div><div class="line">person.gender = <span class="string">'male'</span>;</div><div class="line">person.sayHello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Hi! My name is '</span> + <span class="keyword">this</span>.name);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>위와 같이 객체를 생성할 수도 있기 때문에다. 사실 이렇게 선언해도 자바스크립트 엔진은 Object 생성자를 불러서 객체를 만든다. 그러니 위와 같은 선언 방식은 shorthand인 셈이다.</p>
-<blockquote>
-<p>Object() 생성자는 사실 node에서 사용한다.</p>
-</blockquote>
-<p><br></p>
-<h3 id="3-생성자-함수"><a href="#3-생성자-함수" class="headerlink" title="3) 생성자 함수"></a>3) 생성자 함수</h3><p>객체 리터럴 방식과 Object() 생성자 함수 방식으로 객체를 생성하는 것은 프로퍼티 값만 다른 여러개의 객체 생성에 불편이 있다. 동일한 프로퍼티를 갖는 객체임에도 불구하고 매번 같은 프로퍼티를 기술해야한다.<br>따라서, <strong>유사 객체를 다량 생산 해야 할때, 생성자 함수가 매우 유용하게 쓰일 수 있다.</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person1 = &#123;</div><div class="line">  name: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">  sayHello: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hi! My name is '</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person2 = &#123;</div><div class="line">  name: <span class="string">'Kim'</span>,</div><div class="line">  gender: <span class="string">'female'</span>,</div><div class="line">  sayHello: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hi! My name is '</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>생성자 함수를 사용하면 마치 객체를 생성하기 위한 탬플릿(클래스)처럼 사용하여 구성이 동일한 객체 여러개를 간편하게 생성할 수 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 생성자 함수</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, gender</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.gender = gender;</div><div class="line">  <span class="keyword">this</span>.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hi! My name is '</span> + <span class="keyword">this</span>.name);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 인스턴스의 생성</span></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Lee'</span>, <span class="string">'male'</span>);</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">'Kim'</span>, <span class="string">'female'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'person1: '</span>, <span class="keyword">typeof</span> person1);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'person2: '</span>, <span class="keyword">typeof</span> person2);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'person1: '</span>, person1);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'person2: '</span>, person2);</div><div class="line"></div><div class="line">person1.sayHello();</div><div class="line">person2.sayHello();</div></pre></td></tr></table></figure>
-<blockquote>
-<p>생성자는 인스턴스를 찍어내는 공장이며, 인스턴스는 실제 객체이다.</p>
-</blockquote>
-<p>생성자는 일반 함수로 사용하지 않고, 객체를 찍어낼 때만 사용해야 한다. 따라서 첫 문자를 대문자로 하는 관습이 있다. 생성자 함수임을 인식하는데 도움을 주기 위함이다. 따라서 생성자를 만들때는 이 관습을 지켜 네이밍하도록 한다.</p>
-<p>프로퍼티 또는 메서드명 앞에 기술한 <code>this</code>는 생성자 함수로 생성될 인스턴스를 가리킨다. 따라서 <code>this</code>에 연결되어 있는 프로퍼티와 메서드는 <code>public</code>이다.</p>
-<hr>
-<p><br></p>
-<h2 id="3-객체-프로퍼티-접근"><a href="#3-객체-프로퍼티-접근" class="headerlink" title="3. 객체 프로퍼티 접근"></a>3. 객체 프로퍼티 접근</h2><p>1) 프로퍼티 이름<br>프로퍼티 이름에는 문자열(빈 문자열 포함)과 숫자가 올 수 있다. 프로퍼티 값은 undefined을 제외한 모든 값과 표현식이 올 수 있으며 프로퍼티 값이 함수인 경우 이를 메서드라 한다.</p>
-<p>프로퍼티 이름의 따옴표(‘’ 또는 ““)는 자바스크립트에서 사용할 수 있는 유효한 이름이고 예약어가 아닌 경우 생략할 수 있다. 반대로 말하면 <strong>자바스크립트에서 사용할 수 있는 유효한 이름이 아닌 경우 반드시 따옴표를 사용</strong>하여야 한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>, <span class="comment">/* 유효하지 않은 이름, 연산자가 있는 표현식 */</span></div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>, <span class="comment">/* 프로퍼티 이름에 따옴표를 쓰지 않으면, 연산을 수행한다. last라는 변수를 찾으려고 할 것이다. 이로 인해 에러가 발생한다. */</span></div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span>: 1 /* <span class="title">OK</span>. 하지만 예약어는 사용하지 말아야 한다. */</span></div><div class="line"><span class="function">&#125;;</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="title">console</span>.<span class="title">log</span>(<span class="params">person.function</span>);</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>명명 규칙</strong>  </p>
-</blockquote>
-<ul>
-<li>스네이크케이스: 공백(space) 대신 _(언더라인) 사용 (e.g. <code>first_name</code>)</li>
-<li>케밥케이스: 공백 대신 - 사용 (e.g. <code>first-name</code>)</li>
-<li>카멜케이스: 공백 대신 앞 문자를 대문자로 (e.g. <code>firstName</code>)</li>
-</ul>
-<p>또한 예약어와 키워드는 사용하면 안 된다. 사용하여도 에러를 발생시키지는 않지만, 언제 에상치 못한 에러가 발생할지 모르기 때문이다.</p>
-<h3 id="2-프로퍼티-값-읽기"><a href="#2-프로퍼티-값-읽기" class="headerlink" title="2) 프로퍼티 값 읽기"></a>2) 프로퍼티 값 읽기</h3><p>객체의 프로퍼티에 접근하려면 아래 두 방법을 사용한다.</p>
-<ul>
-<li>마침표(.) 표기법</li>
-<li>대괄호([])표기법</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person.first-name);     <span class="comment">// NaN: undefined-name, first-name은 마이너스 연산을 하려고 하기 때문에 프로퍼티에 접근하기도 전에 프로퍼티 명에서부터 NaN을 반환한다.</span></div><div class="line"><span class="built_in">console</span>.log(person[first-name]);   <span class="comment">// ReferenceError: first is not defined</span></div><div class="line"><span class="built_in">console</span>.log(person[<span class="string">'first-name'</span>]); <span class="comment">// 'Ung-mo'</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person.gender);    <span class="comment">// 'male'</span></div><div class="line"><span class="built_in">console</span>.log(person[gender]);   <span class="comment">// ReferenceError: gender is not defined</span></div><div class="line"><span class="built_in">console</span>.log(person[<span class="string">'gender'</span>]); <span class="comment">// 'male'</span></div></pre></td></tr></table></figure>
-<p>프로퍼티 이름이 유효한 자바스크립트 이름이고 예약어가 아닌 경우 프로퍼티 값은 마침표 표기법, 대괄호 표기법 모두 사용할 수 있다.</p>
-<p>프로퍼티 이름이 유효한 자바스크립트 이름이 아니거나 예약어인 경우 프로퍼티 값은 대괄호 표기법으로 읽어야 한다. 대괄호([]) 표기법을 사용하는 경우, <strong>대괄호 내에 들어가는 프로퍼티 이름은 반드시 문자열</strong>이어야 한다.</p>
-<p>객체에 존재하지 않는 프로퍼티를 참조하면 <code>undefined</code>를 반환한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person.age); <span class="comment">// undefined</span></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
-<h3 id="3-프로퍼티-값-갱신"><a href="#3-프로퍼티-값-갱신" class="headerlink" title="3) 프로퍼티 값 갱신"></a>3) 프로퍼티 값 갱신</h3><p>객체가 소유하고 있는 프로퍼티에 새로운 값을 할당하면 프로퍼티 값은 새로운 값으로 갱신된다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">person[<span class="string">'first-name'</span>] = <span class="string">'Kim'</span>;</div><div class="line"><span class="built_in">console</span>.log(person[<span class="string">'first-name'</span>] ); <span class="comment">// 'Kim'</span></div></pre></td></tr></table></figure>
-<h3 id="4-프로퍼티-동적-생성"><a href="#4-프로퍼티-동적-생성" class="headerlink" title="4) 프로퍼티 동적 생성"></a>4) 프로퍼티 동적 생성</h3><p>객체가 소유하고 있지 않은 프로퍼티에 값을 할당하면 하면 해당 프로퍼티를 객체에 추가하고 값을 할당한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">person.age = <span class="number">20</span>;</div><div class="line"><span class="built_in">console</span>.log(person.age); <span class="comment">// 20</span></div></pre></td></tr></table></figure>
-<h3 id="5-프로퍼티-삭제"><a href="#5-프로퍼티-삭제" class="headerlink" title="5) 프로퍼티 삭제"></a>5) 프로퍼티 삭제</h3><p><code>delete</code> 연산자를 사용하면 객체의 프로퍼티를 삭제할 수 있다. <code>delete</code> 연산자는 당연하게도, 객체가 소유하지 않는 프로퍼티에 적용할 수 없다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">delete</span> person.gender;</div><div class="line"><span class="built_in">console</span>.log(person.gender); <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> person;</div><div class="line"><span class="built_in">console</span>.log(person); <span class="comment">// Object &#123;first-name: 'Ung-mo', last-name: 'Lee'&#125;</span></div></pre></td></tr></table></figure>
-<h3 id="6-for-in문"><a href="#6-for-in문" class="headerlink" title="6) for-in문"></a>6) for-in문</h3><p><code>for-in</code>문을 사용하면 객체에 포함된 모든 프로퍼티에 대해 루프를 수행할 수 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="string">'first-name'</span>: <span class="string">'Ung-mo'</span>,</div><div class="line">  <span class="string">'last-name'</span>: <span class="string">'Lee'</span>,</div><div class="line">  gender: <span class="string">'male'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> person) &#123;</div><div class="line">  <span class="built_in">console</span>.log(prop + <span class="string">': '</span> + person[prop]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">first-name: Ung-mo</span></div><div class="line"><span class="comment">last-name: Lee</span></div><div class="line"><span class="comment">gender: male</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<p>for-in문은 여러가지 이유로 사용하지 않는다. 일단, 순서가 보장되지 않는다. es6에서 이를 보완한 for ~ of문이 나와있다. </p>
-<h1 id="4-Pass-by-reference"><a href="#4-Pass-by-reference" class="headerlink" title="4. Pass-by-reference"></a>4. Pass-by-reference</h1><p>기본자료형 object를 객체형 또는 참조형이라 한다. 참조형이란 객체의 모든 연산이 실제값이 아닌 참조값으로 처리됨을 의미한다.<br>이에 반해 기본자료형의 값은 값(value)으로 전달된다. 즉 복사되어 전달된다. 이를 pass-by-value라고 한다.<br>기본자료형은 값이 한번 정해지면 변경할 수 없지만(immutable), 객체는 변경 가능한 프로퍼티들의 집합이라 할 수 있다.</p>
-<p>참조값을 준다는 것은 <strong>단일 객체</strong>를 사용한다는 의미이다.</p>
-<p><a href="http://poiemaweb.com/js-immutability" target="_blank" rel="external">immutable</a>객체는 참조형이다. 객체에 객체를 할당했을 때, 결국 똑같은 객체를 가리킨다.</p>
-<h1 id="5-Pass-by-value"><a href="#5-Pass-by-value" class="headerlink" title="5. Pass-by-value"></a>5. Pass-by-value</h1><h1 id="6-객체의-분류"><a href="#6-객체의-분류" class="headerlink" title="6. 객체의 분류"></a>6. 객체의 분류</h1><p><img src="http://poiemaweb.com/img/object.png" alt="객체의 분류"></p>
-<p>Bulit-in Object(내장 객체)</p>
-<ul>
-<li>Standard Built-in Object(or Global Objects)</li>
-</ul>
-<ul>
-<li>Native Object<ul>
-<li>BOM(Browser Object Model): 브라우저에 대한 것을 컨트롤하기 위한 객체 (e.g. 스크롤)</li>
-<li>DOM(Document Object Model): html과 css에 대한 정보를 담고 있는 객체</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>[참고]<br><a href="http://poiemaweb.com/js-data-type-variable" target="_blank" rel="external">Poeima web</a><br><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript" target="_blank" rel="external">MDN ko</a><br><a href="http://insanehong.kr/post/javascript-object/" target="_blank" rel="external">blog</a><br><a href="https://hyunseob.github.io/2016/03/10/javascript-this/" target="_blank" rel="external">blog - this</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Object&quot;&gt;&lt;a href=&quot;#Obje
-    
-    </summary>
-    
-      <category term="Javascript" scheme="http://huusz.github.io/categories/Javascript/"/>
-    
-    
-      <category term="object" scheme="http://huusz.github.io/tags/object/"/>
     
   </entry>
   

@@ -3,25 +3,25 @@
 <head>
     <meta charset="utf-8">
     
-    <title>[node]  REST API: POST VS PUT | Huusz&#39;s Log</title>
+    <title>`.git`의 정체: git의 내부 | Huusz&#39;s Log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="idempotent" />
+        <meta name="keywords" content="github" />
     
-    <meta name="description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
-<meta name="keywords" content="idempotent">
+    <meta name="description" content="git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.  Content-addressable 파일 시스템 데이터 전송 원리 저장소 관리법    Plumbing 명령과 Porcelain명령git은 본래 VCS라기보다, VCS를 위한 툴킷(tool kit)입니다. 기본적으로 매우 많은 저수준 명령어로 구">
+<meta name="keywords" content="github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[node]  REST API: POST VS PUT">
-<meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/00.POST VS PUT/index.html">
+<meta property="og:title" content="`.git`의 정체: git의 내부">
+<meta property="og:url" content="http://huusz.github.io/2017/Git/GIT/03.inner/index.html">
 <meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
+<meta property="og:description" content="git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.  Content-addressable 파일 시스템 데이터 전송 원리 저장소 관리법    Plumbing 명령과 Porcelain명령git은 본래 VCS라기보다, VCS를 위한 툴킷(tool kit)입니다. 기본적으로 매우 많은 저수준 명령어로 구">
 <meta property="og:locale" content="ko">
-<meta property="og:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
-<meta property="og:updated_time" content="2017-09-21T06:06:46.000Z">
+<meta property="og:image" content="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png">
+<meta property="og:updated_time" content="2017-11-27T13:50:56.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[node]  REST API: POST VS PUT">
-<meta name="twitter:description" content="REST API: POST VS PUTPOST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다. 정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가? Idempotent첫번째 차이는 멱등성(Idempotent)이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러">
-<meta name="twitter:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
+<meta name="twitter:title" content="`.git`의 정체: git의 내부">
+<meta name="twitter:description" content="git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.  Content-addressable 파일 시스템 데이터 전송 원리 저장소 관리법    Plumbing 명령과 Porcelain명령git은 본래 VCS라기보다, VCS를 위한 툴킷(tool kit)입니다. 기본적으로 매우 많은 저수준 명령어로 구">
+<meta name="twitter:image" content="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png">
     
 
     
@@ -144,18 +144,18 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
+    <a class="page-title-link" href="/categories/Git/">Git</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-nodejs/00.POST VS PUT" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-GIT/03.inner" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        [node]  REST API: POST VS PUT
+        `.git`의 정체: git의 내부
         </h1>
     
 
@@ -165,45 +165,64 @@ ga('send', 'pageview');
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="article-date">
-            <time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time>
+        <a href="/2017/Git/GIT/03.inner/" class="article-date">
+            <time datetime="2017-10-21T19:21:58.000Z" itemprop="datePublished">2017-10-22</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/idempotent/">idempotent</a>
+        <a class="tag-link" href="/tags/github/">github</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
-<h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p>
-<p>정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가?</p>
-<h2 id="Idempotent"><a href="#Idempotent" class="headerlink" title="Idempotent"></a>Idempotent</h2><p>첫번째 차이는 <a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성(Idempotent)</a>이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한 성질을 수식으로 표현하면 아래와 같다.  </p>
-<h3 id="f-f-x-f-x"><a href="#f-f-x-f-x" class="headerlink" title="ƒ(ƒ(x)) = ƒ(x)"></a><em>ƒ(ƒ(x)) = ƒ(x)</em></h3><p>한마디로, 같은 연산을 무한정 반복해도 결과는 <strong>항상 동일한 값을 갖는다</strong>는 말이다.  </p>
-<p>RESTful 서비스 관점에서, 연산(서비스 호출)이 idempotent하려면, 클라이언트가 (의도했거나 말거나) 동일한 요청을 반복적으로 보내도 한번 요청했을 때와 같은 결과를 산출할 수 있어야 한다. 결론부터 말하면, PUT은 멱등성을 가지고 있지만 POST는 그렇지 못하다.</p>
-<h2 id="리소스-결정권"><a href="#리소스-결정권" class="headerlink" title="리소스 결정권"></a>리소스 결정권</h2><p>두번째 차이는 리소스 결정권을 누가 가지고 있는가이다. URI에 대한 결정권이 POST는 서버측에 있으며 PUT은 클라이언트 측에 있다.</p>
+            <p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
+<p>git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.</p>
+<ol>
+<li>Content-addressable 파일 시스템</li>
+<li>데이터 전송 원리</li>
+<li>저장소 관리법</li>
+</ol>
 <p><br></p>
-<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>POST는 새로운 리소스(자원)를 생성(create)할 때 주로 사용된다. 특히 하위 리소스를 만드는 데 주로 사용된다. 즉, POST로 생성하는 리소스는 상위 리소스에 종속된다. 부모(상위) 리소스에 POST를 보내면 <strong>서비스가 부모와 새로 생성할 리소스를 연결하고 ID(새 리소스의 URI)를 할당하는 등의 작업을 처리한다.</strong> 클라이언트는 저장해야할 리소스의 위치를 모르기 때문에 지정해줄 수 없다. 즉, 리소스의 URI 결정권이 전적으로 서버측에 있다.  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST /customers HTTP/1.1</div><div class="line">&#123; <span class="attr">"name"</span>: <span class="string">"Bob"</span>, <span class="attr">"age"</span>: <span class="number">17</span>  &#125;</div><div class="line"></div><div class="line">HTTP/1.1 201 Created</div></pre></td></tr></table></figure>
-<p>위 예제에서 <code>{ &quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 17  }</code>는 POST요청으로 새롭게 생성될 리소스(하위 리소스)이며 부모(싱위 리소스)인 customers 아래에 생성된다. POST로 생성되는 리소스는 요청마다 다른 위치에 배정된다. 위 리소스의 위치는 <code>/customers/2</code>로 지정되며 만약 동일한 리소스에 대한 POST 요청을 한번 더 보내면 위치만 다르게(<code>/customers/3</code>) 같은 리소스가 생성될 것이다.  </p>
-<p>이처럼 POST는 not idempotent하다. POST 요청은 보내는 족족 서버는 새로운 위치에 새로운 리소스를 만든다.</p>
-<p><br></p>
-<h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p>PUT은 <strong>클라이언트가 지정한 위치에</strong> 리소스를 생성하거나 업데이트(update/replace)한다. 클라이언트가 리소스를 저장할 위치를 알고 있으며, URI에 대한 결정권은 전적으로 클라이언트측에 있다.  </p>
-<p>PUT은 리소스의 생성보다는 <strong>수정/업데이트</strong> 기능에 가장 많이 사용된다.  </p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PUT /customers/3 HTTP/1.1</div><div class="line">&#123; <span class="attr">"name"</span>: <span class="string">"Ash"</span>, <span class="attr">"age"</span>: <span class="number">28</span>  &#125;</div></pre></td></tr></table></figure>
-<p>PUT은 지정된 특정 위치의 리소스에 대해 제어하므로 동일 요청을 여러번으로 보내도 한번 보낸 것과 동일한 효과를 낸다. 즉, idempotent하다.</p>
 <hr>
-<p><strong>Reference</strong></p>
-<p><a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성</a>  </p>
-<p><a href="https://1ambda.github.io/javascripts/rest-api-put-vs-post/" target="_blank" rel="external">REST API: POST VS PUT</a>   </p>
-<p><a href="http://www.restapitutorial.com/lessons/idempotency.html" target="_blank" rel="external">What Is Idempotence?</a>  </p>
-<p><a href="http://restcookbook.com/HTTP%20Methods/put-vs-post/" target="_blank" rel="external">When should we use PUT and when should we use POST?</a>  </p>
-<p><a href="http://blog.embian.com/66" target="_blank" rel="external">POST vs PUT</a>  </p>
+<h2 id="Plumbing-명령과-Porcelain명령"><a href="#Plumbing-명령과-Porcelain명령" class="headerlink" title="Plumbing 명령과 Porcelain명령"></a>Plumbing 명령과 Porcelain명령</h2><p>git은 본래 VCS라기보다, <strong>VCS를 위한 툴킷(tool kit)</strong>입니다. 기본적으로 매우 많은 저수준 명령어로 구성되어 있습니다. (저수준이란 사용자보다 컴퓨터에게 더 친숙함을 의미합니다.) 저수준 명령어들을 UNIX 스타일로 엮어 실행하거나 스크립트로 만들어 사용하도록 설계되어 있습니다. Plumbing 명령어는 이러한 저수준 명령어를 일컫는 말이며, Porcelain 명령은 사용자에게 친숙한 명령어를 의미합니다. 흔히 사용하는 <code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git checkout</code> 등의 명령어들은 사용자에게 더 친숙한 Porcelain 명령어 입니다.</p>
+<ul>
+<li><p><strong>Plumbing</strong> : 저수준의 명령어.</p>
+</li>
+<li><p><strong>Porcelain</strong> : 사용자에게 친숙한 사용자용 명령어. 일반적으로 사용하는 git 명령어들(<code>add</code>, <code>commit</code>, <code>push</code>, <code>checkout</code> 등)이 이에 해당합니다.</p>
+</li>
+</ul>
+<h2 id="Git의-내부-구조"><a href="#Git의-내부-구조" class="headerlink" title="Git의 내부 구조"></a>Git의 내부 구조</h2><p>Plumbing 명령을 사용하면 git의 내부 구조에 접근할 수 있습니다. 그리고 git이 왜, 그렇게 작동하는지도 확인할 수 있습니다. Plumbing 명령어는 직접 커맨드라인에서 실행하기보다 새로운 도구를 만들거나 각자 필요한 스크립트를 작성할 때 사용합니다.</p>
+<p>새로 만든 디렉토리나 이미 파일이 있는 디렉토리에서 <code>git init</code> 명령을 실행하면 git은 데이터를 저장하고 관리하는 <code>.git</code> 디렉토리가 생성됩니다.</p>
+<h3 id="git"><a href="#git" class="headerlink" title=".git"></a><code>.git</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.git/</div><div class="line"> HEAD</div><div class="line"> config*</div><div class="line"> description</div><div class="line"> hooks/</div><div class="line"> info/</div><div class="line"> objects/</div><div class="line"> refs/</div></pre></td></tr></table></figure>
+<p>위 파일 구조는 <code>git init</code> 명령 실행 직후 보이는 새 저장소의 모습입니다. </p>
+<ul>
+<li><p><code>config</code> : 해당 프로젝트에만 적용되는 설정 옵션이 들어 있습니다. </p>
+</li>
+<li><p><code>info/</code> : <code>.gitignore</code>처럼 무시할 파일의 패턴을 적어 두는 곳입니다. 하지만 <code>.gitignore</code>와 달리 git으로 관리되지 않습니다.</p>
+</li>
+<li><p><code>hooks/</code> : 클라이언트 훅이나 서버 훅이 위치합니다. </p>
+</li>
+</ul>
+<p><br></p>
+<p>이제 아래 4가지 항목이 git의 핵심입니다.</p>
+<p><br></p>
+<ul>
+<li><p><code>objects/</code> : 모든 컨텐츠를 저장하는 데이터베이스이다.</p>
+</li>
+<li><p><code>refs/</code> : 커밋 개체의 포인터(pointer)를 저장합니다.</p>
+</li>
+<li><p><code>HEAD</code> : 현재 checkout한 브랜치를 가리킵니다.</p>
+</li>
+<li><p><code>index</code> : Staging Area의 정보를 저장합니다.</p>
+</li>
+</ul>
+<p><br></p>
+<hr>
 
         </div>
         <footer class="article-footer">
@@ -317,20 +336,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2017/React/React/01.basic/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            [React] 리액트 입문하기
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/Nodejs/nodejs/09.session/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/Git/GIT/02.diffrence-branch-command/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">[node]  세션 Session</p>
+        <p class="article-nav-title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -497,7 +506,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'huuszLog';
     
     
-    var disqus_url = 'http://huusz.github.io/2017/Nodejs/nodejs/00.POST VS PUT/';
+    var disqus_url = 'http://huusz.github.io/2017/Git/GIT/03.inner/';
     
     (function() {
     var dsq = document.createElement('script');

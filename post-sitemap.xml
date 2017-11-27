@@ -7,16 +7,8 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</loc>
-        <lastmod>2017-11-08T09:53:47.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</loc>
-        <lastmod>2017-11-05T13:40:26.000Z</lastmod>
+        <loc>http://huusz.github.io/2017/React/React/01.basic/</loc>
+        <lastmod>2017-11-27T13:50:56.782Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -24,7 +16,39 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/09.session/</loc>
-        <lastmod>2017-09-21T06:22:37.000Z</lastmod>
+        <lastmod>2017-11-27T13:50:56.782Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/03.inner/</loc>
+        <lastmod>2017-11-27T13:50:56.781Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</loc>
+        <lastmod>2017-11-27T13:50:56.780Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</loc>
+        <lastmod>2017-11-27T13:50:56.779Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</loc>
+        <lastmod>2017-11-16T16:13:11.788Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -41,14 +65,6 @@
     <url>
         <loc>http://huusz.github.io/2017/Sass/SCSS/03.sassScript/</loc>
         <lastmod>2017-09-21T06:22:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/React/React/01.basic/</loc>
-        <lastmod>2017-09-21T06:22:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -121,14 +137,6 @@
     <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/00.POST%20VS%20PUT/</loc>
         <lastmod>2017-09-21T06:06:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</loc>
-        <lastmod>2017-09-21T05:56:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
