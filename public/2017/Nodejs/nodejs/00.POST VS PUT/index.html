@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그"><meta name="keyword" content="huusz, frontend"><link rel="shortcut icon" type="image/ico" href="css/images/logo.png"><title>[node] REST API: POST VS PUT | 휴지블로그</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/plugins/gitment.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script src="/js/qrious.js"></script><script src="/js/gitment.js"></script></head><div class="wechat-share"><img src="/css/images/logo.png"></div><body><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><span>휴지블로그</span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Projects</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Projects</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>[node] REST API: POST VS PUT</h2><p class="post-date">2017-09-09</p><div class="arrow-down"><a href="javascript:;"></a></div></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p><h1 id="REST-API-POST-VS-PUT"><a href="#REST-API-POST-VS-PUT" class="headerlink" title="REST API: POST VS PUT"></a>REST API: POST VS PUT</h1><p>POST와 PUT은 CRUD로직중 Create와 Update의 속성을 가진 http 메소드이다.</p><p>정의만 보면 둘은 동일한 작업을 하는 것 같다. 둘은 어떤 차이가 있는가?</p><h2 id="Idempotent"><a href="#Idempotent" class="headerlink" title="Idempotent"></a>Idempotent</h2><p>첫번째 차이는 <a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성(Idempotent)</a>이다. 멱등성이란 단항연산 ƒ에 대해 결과 값이 항상 자기 자신을 향하는 성질이다. 이러한 성질을 수식으로 표현하면 아래와 같다.</p><h3 id="f-f-x-f-x"><a href="#f-f-x-f-x" class="headerlink" title="ƒ(ƒ(x)) = ƒ(x)"></a><em>ƒ(ƒ(x)) = ƒ(x)</em></h3><p>한마디로, 같은 연산을 무한정 반복해도 결과는 <strong>항상 동일한 값을 갖는다</strong>는 말이다.</p><p>RESTful 서비스 관점에서, 연산(서비스 호출)이 idempotent하려면, 클라이언트가 (의도했거나 말거나) 동일한 요청을 반복적으로 보내도 한번 요청했을 때와 같은 결과를 산출할 수 있어야 한다. 결론부터 말하면, PUT은 멱등성을 가지고 있지만 POST는 그렇지 못하다.</p><h2 id="리소스-결정권"><a href="#리소스-결정권" class="headerlink" title="리소스 결정권"></a>리소스 결정권</h2><p>두번째 차이는 리소스 결정권을 누가 가지고 있는가이다. URI에 대한 결정권이 POST는 서버측에 있으며 PUT은 클라이언트 측에 있다.</p><p><br></p><h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>POST는 새로운 리소스(자원)를 생성(create)할 때 주로 사용된다. 특히 하위 리소스를 만드는 데 주로 사용된다. 즉, POST로 생성하는 리소스는 상위 리소스에 종속된다. 부모(상위) 리소스에 POST를 보내면 <strong>서비스가 부모와 새로 생성할 리소스를 연결하고 ID(새 리소스의 URI)를 할당하는 등의 작업을 처리한다.</strong> 클라이언트는 저장해야할 리소스의 위치를 모르기 때문에 지정해줄 수 없다. 즉, 리소스의 URI 결정권이 전적으로 서버측에 있다.</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST /customers HTTP/1.1</div><div class="line">&#123; <span class="attr">"name"</span>: <span class="string">"Bob"</span>, <span class="attr">"age"</span>: <span class="number">17</span>  &#125;</div><div class="line"></div><div class="line">HTTP/1.1 201 Created</div></pre></td></tr></table></figure><p>위 예제에서 <code>{ &quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 17 }</code>는 POST요청으로 새롭게 생성될 리소스(하위 리소스)이며 부모(싱위 리소스)인 customers 아래에 생성된다. POST로 생성되는 리소스는 요청마다 다른 위치에 배정된다. 위 리소스의 위치는 <code>/customers/2</code>로 지정되며 만약 동일한 리소스에 대한 POST 요청을 한번 더 보내면 위치만 다르게(<code>/customers/3</code>) 같은 리소스가 생성될 것이다.</p><p>이처럼 POST는 not idempotent하다. POST 요청은 보내는 족족 서버는 새로운 위치에 새로운 리소스를 만든다.</p><p><br></p><h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p>PUT은 <strong>클라이언트가 지정한 위치에</strong> 리소스를 생성하거나 업데이트(update/replace)한다. 클라이언트가 리소스를 저장할 위치를 알고 있으며, URI에 대한 결정권은 전적으로 클라이언트측에 있다.</p><p>PUT은 리소스의 생성보다는 <strong>수정/업데이트</strong> 기능에 가장 많이 사용된다.</p><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PUT /customers/3 HTTP/1.1</div><div class="line">&#123; <span class="attr">"name"</span>: <span class="string">"Ash"</span>, <span class="attr">"age"</span>: <span class="number">28</span>  &#125;</div></pre></td></tr></table></figure><p>PUT은 지정된 특정 위치의 리소스에 대해 제어하므로 동일 요청을 여러번으로 보내도 한번 보낸 것과 동일한 효과를 낸다. 즉, idempotent하다.</p><hr><p><strong>Reference</strong></p><p><a href="https://ko.wikipedia.org/wiki/%EB%A9%B1%EB%93%B1%EB%B2%95%EC%B9%99" target="_blank" rel="external">멱등성</a></p><p><a href="https://1ambda.github.io/javascripts/rest-api-put-vs-post/" target="_blank" rel="external">REST API: POST VS PUT</a></p><p><a href="http://www.restapitutorial.com/lessons/idempotency.html" target="_blank" rel="external">What Is Idempotence?</a></p><p><a href="http://restcookbook.com/HTTP%20Methods/put-vs-post/" target="_blank" rel="external">When should we use PUT and when should we use POST?</a></p><p><a href="http://blog.embian.com/66" target="_blank" rel="external">POST vs PUT</a></p></section><div class="tags"><span>Tags:</span> <a href="/tags#idempotent"><span class="tag-code">idempotent</span></a></div><div class="qrcode"><canvas id="share-qrcode"></canvas><p class="notice">QR코드를 스캔해서 공유하세요!</p></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#REST-API-POST-VS-PUT"><span class="toc-nav-text">REST API: POST VS PUT</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Idempotent"><span class="toc-nav-text">Idempotent</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#f-f-x-f-x"><span class="toc-nav-text">ƒ(ƒ(x)) = ƒ(x)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#리소스-결정권"><span class="toc-nav-text">리소스 결정권</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#POST"><span class="toc-nav-text">POST</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#PUT"><span class="toc-nav-text">PUT</span></a></li></ol></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'http://huusz.github.io/2017/Nodejs/nodejs/00.POST VS PUT/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "[node]  REST API: POST VS PUT",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();</script><div class="scroll-top"><span class="arrow-icon"></span></div><footer class="app-footer"><p class="copyright">&copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script src="/js/script.js"></script></body></html>
