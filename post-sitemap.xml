@@ -7,24 +7,8 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/10.how-to-uninstall-node/</loc>
-        <lastmod>2017-11-27T13:31:23.446Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/2017/Nodejs/nodejs/09.session/</loc>
-        <lastmod>2017-11-27T12:24:45.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/03.inner/</loc>
-        <lastmod>2017-11-27T12:21:01.237Z</lastmod>
+        <lastmod>2017-11-27T13:45:26.704Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,7 +16,15 @@
 
     <url>
         <loc>http://huusz.github.io/2017/React/React/01.basic/</loc>
-        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
+        <lastmod>2017-11-27T13:45:26.703Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/2017/Git/GIT/03.inner/</loc>
+        <lastmod>2017-11-27T13:45:26.701Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -40,7 +32,7 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</loc>
-        <lastmod>2017-11-17T09:24:21.216Z</lastmod>
+        <lastmod>2017-11-27T13:45:26.700Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -48,7 +40,7 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</loc>
-        <lastmod>2017-11-17T09:24:17.117Z</lastmod>
+        <lastmod>2017-11-27T13:45:26.698Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

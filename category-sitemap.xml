@@ -28,22 +28,22 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/React/</loc>
-        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
+        <loc>http://huusz.github.io/categories/Git/</loc>
+        <lastmod>2017-11-27T13:45:26.701Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Git/</loc>
-        <lastmod>2017-11-27T12:21:01.237Z</lastmod>
+        <loc>http://huusz.github.io/categories/React/</loc>
+        <lastmod>2017-11-27T13:45:26.703Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://huusz.github.io/categories/Nodejs/</loc>
-        <lastmod>2017-11-27T13:31:23.446Z</lastmod>
+        <lastmod>2017-11-27T13:45:26.704Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
