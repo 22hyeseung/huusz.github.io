@@ -21,13 +21,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Nodejs/</loc>
-        <lastmod>2017-09-21T06:22:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/categories/Log/</loc>
         <lastmod>2017-11-16T16:13:11.788Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -35,15 +28,22 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Git/</loc>
-        <lastmod>2017-11-17T09:24:25.092Z</lastmod>
+        <loc>http://huusz.github.io/categories/React/</loc>
+        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/React/</loc>
-        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
+        <loc>http://huusz.github.io/categories/Git/</loc>
+        <lastmod>2017-11-27T12:21:01.237Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/categories/Nodejs/</loc>
+        <lastmod>2017-11-27T13:27:46.056Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
