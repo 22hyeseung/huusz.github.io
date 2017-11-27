@@ -5,7 +5,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="http://huusz.github.io/"/>
-  <updated>2017-11-27T13:45:26.701Z</updated>
+  <updated>2017-11-27T13:50:56.781Z</updated>
   <id>http://huusz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/03.inner/"/>
     <id>http://huusz.github.io/2017/Git/GIT/03.inner/</id>
     <published>2017-10-21T19:21:58.000Z</published>
-    <updated>2017-11-27T13:45:26.701Z</updated>
+    <updated>2017-11-27T13:50:56.781Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <p>git은 Content-addressable 파일 시스템이고 그 위에 VCS 사용자 인터페이스가 있는 구조다.</p>
@@ -86,7 +86,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/"/>
     <id>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</id>
     <published>2017-10-19T17:10:46.000Z</published>
-    <updated>2017-11-27T13:45:26.700Z</updated>
+    <updated>2017-11-27T13:50:56.780Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <blockquote>
@@ -226,7 +226,7 @@
     <link href="http://huusz.github.io/2017/React/React/01.basic/"/>
     <id>http://huusz.github.io/2017/React/React/01.basic/</id>
     <published>2017-09-20T11:32:01.000Z</published>
-    <updated>2017-11-27T13:45:26.703Z</updated>
+    <updated>2017-11-27T13:50:56.782Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg" alt=""></p>
 <h2 id="1-What-is-React"><a href="#1-What-is-React" class="headerlink" title="1. What is React?"></a>1. What is React?</h2><p>React는 페이스북에서 개발한 자바스크립트 라이브러리이다. 공식 문서에서는 <strong>사용자 인터페이스(User Interface)를 구축하기위한 선언적(declarative)이고 효율적(efficient)이며 유연한(flexible) JavaScript 라이브러리</strong>라고 설명하고있다. React는 ‘컴포넌트’단위로 재사용 가능한 UI 템플릿을 만든다. 현재 페이스북, 인스타그램, MS 등 대형 서비스에서도 사용되고있는 견고한 라이브러리이다.  </p>
@@ -443,7 +443,7 @@
     <link href="http://huusz.github.io/2017/Nodejs/nodejs/09.session/"/>
     <id>http://huusz.github.io/2017/Nodejs/nodejs/09.session/</id>
     <published>2017-09-09T09:16:41.000Z</published>
-    <updated>2017-11-27T13:45:26.704Z</updated>
+    <updated>2017-11-27T13:50:56.782Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
 <h1 id="세션-Session"><a href="#세션-Session" class="headerlink" title="세션 Session"></a>세션 Session</h1><h3 id="세션의-의미"><a href="#세션의-의미" class="headerlink" title="세션의 의미"></a>세션의 의미</h3><p><strong>사전적 의미</strong><br>1) (특정한 활동을 위한) 시간<br>2) (의회 등의) 회기; (법정의) 개정 (기간)</p>
@@ -926,7 +926,7 @@
     <link href="http://huusz.github.io/2017/Git/GIT/01.git-connect-github/"/>
     <id>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</id>
     <published>2017-08-30T02:22:01.000Z</published>
-    <updated>2017-11-27T13:45:26.698Z</updated>
+    <updated>2017-11-27T13:50:56.779Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png" alt=""></p>
 <h1 id="로컬-저장소를-github-저장소와-연결하기"><a href="#로컬-저장소를-github-저장소와-연결하기" class="headerlink" title="로컬 저장소를 github 저장소와 연결하기"></a>로컬 저장소를 github 저장소와 연결하기</h1><h2 id="로컬-저장소-만들기"><a href="#로컬-저장소-만들기" class="headerlink" title="로컬 저장소 만들기"></a>로컬 저장소 만들기</h2><h3 id="1-프로젝트-폴더-만들기"><a href="#1-프로젝트-폴더-만들기" class="headerlink" title="1. 프로젝트 폴더 만들기"></a>1. 프로젝트 폴더 만들기</h3><p>우선 git 관리를 할 프로젝트 폴더를 적당한 디렉터리에 생성한다.  </p>
