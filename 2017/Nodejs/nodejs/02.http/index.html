@@ -1,650 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    
-    <title>[node] HTTP | Huusz&#39;s Log</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="http" />
-    
-    <meta name="description" content="HTTP네트워크 확인하기1) wireshark  2) 크롬 개발자도구  HTTP  웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약 최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다. 모바일 앱 - 서버 간 통신 서버 - 서버 간 통신   80번 포트를 기본으로 사용 클라이언트의 요청(request)과 서버의 응답(response">
-<meta name="keywords" content="http">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[node] HTTP">
-<meta property="og:url" content="http://huusz.github.io/2017/Nodejs/nodejs/02.http/index.html">
-<meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="HTTP네트워크 확인하기1) wireshark  2) 크롬 개발자도구  HTTP  웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약 최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다. 모바일 앱 - 서버 간 통신 서버 - 서버 간 통신   80번 포트를 기본으로 사용 클라이언트의 요청(request)과 서버의 응답(response">
-<meta property="og:locale" content="ko">
-<meta property="og:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
-<meta property="og:updated_time" content="2017-09-21T06:07:01.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[node] HTTP">
-<meta name="twitter:description" content="HTTP네트워크 확인하기1) wireshark  2) 크롬 개발자도구  HTTP  웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약 최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다. 모바일 앱 - 서버 간 통신 서버 - 서버 간 통신   80번 포트를 기본으로 사용 클라이언트의 요청(request)과 서버의 응답(response">
-<meta name="twitter:image" content="http://allvectorlogo.com/img/2016/05/node-js-logo.png">
-    
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그"><meta name="keyword" content="huusz, frontend"><link rel="shortcut icon" type="image/ico" href="css/images/logo.png"><title>[node] HTTP | 휴지블로그</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/plugins/gitment.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script src="/js/qrious.js"></script><script src="/js/gitment.js"></script></head><div class="wechat-share"><img src="/css/images/logo.png"></div><body><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><span>휴지블로그</span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Projects</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Projects</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>[node] HTTP</h2><p class="post-date">2017-08-30</p><div class="arrow-down"><a href="javascript:;"></a></div></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="/images/WIRESHARK.png" alt="WIRESHARK"></p><p><img src="/images/WIRESHARK2.png" alt="WIRESHARK"></p><h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="/images/chromeDevTools.png" alt="크롬 개발자도구"></p><p><br></p><h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="/images/http.png" alt=""></p><ul><li>웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약</li><li>최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다.<ul><li>모바일 앱 - 서버 간 통신</li><li>서버 - 서버 간 통신</li></ul></li><li>80번 포트를 기본으로 사용</li><li>클라이언트의 요청(request)과 서버의 응답(response)으로 이루어진다.</li></ul><h3 id="1-http의-역사"><a href="#1-http의-역사" class="headerlink" title="1) http의 역사"></a>1) http의 역사</h3><p><strong>1991</strong><br>HTTP 초기버전 발표. 텍스트만 전송할 수 있는 극도로 단순한 프로토콜. 1990년대 초 인터넷 붐을 일으킴</p><p><strong>1996</strong><br>여러 인터넷 서비스 업체들이 자체적으로 사용하던 HTTP 구현들을 모아 HTTP 1.0 발표</p><p><strong>1999</strong><br>1.0의 문제를 해결하고 여러가지 기능을 추가한 HTTP 1.1을 발표. 지금까지 사용되고 있는 버전</p><p><br></p><h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="/images/https.png" alt=""></p><ul><li>HTTP over SSL</li><li>HTTP 통신을 암호화해 주고 받는 내용을 중간에서 가로챌 수 없도록 한다.</li><li>443번 포트를 기본으로 사용한다.</li></ul><h3 id="3-HTTP-2"><a href="#3-HTTP-2" class="headerlink" title="3) HTTP/2"></a>3) HTTP/2</h3><ul><li>구글의 <a href="http://d2.naver.com/helloworld/140351" target="_blank" rel="external">SPDY</a> 프로토콜을 기반으로 2015년에 확정된 새로운 HTTP 표준</li><li>0,1만으로 통신하는 프로토콜로 더이상 텍스트 기반이 아님</li><li>오로지 <strong>속도 개선</strong>에 중점을 두고 개발됨</li><li>반드시 HTTPS를 사용해야 함</li><li><a href="https://w3techs.com/technologies/details/ce-http2/all/all" target="_blank" rel="external">현재 전체 웹사이트 중 16% 이상이 사용중</a></li></ul><h2 id="HTTP-작동방식"><a href="#HTTP-작동방식" class="headerlink" title="HTTP 작동방식"></a>HTTP 작동방식</h2><h3 id="1-Request-amp-Response"><a href="#1-Request-amp-Response" class="headerlink" title="1) Request &amp; Response"></a>1) Request &amp; Response</h3><ul><li>요청 Request: 웹 브라우저(또는 다른 클라이언트)는 웹 서버에 요청(request)를 보냄</li><li>응답 Response: 그에 따라 서버는 클라이언트에 응답(response)를 보냄</li><li>웹 브라우저의 경우, HTML 문서 형태의 응답이 오면 해당 문서를 분석한 후, 문서에 포함된 모든 자원에 대한 요청을 각각 추가로 보냄 (이미지, 동영상, 오디오, CSS, JS, 폰트, …)</li></ul><h3 id="2-Request-Methods"><a href="#2-Request-Methods" class="headerlink" title="2) Request Methods"></a>2) Request Methods</h3><ul><li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Methods" target="_blank" rel="external">HTTP 명세</a>에는 8 종류가 등록되어 있고, 각각의 역할과 충족해야 하는 성질이 명시되어 있음</li><li>웹 브라우저는 <strong>특정 상황에서 특정 메소드로 요청을 보내도록</strong> 만들어져 있음</li><li>Ajax와 같이 <strong>요청을 보내는 코드를 직접 짤 때</strong>는 요청 메소드를 선택할 수 있음</li><li><strong>자료의 본문을 요청하는 GET 메소드</strong>와, 새로운 <strong>자료를 등록하는 POST 메소드</strong>가 가장 많이 쓰임</li></ul><p>웹 브라우저는 순수 HTML만으로는 GET과 POST 메소드만 사용할 수 있도록 강제하고 있다. AJAX등으로 코드를 직접 작성할 때에는 메소드를 자유롭게 선택하여 사용할 수 있다.</p><h3 id="서버가-충족시켜야하는-메소드의-성질"><a href="#서버가-충족시켜야하는-메소드의-성질" class="headerlink" title="서버가 충족시켜야하는 메소드의 성질"></a>서버가 충족시켜야하는 메소드의 성질</h3><ul><li>Safe</li></ul><p>요청이 서버의 상태에 영향을 미치지 않아야 함. 즉, <strong>읽기 전용</strong>이어야 함이 표준에 명시되어 있다.</p><ul><li>Idempotent</li></ul><p>여러 번 같은 요청을 해도 한 번 요청한 것과 같은 효과여야 함. <strong>네트워크가 불안정해도 안전하게 요청을 보낼 수 있음</strong></p><blockquote><p>DELETE, GET은 Idempotent을 만족해야 한다. 게시글의 삭제 요청을 여러번 보내도 한 번의 삭제 작업이 이루어져야 한다. GET도 마찬가지로, 여러번 요청이 가도 한 번만 GET 작업을 해야한다.</p><p>POST는 데이터를 서버로 보내는 방법이다. 자료를 새로 만들 때 사용된다. 게시물을 만드는 요청을 서버에 보내다가 네트워크가 끊어진 상황을 가정했을 때, 서버에는 이미 해당 데이터가 만들어졌으므로 이후 같은 요청을 보내면 에러가 나야 한다. 따라서 POST는 Idempotent를 만족시켜서는 안 된다.</p></blockquote><ul><li>Cacheable</li></ul><p>(특정 조건을 만족하면) 응답을 클라이언트에 저장해두었다가 다음 번 요청 때 <strong>다시 쓸 수 있음</strong></p><p><br></p><h3 id="3-URL"><a href="#3-URL" class="headerlink" title="3) URL"></a>3) URL</h3><p><img src="https://cascadingmedia.com/assets/images/insites/2015/02/url-anatomy/url-anatomy-55598c24.png" alt="URL"></p><hr><p>&lt;서버의 위치&gt;</p><ol><li><p>스키마</p></li><li><p>서브 도메인</p></li><li><p>도메인</p></li><li><p>탑레벨 도메인</p></li><li><p>포트</p></li></ol><hr><p>&lt;서버에서 얻고자 하는 자원의 위치&gt;</p><ol><li><p>경로(path)</p></li><li><p>쿼리 스트링</p></li><li><p>해시 (fragment identifier)</p></li></ol><h3 id="4-Percent-Encoding"><a href="#4-Percent-Encoding" class="headerlink" title="4) Percent Encoding"></a>4) Percent Encoding</h3><ul><li><p>URL은 ASCII 문자(128개의 영문자+특수문자+제어문자)밖에 사용하지 못하기 때문에, non-ASCII 문자를 위한 표현방법이 필요함 #</p></li><li><p>Percent encoding은 non-ASCII 문자를 위한 웹 표준 인코딩 방법으로, JavaScript에 관련 기능이 포함되어 있음</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; encodeURIComponent(&quot;한글&quot;)</div><div class="line">&quot;%ED%95%9C%EA%B8%80&quot;</div><div class="line">&gt; decodeURIComponent(&quot;%ED%95%9C%EA%B8%80&quot;)</div><div class="line">&quot;한글&quot;</div></pre></td></tr></table></figure><p><img src="/images/퍼센트인코딩.png" alt="퍼센트인코딩"></p><h3 id="5-Request-Target"><a href="#5-Request-Target" class="headerlink" title="5) Request Target"></a>5) Request Target</h3><p>일반적인 경우 아래와 같은 구조가 사용됨</p><p><code>absolute path + query string + fragment id</code></p><p>절대 경로 + 쿼리스트링 + 해시</p><p><code>GET /path/to/resource?foo=bar&amp;spam=hoge#fragid HTTP/1.1</code></p><h3 id="6-Response-Status"><a href="#6-Response-Status" class="headerlink" title="6) Response Status"></a>6) Response Status</h3><p>응답의 성공, 실패 여부와 종류를 나타내며, <a href="https://httpstatuses.com/" target="_blank" rel="external">상태 코드</a> + 상태 메시지의 형태로 응답에 포함됨</p><p><code>HTTP/1.1 200 OK</code></p><h3 id="Status-Category"><a href="#Status-Category" class="headerlink" title="[Status Category]"></a>[Status Category]</h3><p><strong>2xx</strong> 성공</p><ul><li>200 OK - 성공</li><li>201 Created - 자료가 성공적으로 생성되었다.</li></ul><p><strong>3xx</strong> 추가 작업이 필요하다.</p><ul><li>301 Moved Permanently (Redirection) - 자료가 완전히 다른 곳으로 이동했다.</li><li>302 Found (Redirection) - 자료가 일시적으로 다른 곳에 있다.</li><li>304 Not Modified (Cache) - 클라이언트가 이미 가지고 있던 자료가 수정되지 않았다. (그대로 사용하면 된다.) CSS나 Javascript에 대한 응답인 경우가 많다.</li></ul><p><strong>4xx</strong> 실패 - 클라이언트 책임</p><ul><li>400 Bad Request - 요청의 형태가 잘못되어 응답할 수 없다.</li><li>403 Forbidden - 요청한 자료에 접근할 권한이 없다.</li><li>404 Not Found - 요청한 자료가 없다.</li></ul><p><strong>5xx</strong> 실패 - 서버 책임</p><ul><li>500 Internal Server Error - 요청을 처리하던 중에 예상치 못한 요류가 발생했다.</li><li>503 Service Unavailable - 서버가 일시적으로 응답을 할 수 없다.</li></ul><h3 id="7-Header"><a href="#7-Header" class="headerlink" title="7) Header"></a>7) Header</h3><ul><li>요청과 응답에 대한 추가 정보를 표현하는 데 사용</li><li><p>인증, 캐싱, 쿠키, 보안, 내용협상, 프록시 등 웹 표준에 정의된 많은 기능을 제어하는 데 사용됨</p></li><li><p><strong>Authorization</strong><br>요청의 인증 정보</p></li><li><strong>User-Agent</strong><br>요청 중인 클라이언트의 정보</li><li><strong>Location</strong><br>301, 302 응답에서 자료의 위치</li><li><strong>Accept</strong><br>요청이 어떤 형태의 자료를 원하는지 나타냄</li><li><strong>Content-Type</strong><br>요청 혹은 응답이 어떤 형태의 자료인지 나타냄</li></ul><h3 id="8-Content-Negotiation"><a href="#8-Content-Negotiation" class="headerlink" title="8) Content Negotiation"></a>8) Content Negotiation</h3><p>요청의 Accept, Accept-Language 등의 헤더를 보고 서버가 그에 맞는 형태의 자료를 응답하는 절차를 content negotiation(내용 협상)이라고 함</p><p><img src="https://www.codeproject.com/KB/aspnet/1163143/Fig01-ContentNegotiation.png" alt=""></p><p>클라이언트가 JSON이 필요하다는 요청을 보내면, 서버가 JSON포맷의 데이터를 보내준다. 만약 없다면 XML 또는 기타 다른 포맷의 데이터를 대신 보내주는데, 이 과정을 content negotiation: 내용 협상이라고 한다.</p></section><div class="tags"><span>Tags:</span> <a href="/tags#http"><span class="tag-code">http</span></a></div><div class="qrcode"><canvas id="share-qrcode"></canvas><p class="notice">QR코드를 스캔해서 공유하세요!</p></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-text">HTTP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#네트워크-확인하기"><span class="toc-nav-text">네트워크 확인하기</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-wireshark"><span class="toc-nav-text">1) wireshark</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-크롬-개발자도구"><span class="toc-nav-text">2) 크롬 개발자도구</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP-1"><span class="toc-nav-text">HTTP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-http의-역사"><span class="toc-nav-text">1) http의 역사</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-HTTPS"><span class="toc-nav-text">2) HTTPS</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-HTTP-2"><span class="toc-nav-text">3) HTTP/2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP-작동방식"><span class="toc-nav-text">HTTP 작동방식</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-Request-amp-Response"><span class="toc-nav-text">1) Request & Response</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-Request-Methods"><span class="toc-nav-text">2) Request Methods</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#서버가-충족시켜야하는-메소드의-성질"><span class="toc-nav-text">서버가 충족시켜야하는 메소드의 성질</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-URL"><span class="toc-nav-text">3) URL</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-Percent-Encoding"><span class="toc-nav-text">4) Percent Encoding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-Request-Target"><span class="toc-nav-text">5) Request Target</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-Response-Status"><span class="toc-nav-text">6) Response Status</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Status-Category"><span class="toc-nav-text">[Status Category]</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-Header"><span class="toc-nav-text">7) Header</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-Content-Negotiation"><span class="toc-nav-text">8) Content Negotiation</span></a></li></ol></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'http://huusz.github.io/2017/Nodejs/nodejs/02.http/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
 
-    
-        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
-    
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
 
-    
-        <link rel="icon" href="/css/images/favi.png" />
-    
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
 
-    <link rel="stylesheet" href="/css/style.css">
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
 
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
 
-ga('create', 'UA-104157265-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-    
-    
-
-
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
-</head>
-<body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a class="logo" href="https://huusz.github.io">
-                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
-                                    
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'post',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'tag',
-            UNTITLED: '(Untitled)',
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "[node] HTTP",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-nodejs/02.http" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        [node] HTTP
-        </h1>
-    
-
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/Nodejs/nodejs/02.http/" class="article-date">
-            <time datetime="2017-08-29T15:40:30.000Z" itemprop="datePublished">2017-08-30</time>
-        </a>
-    </div>
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/http/">http</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p><img src="http://allvectorlogo.com/img/2016/05/node-js-logo.png" alt=""></p>
-<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="네트워크-확인하기"><a href="#네트워크-확인하기" class="headerlink" title="네트워크 확인하기"></a>네트워크 확인하기</h2><h3 id="1-wireshark"><a href="#1-wireshark" class="headerlink" title="1) wireshark"></a>1) wireshark</h3><p><img src="/images/WIRESHARK.png" alt="WIRESHARK"></p>
-<p><img src="/images/WIRESHARK2.png" alt="WIRESHARK"></p>
-<h3 id="2-크롬-개발자도구"><a href="#2-크롬-개발자도구" class="headerlink" title="2) 크롬 개발자도구"></a>2) 크롬 개발자도구</h3><p><img src="/images/chromeDevTools.png" alt="크롬 개발자도구"></p>
-<p><br></p>
-<h2 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h2><p><img src="/images/http.png" alt=""></p>
-<ul>
-<li>웹 브라우저와 웹 서버 간의 통신을 위해 개발된 통신규약</li>
-<li>최근에는 REST API의 부상와 함께 다른 용도로도 널리 사용된다.<ul>
-<li>모바일 앱 - 서버 간 통신</li>
-<li>서버 - 서버 간 통신</li>
-</ul>
-</li>
-<li>80번 포트를 기본으로 사용</li>
-<li>클라이언트의 요청(request)과 서버의 응답(response)으로 이루어진다.</li>
-</ul>
-<h3 id="1-http의-역사"><a href="#1-http의-역사" class="headerlink" title="1) http의 역사"></a>1) http의 역사</h3><p><strong>1991</strong><br>HTTP 초기버전 발표. 텍스트만 전송할 수 있는 극도로 단순한 프로토콜. 1990년대 초 인터넷 붐을 일으킴</p>
-<p><strong>1996</strong><br>여러 인터넷 서비스 업체들이 자체적으로 사용하던 HTTP 구현들을 모아 HTTP 1.0 발표</p>
-<p><strong>1999</strong><br>1.0의 문제를 해결하고 여러가지 기능을 추가한 HTTP 1.1을 발표. 지금까지 사용되고 있는 버전</p>
-<p><br></p>
-<h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2) HTTPS"></a>2) HTTPS</h3><p><img src="/images/https.png" alt=""></p>
-<ul>
-<li>HTTP over SSL</li>
-<li>HTTP 통신을 암호화해 주고 받는 내용을 중간에서 가로챌 수 없도록 한다.</li>
-<li>443번 포트를 기본으로 사용한다.</li>
-</ul>
-<h3 id="3-HTTP-2"><a href="#3-HTTP-2" class="headerlink" title="3) HTTP/2"></a>3) HTTP/2</h3><ul>
-<li>구글의 <a href="http://d2.naver.com/helloworld/140351" target="_blank" rel="external">SPDY</a> 프로토콜을 기반으로 2015년에 확정된 새로운 HTTP 표준</li>
-<li>0,1만으로 통신하는 프로토콜로 더이상 텍스트 기반이 아님</li>
-<li>오로지 <strong>속도 개선</strong>에 중점을 두고 개발됨</li>
-<li>반드시 HTTPS를 사용해야 함</li>
-<li><a href="https://w3techs.com/technologies/details/ce-http2/all/all" target="_blank" rel="external">현재 전체 웹사이트 중 16% 이상이 사용중</a></li>
-</ul>
-<h2 id="HTTP-작동방식"><a href="#HTTP-작동방식" class="headerlink" title="HTTP 작동방식"></a>HTTP 작동방식</h2><h3 id="1-Request-amp-Response"><a href="#1-Request-amp-Response" class="headerlink" title="1) Request &amp; Response"></a>1) Request &amp; Response</h3><ul>
-<li>요청 Request: 웹 브라우저(또는 다른 클라이언트)는 웹 서버에 요청(request)를 보냄</li>
-<li>응답 Response: 그에 따라 서버는 클라이언트에 응답(response)를 보냄</li>
-<li>웹 브라우저의 경우, HTML 문서 형태의 응답이 오면 해당 문서를 분석한 후, 문서에 포함된 모든 자원에 대한 요청을 각각 추가로 보냄 (이미지, 동영상, 오디오, CSS, JS, 폰트, …)</li>
-</ul>
-<h3 id="2-Request-Methods"><a href="#2-Request-Methods" class="headerlink" title="2) Request Methods"></a>2) Request Methods</h3><ul>
-<li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Methods" target="_blank" rel="external">HTTP 명세</a>에는 8 종류가 등록되어 있고, 각각의 역할과 충족해야 하는 성질이 명시되어 있음</li>
-<li>웹 브라우저는 <strong>특정 상황에서 특정 메소드로 요청을 보내도록</strong> 만들어져 있음</li>
-<li>Ajax와 같이 <strong>요청을 보내는 코드를 직접 짤 때</strong>는 요청 메소드를 선택할 수 있음</li>
-<li><strong>자료의 본문을 요청하는 GET 메소드</strong>와, 새로운 <strong>자료를 등록하는 POST 메소드</strong>가 가장 많이 쓰임</li>
-</ul>
-<p>웹 브라우저는 순수 HTML만으로는 GET과 POST 메소드만 사용할 수 있도록 강제하고 있다. AJAX등으로 코드를 직접 작성할 때에는 메소드를 자유롭게 선택하여 사용할 수 있다.</p>
-<h3 id="서버가-충족시켜야하는-메소드의-성질"><a href="#서버가-충족시켜야하는-메소드의-성질" class="headerlink" title="서버가 충족시켜야하는 메소드의 성질"></a>서버가 충족시켜야하는 메소드의 성질</h3><ul>
-<li>Safe  </li>
-</ul>
-<p>요청이 서버의 상태에 영향을 미치지 않아야 함. 즉, <strong>읽기 전용</strong>이어야 함이 표준에 명시되어 있다.</p>
-<ul>
-<li>Idempotent  </li>
-</ul>
-<p>여러 번 같은 요청을 해도 한 번 요청한 것과 같은 효과여야 함. <strong>네트워크가 불안정해도 안전하게 요청을 보낼 수 있음</strong></p>
-<blockquote>
-<p>DELETE, GET은 Idempotent을 만족해야 한다. 게시글의 삭제 요청을 여러번 보내도 한 번의 삭제 작업이 이루어져야 한다. GET도 마찬가지로, 여러번 요청이 가도 한 번만 GET 작업을 해야한다.</p>
-<p>POST는 데이터를 서버로 보내는 방법이다. 자료를 새로 만들 때 사용된다. 게시물을 만드는 요청을 서버에 보내다가 네트워크가 끊어진 상황을 가정했을 때, 서버에는 이미 해당 데이터가 만들어졌으므로 이후 같은 요청을 보내면 에러가 나야 한다. 따라서 POST는 Idempotent를 만족시켜서는 안 된다.</p>
-</blockquote>
-<ul>
-<li>Cacheable  </li>
-</ul>
-<p>(특정 조건을 만족하면) 응답을 클라이언트에 저장해두었다가 다음 번 요청 때 <strong>다시 쓸 수 있음</strong>  </p>
-<p><br></p>
-<h3 id="3-URL"><a href="#3-URL" class="headerlink" title="3) URL"></a>3) URL</h3><p><img src="https://cascadingmedia.com/assets/images/insites/2015/02/url-anatomy/url-anatomy-55598c24.png" alt="URL"></p>
-<hr>
-<p>&lt;서버의 위치&gt;</p>
-<ol>
-<li><p>스키마</p>
-</li>
-<li><p>서브 도메인</p>
-</li>
-<li><p>도메인</p>
-</li>
-<li><p>탑레벨 도메인</p>
-</li>
-<li><p>포트</p>
-</li>
-</ol>
-<hr>
-<p>&lt;서버에서 얻고자 하는 자원의 위치&gt;</p>
-<ol>
-<li><p>경로(path)</p>
-</li>
-<li><p>쿼리 스트링 </p>
-</li>
-<li><p>해시 (fragment identifier)</p>
-</li>
-</ol>
-<h3 id="4-Percent-Encoding"><a href="#4-Percent-Encoding" class="headerlink" title="4) Percent Encoding"></a>4) Percent Encoding</h3><ul>
-<li><p>URL은 ASCII 문자(128개의 영문자+특수문자+제어문자)밖에 사용하지 못하기 때문에, non-ASCII 문자를 위한 표현방법이 필요함 #</p>
-</li>
-<li><p>Percent encoding은 non-ASCII 문자를 위한 웹 표준 인코딩 방법으로, JavaScript에 관련 기능이 포함되어 있음</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; encodeURIComponent(&quot;한글&quot;)</div><div class="line">&quot;%ED%95%9C%EA%B8%80&quot;</div><div class="line">&gt; decodeURIComponent(&quot;%ED%95%9C%EA%B8%80&quot;)</div><div class="line">&quot;한글&quot;</div></pre></td></tr></table></figure>
-<p><img src="/images/퍼센트인코딩.png" alt="퍼센트인코딩"></p>
-<h3 id="5-Request-Target"><a href="#5-Request-Target" class="headerlink" title="5) Request Target"></a>5) Request Target</h3><p>일반적인 경우 아래와 같은 구조가 사용됨  </p>
-<p><code>absolute path + query string + fragment id</code></p>
-<p>절대 경로 + 쿼리스트링 + 해시  </p>
-<p><code>GET /path/to/resource?foo=bar&amp;spam=hoge#fragid HTTP/1.1</code></p>
-<h3 id="6-Response-Status"><a href="#6-Response-Status" class="headerlink" title="6) Response Status"></a>6) Response Status</h3><p>응답의 성공, 실패 여부와 종류를 나타내며, <a href="https://httpstatuses.com/" target="_blank" rel="external">상태 코드</a> + 상태 메시지의 형태로 응답에 포함됨</p>
-<p><code>HTTP/1.1 200 OK</code></p>
-<h3 id="Status-Category"><a href="#Status-Category" class="headerlink" title="[Status Category]"></a>[Status Category]</h3><p><strong>2xx</strong> 성공</p>
-<ul>
-<li>200 OK - 성공</li>
-<li>201 Created - 자료가 성공적으로 생성되었다.</li>
-</ul>
-<p><strong>3xx</strong> 추가 작업이 필요하다.</p>
-<ul>
-<li>301 Moved Permanently (Redirection) - 자료가 완전히 다른 곳으로 이동했다.</li>
-<li>302 Found (Redirection) - 자료가 일시적으로 다른 곳에 있다.</li>
-<li>304 Not Modified (Cache) - 클라이언트가 이미 가지고 있던 자료가 수정되지 않았다. (그대로 사용하면 된다.) CSS나 Javascript에 대한 응답인 경우가 많다.</li>
-</ul>
-<p><strong>4xx</strong> 실패 - 클라이언트 책임</p>
-<ul>
-<li>400 Bad Request - 요청의 형태가 잘못되어 응답할 수 없다.</li>
-<li>403 Forbidden - 요청한 자료에 접근할 권한이 없다.</li>
-<li>404 Not Found - 요청한 자료가 없다.</li>
-</ul>
-<p><strong>5xx</strong> 실패 - 서버 책임</p>
-<ul>
-<li>500 Internal Server Error - 요청을 처리하던 중에 예상치 못한 요류가 발생했다.</li>
-<li>503 Service Unavailable - 서버가 일시적으로 응답을 할 수 없다.</li>
-</ul>
-<h3 id="7-Header"><a href="#7-Header" class="headerlink" title="7) Header"></a>7) Header</h3><ul>
-<li>요청과 응답에 대한 추가 정보를 표현하는 데 사용</li>
-<li><p>인증, 캐싱, 쿠키, 보안, 내용협상, 프록시 등 웹 표준에 정의된 많은 기능을 제어하는 데 사용됨</p>
-</li>
-<li><p><strong>Authorization</strong><br>요청의 인증 정보</p>
-</li>
-<li><strong>User-Agent</strong><br>요청 중인 클라이언트의 정보</li>
-<li><strong>Location</strong><br>301, 302 응답에서 자료의 위치</li>
-<li><strong>Accept</strong><br>요청이 어떤 형태의 자료를 원하는지 나타냄</li>
-<li><strong>Content-Type</strong><br>요청 혹은 응답이 어떤 형태의 자료인지 나타냄</li>
-</ul>
-<h3 id="8-Content-Negotiation"><a href="#8-Content-Negotiation" class="headerlink" title="8) Content Negotiation"></a>8) Content Negotiation</h3><p>요청의 Accept, Accept-Language 등의 헤더를 보고 서버가 그에 맞는 형태의 자료를 응답하는 절차를 content negotiation(내용 협상)이라고 함</p>
-<p><img src="https://www.codeproject.com/KB/aspnet/1163143/Fig01-ContentNegotiation.png" alt=""></p>
-<p>클라이언트가 JSON이 필요하다는 요청을 보내면, 서버가 JSON포맷의 데이터를 보내준다. 만약 없다면 XML 또는 기타 다른 포맷의 데이터를 대신 보내주는데, 이 과정을 content negotiation: 내용 협상이라고 한다.</p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
     }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-
-        </footer>
-    </div>
-</article>
-
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
-    <div class="sidebar-top">
-        <p>follow</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/Nodejs/nodejs/03.Middleware/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            [node] 미들웨어 express
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/Nodejs/nodejs/01.basic/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">[node] node 시작하기</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
-    <div class="widgets-container">
-        
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/03.inner/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="`.git`의 정체: git의 내부" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/03.inner/" class="title">`.git`의 정체: git의 내부</a></p>
-                            <p class="item-date"><time datetime="2017-10-21T19:21:58.000Z" itemprop="datePublished">2017-10-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/02.diffrence-branch-command/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/02.diffrence-branch-command/" class="title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</a></p>
-                            <p class="item-date"><time datetime="2017-10-19T17:10:46.000Z" itemprop="datePublished">2017-10-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Log/Log/01.dada-log-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png)" alt="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Log/">Log</a></p>
-                            <p class="item-title"><a href="/2017/Log/Log/01.dada-log-01/" class="title">Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</a></p>
-                            <p class="item-date"><time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/React/React/01.basic/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg)" alt="[React] 리액트 입문하기" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/React/">React</a></p>
-                            <p class="item-title"><a href="/2017/React/React/01.basic/" class="title">[React] 리액트 입문하기</a></p>
-                            <p class="item-date"><time datetime="2017-09-20T11:32:01.000Z" itemprop="datePublished">2017-09-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
-                            <p class="item-title"><a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
-                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/semantic-ui-react/" style="font-size: 10px;">semantic-ui-react</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
-                </h1>
-                <p>&copy; 2017 huusz</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-        
-    
-    <script>
-    var disqus_shortname = 'huuszLog';
-    
-    
-    var disqus_url = 'http://huusz.github.io/2017/Nodejs/nodejs/02.http/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
-</body>
-</html>
+  })();</script><div class="scroll-top"><span class="arrow-icon"></span></div><footer class="app-footer"><p class="copyright">&copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script src="/js/script.js"></script></body></html>

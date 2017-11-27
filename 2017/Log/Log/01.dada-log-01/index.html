@@ -1,582 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    
-    <title>Semantic-ui-react와 css-module을 같이 사용할 수 없을까? | Huusz&#39;s Log</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="semantic-ui-react" />
-    
-    <meta name="description" content="삽질의 발단…팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (">
-<meta name="keywords" content="semantic-ui-react">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?">
-<meta property="og:url" content="http://huusz.github.io/2017/Log/Log/01.dada-log-01/index.html">
-<meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="삽질의 발단…팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (">
-<meta property="og:locale" content="ko">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png">
-<meta property="og:updated_time" content="2017-11-16T16:13:11.788Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?">
-<meta name="twitter:description" content="삽질의 발단…팀 프로젝트를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png">
-    
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그"><meta name="keyword" content="huusz, frontend"><link rel="shortcut icon" type="image/ico" href="css/images/logo.png"><title>Semantic-ui-react와 css-module을 같이 사용할 수 없을까? | 휴지블로그</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/plugins/gitment.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script src="/js/qrious.js"></script><script src="/js/gitment.js"></script></head><div class="wechat-share"><img src="/css/images/logo.png"></div><body><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><span>휴지블로그</span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Projects</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Projects</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</h2><p class="post-date">2017-10-02</p><div class="arrow-down"><a href="javascript:;"></a></div></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p><a href="https://github.com/huusz/Da-Da" target="_blank" rel="external">팀 프로젝트</a>를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 … 너무 귀찮을 것 같았다. 모든 클래스네임을 수동으로 <code>home-header</code> <code>home-header-search</code> 이런 식으로 지정해 주는, 이런 걸 반복 해야 하다니?</p><p><strong><em>자동으로 해주는 게 없을까?</em></strong></p><p><a href="https://velopert.com/3447" target="_blank" rel="external">css를 자동으로 모듈화 해주는 방법</a>에 css-module이라는게 있다는 것을 알게 되었고, webpack에서 <code>css-loader</code>에 <code>module: true</code> 설정을 추가해주었다.</p><p><br></p><h2 id="CSS-프레임워크와는-공존할-수-없다"><a href="#CSS-프레임워크와는-공존할-수-없다" class="headerlink" title="CSS 프레임워크와는 공존할 수 없다."></a>CSS 프레임워크와는 공존할 수 없다.</h2><p><code>eject</code>로 webpack config에 직접 설정을 추가하는 방식이었는데, semantic-ui-css가 적용되지 않는 문제가 생겼다.</p><p><img src="https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png" alt="semantic이 적용된 원래 화면"></p><p><img src="https://lh3.googleusercontent.com/-WaXNae7NXz4/WdIAKqOlpOI/AAAAAAAAAbs/3t-AA4FnJqYOMFhdZzcF4YjDkhPx9OMSACL0BGAs/w530-d-h306-n-rw/error.png" alt="semantic이 사라진(!) 화면"></p><p><br></p><h2 id="module-true-때문이다"><a href="#module-true-때문이다" class="headerlink" title="module: true 때문이다."></a><code>module: true</code> 때문이다.</h2><p><a href="https://github.com/css-modules/css-modules/pull/65" target="_blank" rel="external">How to use css-modules with other global css (discussion please don’t merge it)</a></p><p>웹팩 설정에서 css-loader 설정을 <code>module:true</code>로 바꾸면, node-modules에 있는 semantic-ui-css(global css)도 component에 따라 class 이름을 변경하기 때문에 전혀 다른 클래스가 되어버리므로 (ex. <code>.ui.icon-k1t4h#9</code>) 결국 semantic-ui-css와의 연결이 끊긴다. 이 때문에 에러는 안 나지만, 전혀 다른 클래스를 적용한 꼴이 되어버리므로 시맨틱 스타일 적용한 것들이 없어져 버린 것..</p><p>윗 글에서는 css-loader에 두 가지로 분류해서 로딩하는 방식으로 약간의 꼼수(?)를 사용했다. global로 쓸 css는 (내 경우 semantic-ui-css) 그대로 하되, local 한 모듈들에 쓸 css들은 <code>app.module.css</code> 와 같이 명명하여 별도로 처리하게 하는 방식이다.</p><p><br></p><h2 id="선택지는"><a href="#선택지는" class="headerlink" title="선택지는.."></a>선택지는..</h2><p><strong>1. Semantic-ui를 쓴다.</strong></p><ol><li>semantic-ui + pure css를 쓴다. 클래스 네임을 직접. 수동으로. 명명해서 css를 모듈화 한다.</li><li>semantic-ui + styled-components를 쓴다. (웹 팩 설정이 필요 없다.)</li><li>위 방법 처럼 꼼수(?)를 써서 css-module + semantic-ui를 쓴다.</li></ol><p><strong>2. Semnatic-ui를 안 쓴다.</strong></p><ol><li>모든 것이 평화롭게 해결된다.</li></ol><p>사실 semantic-ui를 안 쓰고 싶지만, 당장 4일 내로 정적 페이지 제작이 끝나야 하므로 스타일링에 많은 시간을 쏟을 수 없었다. 프레임워크는 그대로 쓰기로 했다. 그러면 남은 선택지 중에서…</p><p><br></p><h4 id="2-styled-components"><a href="#2-styled-components" class="headerlink" title="2. styled-components?"></a>2. styled-components?</h4><p>styled-components는 기존의 css문법과 약간 다르다. react와 css를 섞어 놓은 듯한 문법이라 학습+적응 시간이 필요할 것 같은데, 빠르게 페이지를 만들어야 하는 지금 상황에서 그다지 좋은 선택지는 아닌 것 같다. 게다가 시맨틱도 컴포넌트이고 styled-components도 컴포넌트라서 시맨틱 컴포넌트 내부에 스타일링을 적용해야 하는 경우에는 결국 인라인스타일을 쓰게 된다. 이런게 많아지면, styled-components를 적용하는 의미가 없어지는 것 같았다. 그럴바엔 그냥 전부 inline style로 하면 되는 것 아닌가? 라는 생각이 들었다.</p><h4 id="3-css-module-semantic-ui"><a href="#3-css-module-semantic-ui" class="headerlink" title="3. css-module + semantic-ui?"></a>3. css-module + semantic-ui?</h4><p>어차피 css를 쓸거라면 위 방법을 써서 css-module을 사용하는 것도 좋겠지만, 사실 이것 하나 때문에 <code>eject</code>로 웹팩 config 파일 및 script 설정 파일 등등을 풀어헤친다는 게 석연치 않았다. (불안하기도 했고..)</p><p>결국 처음 고민하던 시점으로 돌아가, <strong>pure css + css 프레임워크</strong>를 쓰기로 했다.</p><p><br></p><hr><h4 id="프로젝트가-끝나가는-시점에서"><a href="#프로젝트가-끝나가는-시점에서" class="headerlink" title="프로젝트가 끝나가는 시점에서.."></a>프로젝트가 끝나가는 시점에서..</h4><p>위에서도 말했듯, 처음 고민하던 시점으로 돌아가서 <strong>pure css + css 프레임워크</strong>를 쓰려고 하였고 적용해보려는 시도도 했다. 그런데 결국 채택한 방식은 <strong>컴포넌트 인라인 스타일 + pure css + css 프레임워크</strong> 방식이다. styled 컴포넌츠를 약간 (정말 약간) 모방하여 Styled<em>*</em>.js라는 이름으로 인라인 스타일 객체만 모아둔 파일을 각 페이지 폴더 내부에 하나씩 두는 방식으로 하였다. 여기까지 오기까지 나름 치열한(?) 고민을 했기 때문에, 기록해두려고 한다.</p><h3 id="인라인-스타일-방식을-선택한-이유는"><a href="#인라인-스타일-방식을-선택한-이유는" class="headerlink" title="인라인 스타일 방식을 선택한 이유는,"></a>인라인 스타일 방식을 선택한 이유는,</h3><p>일단 className을 부여하는 방식으로는 semantic의 기본 스타일을 커스터마이징하는 데 한계가 있었다. semantic ui가 스타일링 하는 방식을 개발자 도구로 열어보면, 아래처럼 클래스 여러개를 중첩하여 선언하는 방식이다.</p><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* semantic-ui class(className) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span></div></pre></td></tr></table></figure><p>여기다가 직접 커스텀한 className을 부여하여도,</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Input className = <span class="string">"foodSearchInput"</span> ... /&gt;</div></pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* custom class(className) 추가하는 경우 */</span></div><div class="line"><span class="selector-class">.foodSearchInput</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>; <span class="comment">/* 이 코드는 무시된다. */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 중첩 선언 방식이 명시도 면에서 더 우위를 가져간다. */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: .<span class="number">28571429rem</span>; <span class="comment">/* 이 코드가 적용된다. */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>결국 캐스캐이딩(cascading) 우선 순위에서 밀리기 때문에 (명시도 면에서 중첩 선언된 기존의 semantic 방식보다 더 하위가 된다.) 적용되지 않는 경우가 많았다.</p><p><strong><em>커스텀 css의 캐스캐이딩 우선 순위가 semantic-ui 프레임워크보다 항상 우위에 있도록 할 수 있는 방법은 없을까?</em></strong></p><p>일단 <a href="http://poiemaweb.com/css3-inheritance-cascading" target="_blank" rel="external">cascading의 명시도</a> 면에서 <code>!important &gt; 인라인 스타일 &gt; 아이디 선택자 &gt; 클래스/어트리뷰트/가상 선택자 &gt; 태그 선택자 &gt; 전체 선택자 &gt; 상위 요소에 의해 상속된 속성</code> 순으로 우선 순위에서 우위를 가져간다. 여기서, <a href="https://speckyboy.com/good-bad-css-practices/" target="_blank" rel="external"><code>!important</code>를 사용하는 방법은 최대한 배제</a>하기로 하였다. 그러면 남은 것은 인라인 스타일과 아이디 선택자를 사용하는 방법이 남는다.</p><p><br></p><h4 id="아이디-선택자-X"><a href="#아이디-선택자-X" class="headerlink" title="아이디 선택자 (X)"></a>아이디 선택자 (X)</h4><ul><li>id 선택자는 단 하나의 요소에만 부여할 수 있는 고유한 것이다.</li><li>따라서 코드의 재사용이 불가함은 물론이고, 유사 스타일에 대한 확장 가능성이 전혀 없기 때문에 인라인 스타일에 비해 비효율적이다.</li><li>프로젝트 내에서 예를 들면, 검색창과 같은 경우, 유사한 스타일 코드를 다른 페이지의 input 요소들과 공유하게 되는데, id선택자를 이용하면 같은 스타일을 여러번 반복해서 선언해주어야 한다.</li></ul><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 아이디 선택자를 사용할 경우 같은 혹은 유사 스타일 일지라도 반복해서 선언해주어야 한다. */</span></div><div class="line"><span class="selector-id">#searchInput</span>&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>:<span class="number">300px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#searchResultInput</span>&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">800px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">top</span>: <span class="number">400px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 인라인 스타일의 경우 spread 문법을 이용한 스타일의 확장이 가능하다.</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> searchInput &#123;</div><div class="line">  width: <span class="string">'400'</span>,</div><div class="line">  margin: <span class="string">'20 10'</span>,</div><div class="line">  borderRadius: <span class="string">'100'</span>,</div><div class="line">  position: <span class="string">'absolute'</span>,</div><div class="line">  left: <span class="string">'300'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> searchResultInput &#123;</div><div class="line">  ...searchInput,</div><div class="line">  width: <span class="string">'800'</span>,</div><div class="line">  left: <span class="string">'300'</span>,</div><div class="line">  top: <span class="string">'400'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p><br></p><h4 id="인라인-스타일-O"><a href="#인라인-스타일-O" class="headerlink" title="인라인 스타일 (O)"></a>인라인 스타일 (O)</h4><p>인라인 스타일은 캐스캐이딩에서 <code>!important</code>를 제외하고 두 번째 우선순위를 갖는다. 따라서 중첩된 클래스보다 항상 우위에 있을 것이고, 위 예제처럼 아이디 선택자에 비해 재사용 및 확장이 용이하기 때문에 효율적이고 문제가 없을 것이라 생각했다. 그런데 여기에도 문제가 있었다.</p><p>대부분의 컴포넌트가 <code>div</code>로 실제 시맨틱 태그를 감싸고 있어 인라인 스타일을 주어도 적용되지 않는 경우가 많았다. 예를 들어 <code>Input</code>이나 <code>Search</code> 컴포넌트의 경우, <code>&lt;input&gt;</code> 태그를 <code>&lt;div&gt;&lt;/div&gt;</code>가 감싸고 있다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure><p>이런 식이라 인라인으로 스타일을 부여하면 <code>&lt;input&gt;</code>이 아니라 가장 바깥의 <code>&lt;div&gt;</code>로 스타일 코드가 적용되었다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div style=<span class="string">"border: 1px solid blue;"</span>&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure><p>따라서 상속이 되는 css 속성에 한해서만 (ex. font/color/text-align 등 비교적 레이아웃과 관련되지 않는 속성들) 적용이 되었고, 정작 필요한 <code>border</code> 속성이나 <code>margin</code>, <code>padding</code>, <code>position</code>과 같은 속성은 적용할 수 없었다.</p><p>즉, 인라인 스타일이나 className 중 하나만 선택하는 방식으로는 발생하는 모든 문제를 해결할 수 없었다. 그래서, <strong>그나마 문제가 거의 발생하지 않는 인라인 스타일을 주 스타일링 방식으로 채택하였다.</strong> 그리고 인라인으로 해결되지 않는 <strong>몇몇 문제들에 한해서만, semantic ui에서 정의한 클래스의 css를 아래와 같이 커스텀 css에서 재정의해주는 방식을 채택하였다.</strong></p><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* search.css(custom css) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span>&#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span> <span class="comment">/* 이 코드가 적용된다. */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* semantic.min.css */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">padding-right</span>: <span class="number">2.67142857em</span><span class="meta">!important</span>;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">  <span class="attribute">border-radius</span>: .<span class="number">28571429rem</span> <span class="comment">/* 이 코드는 무시된다. */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>사실 Object 형태의 인라인 스타일 방식을 주 스타일링 방식으로 채택하게 되기까지 <a href="https://blog.coderifleman.com/2015/07/12/learning-react-7/" target="_blank" rel="external">React.js + CSS</a>라는 글이 꽤나 큰 동기 부여가 되기도 하였다. styled-components의 존재를 알게 된 시점부터 css-in-js 라는 스타일링 방식이 어떤 이유로 나오게 되었으며, 어떤 이점을 갖는 지에 대해 궁금했었고, 윗 글이 어느 정도 대답이 되었기 때문이다.</p><p>이 방식을 채택함으로써 가장 큰 수혜(?)를 받은 부분이 Navigation 컴포넌트였다. 프로젝트의 디자인 시안 상으로, 페이지 상단 네비게이션(메뉴)바의 폰트와 보더(border) 색상을 적용함에 있어 두 가지 케이스가 있었다.</p><ul><li>흰 배경인 경우: <code>#16325c</code></li><li>사진이나 동영상이 배경인 경우: <code>#fff</code></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/index.js</span></div><div class="line"></div><div class="line"><span class="comment">// default Props: 컬러 반전이 없는 일반 페이지의 default color</span></div><div class="line"><span class="comment">// props를 전달하지 않는 경우 color: '#16325c'</span></div><div class="line">Navigation.defaultProps = &#123;</div><div class="line">  color: <span class="string">'#16325c'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>디자인 상 대부분의 화면이 흰 배경이므로, 이를 기본으로 설정하기 위해 위와 같이 <code>defaultProps</code>로 <code>color</code> 스타일을 지정하였다. 그리고 아래처럼 특정 조건에 따라 <code>color</code>와 <code>borderColor</code>를 다르게 적용하도록 하였다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pages/HomePage/index.js</span></div><div class="line">&lt;Navigation color=<span class="string">"#fff"</span> /&gt;</div></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/RightMenu/index.js</span></div><div class="line"></div><div class="line">&lt;Menu.Item</div><div class="line">    style=&#123;</div><div class="line">      <span class="comment">// active일때만 border-color 적용</span></div><div class="line">      isLinkMatched ?</div><div class="line">      &#123;</div><div class="line">       ...linkTagWrap, <span class="comment">// linkTagWrap은 아래 참고</span></div><div class="line">        borderColor: <span class="keyword">this</span>.props.color, <span class="comment">//#fff</span></div><div class="line">      &#125; : &#123;</div><div class="line">        linkTagWrap</div><div class="line">      &#125;</div><div class="line">    active=&#123;isLinkMatched&#125;</div><div class="line">&gt;</div><div class="line">  &lt;Link</div><div class="line">    style=&#123;&#123;</div><div class="line">      ..linkTag,</div><div class="line">      color: <span class="keyword">this</span>.props.color, <span class="comment">// #fff</span></div><div class="line">    &#125;&#125;</div><div class="line">    to=&#123;route.linkTo&#125;</div><div class="line">  &gt;</div><div class="line">  &#123;route.linkLabel&#125;</div><div class="line">  &lt;<span class="regexp">/Link&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>Menu.Item&gt;</div></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/StyledNavigation.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> linkTagWrap = &#123;</div><div class="line">  padding: <span class="string">'7px'</span>,</div><div class="line">  marginLeft: <span class="string">'37px'</span>,</div><div class="line">  marginBottom: <span class="string">'6px'</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>이렇게 css를 변수(또는 props)로 직접 이식하는 부분이 굉장히 매력적이었다. 그리고 이런 방식은 굳이 css-in-js방식의 라이브러리를 사용하지 않아도 가능하였고, 이보다 더 복잡하고 많은 스타일링이 필요할만큼 앱이 거대하지도 않았다. 어찌됐든, 이러한 고민들을 거쳐 최종적으로 인라인 스타일 + css 방식을 사용하였다.</p><p>언젠간 css와 js 스타일링 방식의 차이에 대해서 나름대로 정리한 내용을 기록하려고 한다. (언제가 될지는 모르겠다..) <a href="https://www.ludovf.net/blog/comparing-css-in-js-solutions/" target="_blank" rel="external">css-in-js 방식을 차용한 스타일링 라이브러리들</a>을 찾아보면서 Aphrodite, CSS in JS, Emotion.js 등등 다양한 라이브러리들을 알게 되었는데, 개인적으로 Emotion.js나 Styled-components를 꼭 한번 사용해보고 싶다.</p><p><br></p></section><div class="tags"><span>Tags:</span> <a href="/tags#semantic-ui-react"><span class="tag-code">semantic-ui-react</span></a></div><div class="qrcode"><canvas id="share-qrcode"></canvas><p class="notice">QR코드를 스캔해서 공유하세요!</p></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#삽질의-발단…"><span class="toc-nav-text">삽질의 발단…</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CSS-프레임워크와는-공존할-수-없다"><span class="toc-nav-text">CSS 프레임워크와는 공존할 수 없다.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#module-true-때문이다"><span class="toc-nav-text">module: true 때문이다.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#선택지는"><span class="toc-nav-text">선택지는..</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-styled-components"><span class="toc-nav-text">2. styled-components?</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-css-module-semantic-ui"><span class="toc-nav-text">3. css-module + semantic-ui?</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#프로젝트가-끝나가는-시점에서"><span class="toc-nav-text">프로젝트가 끝나가는 시점에서..</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#인라인-스타일-방식을-선택한-이유는"><span class="toc-nav-text">인라인 스타일 방식을 선택한 이유는,</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#아이디-선택자-X"><span class="toc-nav-text">아이디 선택자 (X)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#인라인-스타일-O"><span class="toc-nav-text">인라인 스타일 (O)</span></a></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'http://huusz.github.io/2017/Log/Log/01.dada-log-01/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
 
-    
-        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
-    
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
 
-    
-        <link rel="icon" href="/css/images/favi.png" />
-    
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
 
-    <link rel="stylesheet" href="/css/style.css">
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
 
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
 
-ga('create', 'UA-104157265-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-    
-    
-
-
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
-</head>
-<body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a class="logo" href="https://huusz.github.io">
-                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
-                                    
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'post',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'tag',
-            UNTITLED: '(Untitled)',
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Semantic-ui-react와 css-module을 같이 사용할 수 없을까?",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <a class="page-title-link" href="/categories/Log/">Log</a>
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-Log/01.dada-log-01" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        Semantic-ui-react와 css-module을 같이 사용할 수 없을까?
-        </h1>
-    
-
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/Log/Log/01.dada-log-01/" class="article-date">
-            <time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time>
-        </a>
-    </div>
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/semantic-ui-react/">semantic-ui-react</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <h2 id="삽질의-발단…"><a href="#삽질의-발단…" class="headerlink" title="삽질의 발단…"></a>삽질의 발단…</h2><p><a href="https://github.com/huusz/Da-Da" target="_blank" rel="external">팀 프로젝트</a>를 시작하고 채택한 스타일링 방식은 CSS Framework인 semantic-ui-react로 큰 틀을 잡고, CSS로 세부적인 디자인을 하는 것이었다. 지금까지 css 작업을 누군가와 같이 해본 경험이 없었기 때문에, 몇 가지 우려되는 것이 있었다. 각각 다른 css파일에서 중복되는 클래스 네임이 존재하는 상황 같은 것 말이다 (…) 이런 상황을 사전에 방지하고자, className 앞에 파일명(컴포넌트 이름)을 붙이기로 하였다. 근데 … 너무 귀찮을 것 같았다. 모든 클래스네임을 수동으로 <code>home-header</code> <code>home-header-search</code> 이런 식으로 지정해 주는, 이런 걸 반복 해야 하다니? </p>
-<p><strong><em>자동으로 해주는 게 없을까?</em></strong></p>
-<p><a href="https://velopert.com/3447" target="_blank" rel="external">css를 자동으로 모듈화 해주는 방법</a>에 css-module이라는게 있다는 것을 알게 되었고, webpack에서 <code>css-loader</code>에 <code>module: true</code> 설정을 추가해주었다.  </p>
-<p><br></p>
-<h2 id="CSS-프레임워크와는-공존할-수-없다"><a href="#CSS-프레임워크와는-공존할-수-없다" class="headerlink" title="CSS 프레임워크와는 공존할 수 없다."></a>CSS 프레임워크와는 공존할 수 없다.</h2><p><code>eject</code>로 webpack config에 직접 설정을 추가하는 방식이었는데, semantic-ui-css가 적용되지 않는 문제가 생겼다.</p>
-<p><img src="https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png" alt="semantic이 적용된 원래 화면"></p>
-<p><img src="https://lh3.googleusercontent.com/-WaXNae7NXz4/WdIAKqOlpOI/AAAAAAAAAbs/3t-AA4FnJqYOMFhdZzcF4YjDkhPx9OMSACL0BGAs/w530-d-h306-n-rw/error.png" alt="semantic이 사라진(!) 화면"></p>
-<p><br></p>
-<h2 id="module-true-때문이다"><a href="#module-true-때문이다" class="headerlink" title="module: true 때문이다."></a><code>module: true</code> 때문이다.</h2><p><a href="https://github.com/css-modules/css-modules/pull/65" target="_blank" rel="external">How to use css-modules with other global css (discussion please don’t merge it)</a></p>
-<p>웹팩 설정에서 css-loader 설정을 <code>module:true</code>로 바꾸면, node-modules에 있는 semantic-ui-css(global css)도 component에 따라 class 이름을 변경하기 때문에 전혀 다른 클래스가 되어버리므로 (ex. <code>.ui.icon-k1t4h#9</code>) 결국 semantic-ui-css와의 연결이 끊긴다. 이 때문에 에러는 안 나지만, 전혀 다른 클래스를 적용한 꼴이 되어버리므로 시맨틱 스타일 적용한 것들이 없어져 버린 것..</p>
-<p>윗 글에서는 css-loader에 두 가지로 분류해서 로딩하는 방식으로 약간의 꼼수(?)를 사용했다. global로 쓸 css는 (내 경우 semantic-ui-css) 그대로 하되, local 한 모듈들에 쓸 css들은 <code>app.module.css</code> 와 같이 명명하여 별도로 처리하게 하는 방식이다.</p>
-<p><br></p>
-<h2 id="선택지는"><a href="#선택지는" class="headerlink" title="선택지는.."></a>선택지는..</h2><p><strong>1. Semantic-ui를 쓴다.</strong></p>
-<ol>
-<li>semantic-ui + pure css를 쓴다. 클래스 네임을 직접. 수동으로. 명명해서 css를 모듈화 한다.</li>
-<li>semantic-ui + styled-components를 쓴다. (웹 팩 설정이 필요 없다.)</li>
-<li>위 방법 처럼 꼼수(?)를 써서 css-module + semantic-ui를 쓴다.</li>
-</ol>
-<p><strong>2. Semnatic-ui를 안 쓴다.</strong></p>
-<ol>
-<li>모든 것이 평화롭게 해결된다.</li>
-</ol>
-<p>사실 semantic-ui를 안 쓰고 싶지만, 당장 4일 내로 정적 페이지 제작이 끝나야 하므로 스타일링에 많은 시간을 쏟을 수 없었다. 프레임워크는 그대로 쓰기로 했다. 그러면 남은 선택지 중에서…</p>
-<p><br></p>
-<h4 id="2-styled-components"><a href="#2-styled-components" class="headerlink" title="2. styled-components?"></a>2. styled-components?</h4><p>styled-components는 기존의 css문법과 약간 다르다. react와 css를 섞어 놓은 듯한 문법이라 학습+적응 시간이 필요할 것 같은데, 빠르게 페이지를 만들어야 하는 지금 상황에서 그다지 좋은 선택지는 아닌 것 같다. 게다가 시맨틱도 컴포넌트이고 styled-components도 컴포넌트라서 시맨틱 컴포넌트 내부에 스타일링을 적용해야 하는 경우에는 결국 인라인스타일을 쓰게 된다. 이런게 많아지면, styled-components를 적용하는 의미가 없어지는 것 같았다. 그럴바엔 그냥 전부 inline style로 하면 되는 것 아닌가? 라는 생각이 들었다.</p>
-<h4 id="3-css-module-semantic-ui"><a href="#3-css-module-semantic-ui" class="headerlink" title="3. css-module + semantic-ui?"></a>3. css-module + semantic-ui?</h4><p>어차피 css를 쓸거라면 위 방법을 써서 css-module을 사용하는 것도 좋겠지만, 사실 이것 하나 때문에 <code>eject</code>로 웹팩 config 파일 및 script 설정 파일 등등을 풀어헤친다는 게 석연치 않았다. (불안하기도 했고..)</p>
-<p>결국 처음 고민하던 시점으로 돌아가, <strong>pure css + css 프레임워크</strong>를 쓰기로 했다.</p>
-<p><br></p>
-<hr>
-<h4 id="프로젝트가-끝나가는-시점에서"><a href="#프로젝트가-끝나가는-시점에서" class="headerlink" title="프로젝트가 끝나가는 시점에서.."></a>프로젝트가 끝나가는 시점에서..</h4><p>위에서도 말했듯, 처음 고민하던 시점으로 돌아가서 <strong>pure css + css 프레임워크</strong>를 쓰려고 하였고 적용해보려는 시도도 했다. 그런데 결국 채택한 방식은 <strong>컴포넌트 인라인 스타일 + pure css + css 프레임워크</strong> 방식이다. styled 컴포넌츠를 약간 (정말 약간) 모방하여 Styled<em>*</em>.js라는 이름으로 인라인 스타일 객체만 모아둔 파일을 각 페이지 폴더 내부에 하나씩 두는 방식으로 하였다. 여기까지 오기까지 나름 치열한(?) 고민을 했기 때문에, 기록해두려고 한다.</p>
-<h3 id="인라인-스타일-방식을-선택한-이유는"><a href="#인라인-스타일-방식을-선택한-이유는" class="headerlink" title="인라인 스타일 방식을 선택한 이유는,"></a>인라인 스타일 방식을 선택한 이유는,</h3><p>일단 className을 부여하는 방식으로는 semantic의 기본 스타일을 커스터마이징하는 데 한계가 있었다. semantic ui가 스타일링 하는 방식을 개발자 도구로 열어보면, 아래처럼 클래스 여러개를 중첩하여 선언하는 방식이다.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* semantic-ui class(className) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span></div></pre></td></tr></table></figure>
-<p>여기다가 직접 커스텀한 className을 부여하여도, </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Input className = <span class="string">"foodSearchInput"</span> ... /&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* custom class(className) 추가하는 경우 */</span></div><div class="line"><span class="selector-class">.foodSearchInput</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>; <span class="comment">/* 이 코드는 무시된다. */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 중첩 선언 방식이 명시도 면에서 더 우위를 가져간다. */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: .<span class="number">28571429rem</span>; <span class="comment">/* 이 코드가 적용된다. */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>결국 캐스캐이딩(cascading) 우선 순위에서 밀리기 때문에 (명시도 면에서 중첩 선언된 기존의 semantic 방식보다 더 하위가 된다.) 적용되지 않는 경우가 많았다.</p>
-<p><strong><em>커스텀 css의 캐스캐이딩 우선 순위가 semantic-ui 프레임워크보다 항상 우위에 있도록 할 수 있는 방법은 없을까?</em></strong></p>
-<p>일단 <a href="http://poiemaweb.com/css3-inheritance-cascading" target="_blank" rel="external">cascading의 명시도</a> 면에서 <code>!important &gt; 인라인 스타일 &gt; 아이디 선택자 &gt; 클래스/어트리뷰트/가상 선택자 &gt; 태그 선택자 &gt; 전체 선택자 &gt; 상위 요소에 의해 상속된 속성</code> 순으로 우선 순위에서 우위를 가져간다. 여기서, <a href="https://speckyboy.com/good-bad-css-practices/" target="_blank" rel="external"><code>!important</code>를 사용하는 방법은 최대한 배제</a>하기로 하였다. 그러면 남은 것은 인라인 스타일과 아이디 선택자를 사용하는 방법이 남는다.</p>
-<p><br></p>
-<h4 id="아이디-선택자-X"><a href="#아이디-선택자-X" class="headerlink" title="아이디 선택자 (X)"></a>아이디 선택자 (X)</h4><ul>
-<li>id 선택자는 단 하나의 요소에만 부여할 수 있는 고유한 것이다.</li>
-<li>따라서 코드의 재사용이 불가함은 물론이고, 유사 스타일에 대한 확장 가능성이 전혀 없기 때문에 인라인 스타일에 비해 비효율적이다.</li>
-<li>프로젝트 내에서 예를 들면, 검색창과 같은 경우, 유사한 스타일 코드를 다른 페이지의 input 요소들과 공유하게 되는데, id선택자를 이용하면 같은 스타일을 여러번 반복해서 선언해주어야 한다.</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 아이디 선택자를 사용할 경우 같은 혹은 유사 스타일 일지라도 반복해서 선언해주어야 한다. */</span></div><div class="line"><span class="selector-id">#searchInput</span>&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>:<span class="number">300px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#searchResultInput</span>&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">800px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">top</span>: <span class="number">400px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 인라인 스타일의 경우 spread 문법을 이용한 스타일의 확장이 가능하다.</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> searchInput &#123;</div><div class="line">  width: <span class="string">'400'</span>,</div><div class="line">  margin: <span class="string">'20 10'</span>,</div><div class="line">  borderRadius: <span class="string">'100'</span>,</div><div class="line">  position: <span class="string">'absolute'</span>,</div><div class="line">  left: <span class="string">'300'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> searchResultInput &#123;</div><div class="line">  ...searchInput,</div><div class="line">  width: <span class="string">'800'</span>,</div><div class="line">  left: <span class="string">'300'</span>,</div><div class="line">  top: <span class="string">'400'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><br></p>
-<h4 id="인라인-스타일-O"><a href="#인라인-스타일-O" class="headerlink" title="인라인 스타일 (O)"></a>인라인 스타일 (O)</h4><p>인라인 스타일은 캐스캐이딩에서 <code>!important</code>를 제외하고 두 번째 우선순위를 갖는다. 따라서 중첩된 클래스보다 항상 우위에 있을 것이고, 위 예제처럼 아이디 선택자에 비해 재사용 및 확장이 용이하기 때문에 효율적이고 문제가 없을 것이라 생각했다. 그런데 여기에도 문제가 있었다.</p>
-<p>대부분의 컴포넌트가 <code>div</code>로 실제 시맨틱 태그를 감싸고 있어 인라인 스타일을 주어도 적용되지 않는 경우가 많았다. 예를 들어 <code>Input</code>이나 <code>Search</code> 컴포넌트의 경우, <code>&lt;input&gt;</code> 태그를 <code>&lt;div&gt;&lt;/div&gt;</code>가 감싸고 있다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
-<p>이런 식이라 인라인으로 스타일을 부여하면 <code>&lt;input&gt;</code>이 아니라 가장 바깥의 <code>&lt;div&gt;</code>로 스타일 코드가 적용되었다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div style=<span class="string">"border: 1px solid blue;"</span>&gt;</div><div class="line">  &lt;input type=<span class="string">"text"</span>/&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
-<p>따라서 상속이 되는 css 속성에 한해서만 (ex. font/color/text-align 등 비교적 레이아웃과 관련되지 않는 속성들) 적용이 되었고, 정작 필요한 <code>border</code> 속성이나 <code>margin</code>, <code>padding</code>, <code>position</code>과 같은 속성은 적용할 수 없었다.</p>
-<p>즉, 인라인 스타일이나 className 중 하나만 선택하는 방식으로는 발생하는 모든 문제를 해결할 수 없었다. 그래서, <strong>그나마 문제가 거의 발생하지 않는 인라인 스타일을 주 스타일링 방식으로 채택하였다.</strong> 그리고 인라인으로 해결되지 않는 <strong>몇몇 문제들에 한해서만, semantic ui에서 정의한 클래스의 css를 아래와 같이 커스텀 css에서 재정의해주는 방식을 채택하였다.</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* search.css(custom css) */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span>&#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">100px</span> <span class="comment">/* 이 코드가 적용된다. */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* semantic.min.css */</span></div><div class="line"><span class="selector-class">.ui</span><span class="selector-class">.icon</span><span class="selector-class">.input</span> <span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">padding-right</span>: <span class="number">2.67142857em</span><span class="meta">!important</span>;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">  <span class="attribute">border-radius</span>: .<span class="number">28571429rem</span> <span class="comment">/* 이 코드는 무시된다. */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>사실 Object 형태의 인라인 스타일 방식을 주 스타일링 방식으로 채택하게 되기까지 <a href="https://blog.coderifleman.com/2015/07/12/learning-react-7/" target="_blank" rel="external">React.js + CSS</a>라는 글이 꽤나 큰 동기 부여가 되기도 하였다. styled-components의 존재를 알게 된 시점부터 css-in-js 라는 스타일링 방식이 어떤 이유로 나오게 되었으며, 어떤 이점을 갖는 지에 대해 궁금했었고, 윗 글이 어느 정도 대답이 되었기 때문이다.</p>
-<p>이 방식을 채택함으로써 가장 큰 수혜(?)를 받은 부분이 Navigation 컴포넌트였다. 프로젝트의 디자인 시안 상으로, 페이지 상단 네비게이션(메뉴)바의 폰트와 보더(border) 색상을 적용함에 있어 두 가지 케이스가 있었다.</p>
-<ul>
-<li>흰 배경인 경우: <code>#16325c</code></li>
-<li>사진이나 동영상이 배경인 경우: <code>#fff</code></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/index.js</span></div><div class="line"></div><div class="line"><span class="comment">// default Props: 컬러 반전이 없는 일반 페이지의 default color</span></div><div class="line"><span class="comment">// props를 전달하지 않는 경우 color: '#16325c'</span></div><div class="line">Navigation.defaultProps = &#123;</div><div class="line">  color: <span class="string">'#16325c'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>디자인 상 대부분의 화면이 흰 배경이므로, 이를 기본으로 설정하기 위해 위와 같이 <code>defaultProps</code>로 <code>color</code> 스타일을 지정하였다. 그리고 아래처럼 특정 조건에 따라 <code>color</code>와 <code>borderColor</code>를 다르게 적용하도록 하였다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pages/HomePage/index.js</span></div><div class="line">&lt;Navigation color=<span class="string">"#fff"</span> /&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/RightMenu/index.js</span></div><div class="line"></div><div class="line">&lt;Menu.Item</div><div class="line">    style=&#123;</div><div class="line">      <span class="comment">// active일때만 border-color 적용</span></div><div class="line">      isLinkMatched ?</div><div class="line">      &#123;</div><div class="line">       ...linkTagWrap, <span class="comment">// linkTagWrap은 아래 참고</span></div><div class="line">        borderColor: <span class="keyword">this</span>.props.color, <span class="comment">//#fff</span></div><div class="line">      &#125; : &#123;</div><div class="line">        linkTagWrap</div><div class="line">      &#125;</div><div class="line">    active=&#123;isLinkMatched&#125;</div><div class="line">&gt;</div><div class="line">  &lt;Link</div><div class="line">    style=&#123;&#123;</div><div class="line">      ..linkTag,</div><div class="line">      color: <span class="keyword">this</span>.props.color, <span class="comment">// #fff</span></div><div class="line">    &#125;&#125;</div><div class="line">    to=&#123;route.linkTo&#125;</div><div class="line">  &gt;</div><div class="line">  &#123;route.linkLabel&#125;</div><div class="line">  &lt;<span class="regexp">/Link&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>Menu.Item&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// components/Navigation/StyledNavigation.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> linkTagWrap = &#123;</div><div class="line">  padding: <span class="string">'7px'</span>,</div><div class="line">  marginLeft: <span class="string">'37px'</span>,</div><div class="line">  marginBottom: <span class="string">'6px'</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>이렇게 css를 변수(또는 props)로 직접 이식하는 부분이 굉장히 매력적이었다. 그리고 이런 방식은 굳이 css-in-js방식의 라이브러리를 사용하지 않아도 가능하였고, 이보다 더 복잡하고 많은 스타일링이 필요할만큼 앱이 거대하지도 않았다. 어찌됐든, 이러한 고민들을 거쳐 최종적으로 인라인 스타일 + css 방식을 사용하였다.</p>
-<p>언젠간 css와 js 스타일링 방식의 차이에 대해서 나름대로 정리한 내용을 기록하려고 한다. (언제가 될지는 모르겠다..) <a href="https://www.ludovf.net/blog/comparing-css-in-js-solutions/" target="_blank" rel="external">css-in-js 방식을 차용한 스타일링 라이브러리들</a>을 찾아보면서 Aphrodite, CSS in JS, Emotion.js 등등 다양한 라이브러리들을 알게 되었는데, 개인적으로 Emotion.js나 Styled-components를 꼭 한번 사용해보고 싶다.</p>
-<p><br></p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
     }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-
-        </footer>
-    </div>
-</article>
-
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
-    <div class="sidebar-top">
-        <p>follow</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/Git/GIT/02.diffrence-branch-command/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/React/React/01.basic/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">[React] 리액트 입문하기</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
-    <div class="widgets-container">
-        
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/03.inner/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="`.git`의 정체: git의 내부" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/03.inner/" class="title">`.git`의 정체: git의 내부</a></p>
-                            <p class="item-date"><time datetime="2017-10-21T19:21:58.000Z" itemprop="datePublished">2017-10-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/02.diffrence-branch-command/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/02.diffrence-branch-command/" class="title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</a></p>
-                            <p class="item-date"><time datetime="2017-10-19T17:10:46.000Z" itemprop="datePublished">2017-10-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Log/Log/01.dada-log-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png)" alt="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Log/">Log</a></p>
-                            <p class="item-title"><a href="/2017/Log/Log/01.dada-log-01/" class="title">Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</a></p>
-                            <p class="item-date"><time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/React/React/01.basic/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg)" alt="[React] 리액트 입문하기" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/React/">React</a></p>
-                            <p class="item-title"><a href="/2017/React/React/01.basic/" class="title">[React] 리액트 입문하기</a></p>
-                            <p class="item-date"><time datetime="2017-09-20T11:32:01.000Z" itemprop="datePublished">2017-09-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
-                            <p class="item-title"><a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
-                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/semantic-ui-react/" style="font-size: 10px;">semantic-ui-react</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
-                </h1>
-                <p>&copy; 2017 huusz</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-        
-    
-    <script>
-    var disqus_shortname = 'huuszLog';
-    
-    
-    var disqus_url = 'http://huusz.github.io/2017/Log/Log/01.dada-log-01/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
-</body>
-</html>
+  })();</script><div class="scroll-top"><span class="arrow-icon"></span></div><footer class="app-footer"><p class="copyright">&copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script src="/js/script.js"></script></body></html>

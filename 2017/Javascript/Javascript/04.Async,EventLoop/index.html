@@ -1,595 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    
-    <title>[JS] 비동기모델과 이벤트루프 | Huusz&#39;s Log</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="asynchronous" />
-    
-    <meta name="description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
-<meta name="keywords" content="asynchronous">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[JS] 비동기모델과 이벤트루프">
-<meta property="og:url" content="http://huusz.github.io/2017/Javascript/Javascript/04.Async,EventLoop/index.html">
-<meta property="og:site_name" content="Huusz&#39;s Log">
-<meta property="og:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
-<meta property="og:locale" content="ko">
-<meta property="og:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
-<meta property="og:updated_time" content="2017-09-21T05:52:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[JS] 비동기모델과 이벤트루프">
-<meta name="twitter:description" content="비동기식 처리 모델과 이벤트 루프1. 브라우저 동작 원리1) 브라우저의 주요 기능브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반">
-<meta name="twitter:image" content="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg">
-    
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="마우스 누르는 게 세상에서 제일 귀찮은 휴지의 개발블로그"><meta name="keyword" content="huusz, frontend"><link rel="shortcut icon" type="image/ico" href="css/images/logo.png"><title>[JS] 비동기모델과 이벤트루프 | 휴지블로그</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/plugins/gitment.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script src="/js/qrious.js"></script><script src="/js/gitment.js"></script></head><div class="wechat-share"><img src="/css/images/logo.png"></div><body><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><span>휴지블로그</span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Projects</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Projects</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>[JS] 비동기모델과 이벤트루프</h2><p class="post-date">2017-08-30</p><div class="arrow-down"><a href="javascript:;"></a></div></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p><h1 id="비동기식-처리-모델과-이벤트-루프"><a href="#비동기식-처리-모델과-이벤트-루프" class="headerlink" title="비동기식 처리 모델과 이벤트 루프"></a>비동기식 처리 모델과 이벤트 루프</h1><h2 id="1-브라우저-동작-원리"><a href="#1-브라우저-동작-원리" class="headerlink" title="1. 브라우저 동작 원리"></a>1. 브라우저 동작 원리</h2><h3 id="1-브라우저의-주요-기능"><a href="#1-브라우저의-주요-기능" class="headerlink" title="1) 브라우저의 주요 기능"></a>1) 브라우저의 주요 기능</h3><p>브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적으로 브라우저는 서버로부터 HTML, CSS, Javascript 파일을 응답받는다. (자원의 주소는 URI에 의해 정해진다.)<br>브라우저는 W3C(웹 표준화 기구)에서 정한 HTML과 CSS 표준 명세에 따라 HTML 파일을 해석해서 표시한다.</p><p><br></p><h3 id="2-브라우저의-기본-구조"><a href="#2-브라우저의-기본-구조" class="headerlink" title="2) 브라우저의 기본 구조"></a>2) 브라우저의 기본 구조</h3><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-1.png" alt="브라우저의 구성 요소"></p><ol><li><p>사용자 인터페이스: 주소 표시줄, 이전/다음 버튼, 북마크 메뉴 등. 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분이다.</p></li><li><p>브라우저 엔진: 사용자 인터페이스와 렌더링 엔진 사이의 동작을 제어.</p></li><li><p>렌더링 엔진: 요청한 콘텐츠를 표시한다. 예를 들어 HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시한다.</p></li><li><p>통신: HTTP 요청과 같은 네트워크 호출에 사용된다. 플랫폼 독립적인 인터페이스이고 각 플랫폼 하부에서 실행된다.</p></li><li><p>UI 백엔드: 콤보 박스와 창 같은 기본적인 장치를 그린다. 플랫폼에서 명시하지 않은 일반적인 인터페이스로서, OS 사용자 인터페이스 체계를 사용한다.</p></li><li><p>자바스크립트 해석: 자바스크립트 코드를 해석하고 실행한다.</p></li><li><p>자료 저장소: 자료를 저장하는 계층이다. 쿠키를 저장하는 것과 같이 모든 종류의 자원을 하드 디스크에 저장할 필요가 있다. HTML5 명세에는 브라우저가 지원하는 <a href="http://www.html5rocks.com/en/features/storage" target="_blank" rel="external">웹 데이터베이스</a>가 정의되어 있다.</p></li></ol><p>크롬 브라우저는 각 탭마다 별도의 렌더링 엔진 인스턴스를 유지한다. 따라서 각 탭은 독립된 프로세스로 처리된다.</p><p><br></p><h3 id="3-렌더링-엔진"><a href="#3-렌더링-엔진" class="headerlink" title="3) 렌더링 엔진"></a>3) 렌더링 엔진</h3><p>렌더링 엔진의 역할은 요청 받은 콘텐츠를 브라우저에 표시하는 일이다. HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시한다. HTML, CSS 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다.</p><p>렌더링 엔진은 XML 문서와 이미지도 표시할 수 있다. 물론 플러그인이나 브라우저 확장 기능을 이용해 PDF 같은 다른 유형도 표시할 수 있다. 여기서는 HTML과 이미지를 CSS로 표시하는 주된 사용 패턴에 초점을 둘 것이다.</p><blockquote><p>렌더링 엔진은 브라우저마다 다르다. 파이어폭스는 게코(Gecko) 엔진을 사용하며 사파리와 크롬은 웹킷(Webkit) 엔진을 사용한다.</p></blockquote><h3 id="렌더링-엔진-동작-과정"><a href="#렌더링-엔진-동작-과정" class="headerlink" title="렌더링 엔진 동작 과정"></a>렌더링 엔진 동작 과정</h3><p>렌더링 엔진은 통신으로부터 요청한 문서의 콘텐츠를 얻는 것으로 시작한다. 문서 내용은 보통 8KB 단위로 전송된다.</p><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-2.png" alt="렌더링 엔진 동작 과정"></p><p><img src="http://poiemaweb.com/img/client-server.png" alt="브라우저 동작 원리"></p><ul><li><p>렌더링 엔진은 HTML 문서를 파싱하고, 콘텐츠 트리 내부에서 태그를 DOM 노드로 변환한다. 그다음 외부 CSS 파일과 함께 포함된 스타일 요소도 파싱한다. 파싱된 스타일 정보는 CSSOM 노드로 변환한다.</p></li><li><p>스타일 정보(CSSOM)와 HTML 표시 규칙(DOM)으로 <strong>렌더 트리</strong>라는 또 다른 트리를 생성한다. 렌더트리는 색상이나 면적같은 시각적 속성이 있는 박스를 포함하고 있는데, 정해진 순서대로 화면에 표시된다.</p></li><li><p>렌더 트리의 각 노드가 화면의 정확한 위치에 배치되어 표시된다. 다음은 UI 백엔드에서 렌더 트리의 각 노드를 가로지르며 형상을 만들어내는 그리기 과정이다.</p></li></ul><p>일련의 과정들이 점진적으로 진행된다는 것을 아는 것이 중요하다. 렌더링 엔진은 좀 더 나은 사용자 경험을 위해 가능하면 빠르게 내용을 표시하는데 <strong>모든 HTML을 파싱할 때까지 기다리지 않고 배치와 그리기 과정을 시작한다.</strong> 네트워크로부터 나머지 내용이 전송되기를 기다리는 동시에 받은 내용의 일부를 먼저 화면에 표시하는 것이다.</p><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-3.png" alt="웹킷 렌더링 엔진"></p><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-4.png" alt="게코 렌더링 엔진"></p><hr><p><strong>[참고]</strong> <a href="http://d2.naver.com/helloworld/59361" target="_blank" rel="external">브라우저는 어떻게 동작하는가</a>, <a href="http://poiemaweb.com/js-async" target="_blank" rel="external">Poiema web</a></p><p>HTML 파서는 script 태그를 만나면 DOM 생성 프로세스를 중지하고 자바스크립트 엔진에 제어 권한을 넘긴다. 자바스크립트 엔진의 실행이 완료된 후 브라우저가 중지했던 시점부터 DOM 생성을 재개한다. 이것은 script 태그의 위치에 의해 DOM의 생성이 지연될 수 있음을 의미한다.</p><p><br></p><h2 id="2-Ajax"><a href="#2-Ajax" class="headerlink" title="2. Ajax"></a>2. Ajax</h2><p>브라우저에서 웹페이지를 요청하거나 링크를 클릭하면 화면 전환이 발생한다. 이것은 브라우저와 서버와의 통신에 의한 것이다.</p><p><img src="http://poiemaweb.com/img/req_res.png" alt=""></p><p>서버는 요청받은 페이지(HTML)를 반환하는데 이때 HTML에서 로드하는 CSS나 JavaScript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.</p><p><img src="http://poiemaweb.com/img/traditional-webpage-lifecycle.png" alt="Traditional Web Page Lifecycle"></p><h3 id="Ajax-Asynchronous-JavaScript-and-XML-는-자바스크립트를-이용해서-비동기적-Asynchronous-으로-서버와-브라우저가-데이터를-교환할-수-있는-통신-방식을-의미한다"><a href="#Ajax-Asynchronous-JavaScript-and-XML-는-자바스크립트를-이용해서-비동기적-Asynchronous-으로-서버와-브라우저가-데이터를-교환할-수-있는-통신-방식을-의미한다" class="headerlink" title="Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적(Asynchronous)으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다."></a>Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적(Asynchronous)으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다.</h3><p>서버로부터 웹페이지가 반환되면 화면 전체를 갱신해야 하는데, AJAX는 페이지 일부만을 갱신하고도 동일한 효과를 볼 수 있도록 한다. 페이지 전체를 로드하여 렌더링할 필요가 없고 갱신이 필요한 일부만 로드하여 갱신하면 되므로 <strong>빠른 퍼포먼스와 부드러운 화면 표시 효과</strong>를 기대할 수 있다.</p><p><img src="http://poiemaweb.com/img/ajax-webpage-lifecycle.png" alt="AJAX Lifecycle"></p><p>서버는 HTML, XML, JSON등을 반환하는데, Ajax을 위한 데이터 형식은 <strong>JSON(JavaScript Object Notation)</strong> 을 사용하는 것이 일반적이다.</p><p><br></p><h2 id="3-동기식-처리-모델-VS-비동기식-처리-모델"><a href="#3-동기식-처리-모델-VS-비동기식-처리-모델" class="headerlink" title="3. 동기식 처리 모델 VS 비동기식 처리 모델"></a>3. 동기식 처리 모델 VS 비동기식 처리 모델</h2><h3 id="동기식-처리-모델-Synchronous-processing-model"><a href="#동기식-처리-모델-Synchronous-processing-model" class="headerlink" title="동기식 처리 모델(Synchronous processing model)"></a>동기식 처리 모델(Synchronous processing model)</h3><p>작업이 순차적으로 실행된다. 어떤 작업이 수행 중이면 다음 작업은 대기한다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.<br><img src="http://poiemaweb.com/img/synchronous.png" alt="동기식 처리 모델"></p><h3 id="비동기식-처리-모델-Asynchronous-processing-model-or-Non-Blocking-processing-model"><a href="#비동기식-처리-모델-Asynchronous-processing-model-or-Non-Blocking-processing-model" class="headerlink" title="비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)"></a>비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)</h3><p>작업이 종료되지 않은 상태라도 대기하지 않고 다음 작업을 실행한다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 서버로부터 데이터가 전달될 때까지 <strong>대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다.</strong> 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.</p><p><strong>자바스크립트의 대부분의 DOM 이벤트와 Timer 함수(setTimeout, setInterval), Ajax 요청은 비동기적으로 동작한다.</strong></p><p><img src="http://poiemaweb.com/img/asynchronous.png" alt="비동기적 처리 모델"></p><p><br></p><h2 id="4-이벤트-루프와-동시성-Concurrency"><a href="#4-이벤트-루프와-동시성-Concurrency" class="headerlink" title="4. 이벤트 루프와 동시성(Concurrency)"></a>4. 이벤트 루프와 동시성(Concurrency)</h2><p><strong><em>브라우저는 단일 쓰레드(single-thread)에서 이벤트 드리븐(event-driven) 방식으로 동작한다.</em></strong></p><p>자바스크립트는 본래 단일스레드 기반의 언어이다. 한번에 하나의 작업(task)만을 처리할 수 있다는 의미이다. 하지만 실제 웹 애플리케이션들을 보면 여러 task가 동시에 처리되는 것처럼 보인다. 이는 자바스크립트가 이벤트 루프를 이용해서 비동기 방식으로 동시성을 지원하기 때문이다.</p><h3 id="브라우저-환경"><a href="#브라우저-환경" class="headerlink" title="브라우저 환경"></a>브라우저 환경</h3><p><img src="http://poiemaweb.com/img/event-loop.png" alt="이벤트 루프(Event Loop)와 브라우저의 환경"></p><p>자바스크립트 엔진은 크게 콜 스택 영역과 힙 영역으로 나뉜다. 흔히 비동기 호출을 위해 사용하는 <code>setTimeout</code>이나 <code>XMLHttpRequest</code>와 같은 함수들은 자바스크립트 엔진이 아닌 Web API 영역에 따로 정의되어 있음을 확인할 수 있다. 비동기 방식을 가능하게 하는 이벤트 루프와 태스트 큐(이벤트 큐) 또한 자바스크립트 엔진 외부에 구현되어있다.</p><p><strong><em>1. Call Stack(호출 스택)</em></strong><br>작업이 요청되면(함수가 실행되면) 요청된 작업은 순차적으로 Call Stack에 쌓이게 되고 순차적으로 실행된다. 자바스크립트는 단 하나의 Call Stack을 사용하기 때문에 해당 task가 종료하기 전까지는 다른 어떤 task도 수행될 수 없다.</p><p><strong><em>2. Heap</em></strong><br>힙은 동적으로 생성된 객체 인스턴스가 할당되는 영역이다.</p><p>이와 같이 자바스크립트 엔진은 단순히 작업이 요청되면 요청된 작업을 Call Stack을 사용하여 순차적으로 실행할 뿐이다. 앞에서 언급한 동시성(Concurrency)을 지원하기 위해 필요한 <em>비동기 요청(이벤트를 포함) 처리는 자바스크립트 엔진을 구동하는 환경, 즉 브라우저(또는 Node.js)가 담당한다.</em></p><p><strong><em>3. Event Queue(Task Queue)</em></strong><br>비동기 처리 함수의 콜백 함수, 비동기식 이벤트 핸들러, Timer 함수(setTimeout(), setInterval())가 보관되는 영역이다. <strong>이벤트 루프(Event Loop)에 의해 특정 시점(Call Stack이 비어졌을 때)에 순차적으로 Call Stack으로 이동되어 실행된다.</strong></p><p><strong><em>4. Event Loop(이벤트 루프)</em></strong><br>Call Stack내에서 1) 현재 실행중인 task가 있는지, 그리고 2) Event Queue에 task가 있는지 반복하여 확인한다.</p><p>아래의 예제가 어떻게 동작할지 살펴보자.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</div><div class="line">  func2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</div><div class="line">  &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">  func3();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func1();</div></pre></td></tr></table></figure><p>함수 func1이 호출되면 함수 func1은 Call Stack에 쌓인다. 그리고 함수 func1은 함수 func2을 호출하므로 함수 func2가 Call Stack에 쌓이고 setTimeout가 호출된다. setTimeout의 핸들러는 즉시 실행되지 않고 지정 대기 시간만큼 기다리다가 이벤트 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다.</p><p><img src="http://poiemaweb.com/img/event-loop.gif" alt="이벤트 루프(Event Loop)에 의한 setTimeout 핸들러의 실행"></p><p>DOM 이벤트도 이와 같이 동작한다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</div><div class="line">  func2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// &lt;button id="foo"&gt;foo&lt;/button&gt;</span></div><div class="line">  <span class="keyword">var</span> elem = <span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>);</div><div class="line"></div><div class="line">  elem.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.style.backgroundColor = <span class="string">'indigo'</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  func3();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func1();</div></pre></td></tr></table></figure><p>함수 func1이 호출되면 함수 func1은 Call Stack에 쌓인다. 그리고 함수 func1은 함수 func2을 호출하므로 함수 func2가 Call Stack에 쌓이고 addEventListener가 호출된다. addEventListener의 콜백함수는 foo 버튼이 클릭되어 “onclick” 이벤트가 발생하면 이벤트 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다.</p><h3 id="Nodejs-환경"><a href="#Nodejs-환경" class="headerlink" title="Nodejs 환경"></a>Nodejs 환경</h3><p><img src="https://camo.githubusercontent.com/cb45689d053b03f76965aa02fff3b049ce79e533/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f42743579774a72494541414b4a51742e6a7067" alt="nodejs 환경"></p><p>Node.js는 비동기 IO를 지원하기 위해 libuv 라이브러리를 사용하며, 이 libuv가 이벤트 루프를 제공한다. 자바스크립트 엔진은 비동기 작업을 위해 Node.js의 API를 호출하며, 이때 넘겨진 콜백은 libuv의 이벤트 루프를 통해 스케쥴되고 실행된다.</p><hr><p>결론적으로, 자바스크립트가 단일 스레드 기반의 언어라는 말은 <strong>자바스크립트 엔진이 단일 호출 스택을 사용한다</strong>는 관점에서만 사실이다. 실제 자바스크립트가 구동되는 환경(브라우저, nodejs 등)에서는 주로 여러개의 스레드가 사용되며 이러한 구동 환경이 단일 호출 스택을 사용하는 자바스크립트 엔진과 상호 연동하기 위해 사용하는 장치가 바로 이벤트 루프이다.</p><hr><p>Reference</p><p><a href="http://poiemaweb.com/js-async" target="_blank" rel="external">Poiemaweb</a></p><p><a href="https://github.com/nhnent/fe.javascript/wiki/June-13-June-17,-2016" target="_blank" rel="external">nhnent/github</a></p></section><div class="tags"><span>Tags:</span> <a href="/tags#asynchronous"><span class="tag-code">asynchronous</span></a></div><div class="qrcode"><canvas id="share-qrcode"></canvas><p class="notice">QR코드를 스캔해서 공유하세요!</p></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#비동기식-처리-모델과-이벤트-루프"><span class="toc-nav-text">비동기식 처리 모델과 이벤트 루프</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-브라우저-동작-원리"><span class="toc-nav-text">1. 브라우저 동작 원리</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-브라우저의-주요-기능"><span class="toc-nav-text">1) 브라우저의 주요 기능</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-브라우저의-기본-구조"><span class="toc-nav-text">2) 브라우저의 기본 구조</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-렌더링-엔진"><span class="toc-nav-text">3) 렌더링 엔진</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#렌더링-엔진-동작-과정"><span class="toc-nav-text">렌더링 엔진 동작 과정</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-Ajax"><span class="toc-nav-text">2. Ajax</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Ajax-Asynchronous-JavaScript-and-XML-는-자바스크립트를-이용해서-비동기적-Asynchronous-으로-서버와-브라우저가-데이터를-교환할-수-있는-통신-방식을-의미한다"><span class="toc-nav-text">Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적(Asynchronous)으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다.</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-동기식-처리-모델-VS-비동기식-처리-모델"><span class="toc-nav-text">3. 동기식 처리 모델 VS 비동기식 처리 모델</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#동기식-처리-모델-Synchronous-processing-model"><span class="toc-nav-text">동기식 처리 모델(Synchronous processing model)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#비동기식-처리-모델-Asynchronous-processing-model-or-Non-Blocking-processing-model"><span class="toc-nav-text">비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-이벤트-루프와-동시성-Concurrency"><span class="toc-nav-text">4. 이벤트 루프와 동시성(Concurrency)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#브라우저-환경"><span class="toc-nav-text">브라우저 환경</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Nodejs-환경"><span class="toc-nav-text">Nodejs 환경</span></a></li></ol></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'http://huusz.github.io/2017/Javascript/Javascript/04.Async,EventLoop/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
 
-    
-        <link rel="alternate" href="https://huusz.github.io/feed.xml" title="Huusz&#39;s Log" type="application/atom+xml" />
-    
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
 
-    
-        <link rel="icon" href="/css/images/favi.png" />
-    
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="/libs/source-code-pro/styles.css"> -->
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
 
-    <link rel="stylesheet" href="/css/style.css">
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
 
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
 
-ga('create', 'UA-104157265-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-    
-    
-
-
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css">
-    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
-</head>
-<body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a class="logo" href="https://huusz.github.io">
-                        <img src="/css/images/header-logo.png" alt="Huusz Log"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
-                                </li>
-                            
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Log/">Log</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sass/">Sass</a></li></ul>
-                                    
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'post',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'tag',
-            UNTITLED: '(Untitled)',
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "[JS] 비동기모델과 이벤트루프",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    <a class="page-title-link" href="/categories/Javascript/">Javascript</a>
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-Javascript/04.Async,EventLoop" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        [JS] 비동기모델과 이벤트루프
-        </h1>
-    
-
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/Javascript/Javascript/04.Async,EventLoop/" class="article-date">
-            <time datetime="2017-08-29T15:35:42.000Z" itemprop="datePublished">2017-08-30</time>
-        </a>
-    </div>
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/asynchronous/">asynchronous</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://www.bram.us/wordpress/wp-content/uploads/2016/06/javascript-logo-banner.jpg" alt=""></p>
-<h1 id="비동기식-처리-모델과-이벤트-루프"><a href="#비동기식-처리-모델과-이벤트-루프" class="headerlink" title="비동기식 처리 모델과 이벤트 루프"></a>비동기식 처리 모델과 이벤트 루프</h1><h2 id="1-브라우저-동작-원리"><a href="#1-브라우저-동작-원리" class="headerlink" title="1. 브라우저 동작 원리"></a>1. 브라우저 동작 원리</h2><h3 id="1-브라우저의-주요-기능"><a href="#1-브라우저의-주요-기능" class="headerlink" title="1) 브라우저의 주요 기능"></a>1) 브라우저의 주요 기능</h3><p>브라우저의 주요 기능은 사용자가 참조하고자 하는 자원을 (또는 웹페이지를) 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 서버로부터 받는 자원은 보통 HTML 문서이지만, PDF나 이미지 또는 다른 형태일 수 있다. 일반적으로 브라우저는 서버로부터 HTML, CSS, Javascript 파일을 응답받는다. (자원의 주소는 URI에 의해 정해진다.)<br>브라우저는 W3C(웹 표준화 기구)에서 정한 HTML과 CSS 표준 명세에 따라 HTML 파일을 해석해서 표시한다.</p>
-<p><br></p>
-<h3 id="2-브라우저의-기본-구조"><a href="#2-브라우저의-기본-구조" class="headerlink" title="2) 브라우저의 기본 구조"></a>2) 브라우저의 기본 구조</h3><p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-1.png" alt="브라우저의 구성 요소"></p>
-<ol>
-<li><p>사용자 인터페이스: 주소 표시줄, 이전/다음 버튼, 북마크 메뉴 등. 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분이다.</p>
-</li>
-<li><p>브라우저 엔진: 사용자 인터페이스와 렌더링 엔진 사이의 동작을 제어.</p>
-</li>
-<li><p>렌더링 엔진: 요청한 콘텐츠를 표시한다. 예를 들어 HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시한다.</p>
-</li>
-<li><p>통신: HTTP 요청과 같은 네트워크 호출에 사용된다. 플랫폼 독립적인 인터페이스이고 각 플랫폼 하부에서 실행된다.</p>
-</li>
-<li><p>UI 백엔드: 콤보 박스와 창 같은 기본적인 장치를 그린다. 플랫폼에서 명시하지 않은 일반적인 인터페이스로서, OS 사용자 인터페이스 체계를 사용한다.</p>
-</li>
-<li><p>자바스크립트 해석: 자바스크립트 코드를 해석하고 실행한다.</p>
-</li>
-<li><p>자료 저장소: 자료를 저장하는 계층이다. 쿠키를 저장하는 것과 같이 모든 종류의 자원을 하드 디스크에 저장할 필요가 있다. HTML5 명세에는 브라우저가 지원하는 <a href="http://www.html5rocks.com/en/features/storage" target="_blank" rel="external">웹 데이터베이스</a>가 정의되어 있다.</p>
-</li>
-</ol>
-<p>크롬 브라우저는 각 탭마다 별도의 렌더링 엔진 인스턴스를 유지한다. 따라서 각 탭은 독립된 프로세스로 처리된다.</p>
-<p><br></p>
-<h3 id="3-렌더링-엔진"><a href="#3-렌더링-엔진" class="headerlink" title="3) 렌더링 엔진"></a>3) 렌더링 엔진</h3><p>렌더링 엔진의 역할은 요청 받은 콘텐츠를 브라우저에 표시하는 일이다. HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시한다. HTML, CSS 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다.</p>
-<p>렌더링 엔진은 XML 문서와 이미지도 표시할 수 있다. 물론 플러그인이나 브라우저 확장 기능을 이용해 PDF 같은 다른 유형도 표시할 수 있다. 여기서는 HTML과 이미지를 CSS로 표시하는 주된 사용 패턴에 초점을 둘 것이다.</p>
-<blockquote>
-<p>렌더링 엔진은 브라우저마다 다르다. 파이어폭스는 게코(Gecko) 엔진을 사용하며 사파리와 크롬은 웹킷(Webkit) 엔진을 사용한다.</p>
-</blockquote>
-<h3 id="렌더링-엔진-동작-과정"><a href="#렌더링-엔진-동작-과정" class="headerlink" title="렌더링 엔진 동작 과정"></a>렌더링 엔진 동작 과정</h3><p>렌더링 엔진은 통신으로부터 요청한 문서의 콘텐츠를 얻는 것으로 시작한다. 문서 내용은 보통 8KB 단위로 전송된다.</p>
-<p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-2.png" alt="렌더링 엔진 동작 과정"></p>
-<p><img src="http://poiemaweb.com/img/client-server.png" alt="브라우저 동작 원리"></p>
-<ul>
-<li><p>렌더링 엔진은 HTML 문서를 파싱하고, 콘텐츠 트리 내부에서 태그를 DOM 노드로 변환한다. 그다음 외부 CSS 파일과 함께 포함된 스타일 요소도 파싱한다. 파싱된 스타일 정보는 CSSOM 노드로 변환한다.  </p>
-</li>
-<li><p>스타일 정보(CSSOM)와 HTML 표시 규칙(DOM)으로 <strong>렌더 트리</strong>라는 또 다른 트리를 생성한다. 렌더트리는 색상이나 면적같은 시각적 속성이 있는 박스를 포함하고 있는데, 정해진 순서대로 화면에 표시된다.</p>
-</li>
-<li><p>렌더 트리의 각 노드가 화면의 정확한 위치에 배치되어 표시된다. 다음은 UI 백엔드에서 렌더 트리의 각 노드를 가로지르며 형상을 만들어내는 그리기 과정이다.</p>
-</li>
-</ul>
-<p>일련의 과정들이 점진적으로 진행된다는 것을 아는 것이 중요하다. 렌더링 엔진은 좀 더 나은 사용자 경험을 위해 가능하면 빠르게 내용을 표시하는데 <strong>모든 HTML을 파싱할 때까지 기다리지 않고 배치와 그리기 과정을 시작한다.</strong> 네트워크로부터 나머지 내용이 전송되기를 기다리는 동시에 받은 내용의 일부를 먼저 화면에 표시하는 것이다.</p>
-<p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-3.png" alt="웹킷 렌더링 엔진"></p>
-<p><img src="http://d2.naver.com/content/images/2015/06/helloworld-59361-4.png" alt="게코 렌더링 엔진"></p>
-<hr>
-<p><strong>[참고]</strong> <a href="http://d2.naver.com/helloworld/59361" target="_blank" rel="external">브라우저는 어떻게 동작하는가</a>, <a href="http://poiemaweb.com/js-async" target="_blank" rel="external">Poiema web</a>  </p>
-<p>HTML 파서는 script 태그를 만나면 DOM 생성 프로세스를 중지하고 자바스크립트 엔진에 제어 권한을 넘긴다. 자바스크립트 엔진의 실행이 완료된 후 브라우저가 중지했던 시점부터 DOM 생성을 재개한다. 이것은 script 태그의 위치에 의해 DOM의 생성이 지연될 수 있음을 의미한다.</p>
-<p><br></p>
-<h2 id="2-Ajax"><a href="#2-Ajax" class="headerlink" title="2. Ajax"></a>2. Ajax</h2><p>브라우저에서 웹페이지를 요청하거나 링크를 클릭하면 화면 전환이 발생한다. 이것은 브라우저와 서버와의 통신에 의한 것이다.</p>
-<p><img src="http://poiemaweb.com/img/req_res.png" alt=""></p>
-<p>서버는 요청받은 페이지(HTML)를 반환하는데 이때 HTML에서 로드하는 CSS나 JavaScript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.</p>
-<p><img src="http://poiemaweb.com/img/traditional-webpage-lifecycle.png" alt="Traditional Web Page Lifecycle"></p>
-<h3 id="Ajax-Asynchronous-JavaScript-and-XML-는-자바스크립트를-이용해서-비동기적-Asynchronous-으로-서버와-브라우저가-데이터를-교환할-수-있는-통신-방식을-의미한다"><a href="#Ajax-Asynchronous-JavaScript-and-XML-는-자바스크립트를-이용해서-비동기적-Asynchronous-으로-서버와-브라우저가-데이터를-교환할-수-있는-통신-방식을-의미한다" class="headerlink" title="Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적(Asynchronous)으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다."></a>Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적(Asynchronous)으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다.</h3><p>서버로부터 웹페이지가 반환되면 화면 전체를 갱신해야 하는데, AJAX는 페이지 일부만을 갱신하고도 동일한 효과를 볼 수 있도록 한다. 페이지 전체를 로드하여 렌더링할 필요가 없고 갱신이 필요한 일부만 로드하여 갱신하면 되므로 <strong>빠른 퍼포먼스와 부드러운 화면 표시 효과</strong>를 기대할 수 있다.</p>
-<p><img src="http://poiemaweb.com/img/ajax-webpage-lifecycle.png" alt="AJAX Lifecycle"></p>
-<p>서버는 HTML, XML, JSON등을 반환하는데, Ajax을 위한 데이터 형식은 <strong>JSON(JavaScript Object Notation)</strong> 을 사용하는 것이 일반적이다.</p>
-<p><br></p>
-<h2 id="3-동기식-처리-모델-VS-비동기식-처리-모델"><a href="#3-동기식-처리-모델-VS-비동기식-처리-모델" class="headerlink" title="3. 동기식 처리 모델 VS 비동기식 처리 모델"></a>3. 동기식 처리 모델 VS 비동기식 처리 모델</h2><h3 id="동기식-처리-모델-Synchronous-processing-model"><a href="#동기식-처리-모델-Synchronous-processing-model" class="headerlink" title="동기식 처리 모델(Synchronous processing model)"></a>동기식 처리 모델(Synchronous processing model)</h3><p>작업이 순차적으로 실행된다. 어떤 작업이 수행 중이면 다음 작업은 대기한다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.<br><img src="http://poiemaweb.com/img/synchronous.png" alt="동기식 처리 모델"> </p>
-<h3 id="비동기식-처리-모델-Asynchronous-processing-model-or-Non-Blocking-processing-model"><a href="#비동기식-처리-모델-Asynchronous-processing-model-or-Non-Blocking-processing-model" class="headerlink" title="비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)"></a>비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)</h3><p>작업이 종료되지 않은 상태라도 대기하지 않고 다음 작업을 실행한다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 서버로부터 데이터가 전달될 때까지 <strong>대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다.</strong> 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.</p>
-<p><strong>자바스크립트의 대부분의 DOM 이벤트와 Timer 함수(setTimeout, setInterval), Ajax 요청은 비동기적으로 동작한다.</strong></p>
-<p><img src="http://poiemaweb.com/img/asynchronous.png" alt="비동기적 처리 모델"></p>
-<p><br></p>
-<h2 id="4-이벤트-루프와-동시성-Concurrency"><a href="#4-이벤트-루프와-동시성-Concurrency" class="headerlink" title="4. 이벤트 루프와 동시성(Concurrency)"></a>4. 이벤트 루프와 동시성(Concurrency)</h2><p><strong><em>브라우저는 단일 쓰레드(single-thread)에서 이벤트 드리븐(event-driven) 방식으로 동작한다.</em></strong></p>
-<p>자바스크립트는 본래 단일스레드 기반의 언어이다. 한번에 하나의 작업(task)만을 처리할 수 있다는 의미이다. 하지만 실제 웹 애플리케이션들을 보면 여러 task가 동시에 처리되는 것처럼 보인다. 이는 자바스크립트가 이벤트 루프를 이용해서 비동기 방식으로 동시성을 지원하기 때문이다.</p>
-<h3 id="브라우저-환경"><a href="#브라우저-환경" class="headerlink" title="브라우저 환경"></a>브라우저 환경</h3><p><img src="http://poiemaweb.com/img/event-loop.png" alt="이벤트 루프(Event Loop)와 브라우저의 환경"></p>
-<p>자바스크립트 엔진은 크게 콜 스택 영역과 힙 영역으로 나뉜다. 흔히 비동기 호출을 위해 사용하는 <code>setTimeout</code>이나 <code>XMLHttpRequest</code>와 같은 함수들은 자바스크립트 엔진이 아닌 Web API 영역에 따로 정의되어 있음을 확인할 수 있다. 비동기 방식을 가능하게 하는 이벤트 루프와 태스트 큐(이벤트 큐) 또한 자바스크립트 엔진 외부에 구현되어있다.</p>
-<p><strong><em>1. Call Stack(호출 스택)</em></strong><br>작업이 요청되면(함수가 실행되면) 요청된 작업은 순차적으로 Call Stack에 쌓이게 되고 순차적으로 실행된다. 자바스크립트는 단 하나의 Call Stack을 사용하기 때문에 해당 task가 종료하기 전까지는 다른 어떤 task도 수행될 수 없다.</p>
-<p><strong><em>2. Heap</em></strong><br>힙은 동적으로 생성된 객체 인스턴스가 할당되는 영역이다.</p>
-<p>이와 같이 자바스크립트 엔진은 단순히 작업이 요청되면 요청된 작업을 Call Stack을 사용하여 순차적으로 실행할 뿐이다. 앞에서 언급한 동시성(Concurrency)을 지원하기 위해 필요한 <em>비동기 요청(이벤트를 포함) 처리는 자바스크립트 엔진을 구동하는 환경, 즉 브라우저(또는 Node.js)가 담당한다.</em></p>
-<p><strong><em>3. Event Queue(Task Queue)</em></strong><br>비동기 처리 함수의 콜백 함수, 비동기식 이벤트 핸들러, Timer 함수(setTimeout(), setInterval())가 보관되는 영역이다. <strong>이벤트 루프(Event Loop)에 의해 특정 시점(Call Stack이 비어졌을 때)에 순차적으로 Call Stack으로 이동되어 실행된다.</strong></p>
-<p><strong><em>4. Event Loop(이벤트 루프)</em></strong><br>Call Stack내에서 1) 현재 실행중인 task가 있는지, 그리고 2) Event Queue에 task가 있는지 반복하여 확인한다.</p>
-<p>아래의 예제가 어떻게 동작할지 살펴보자.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</div><div class="line">  func2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</div><div class="line">  &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">  func3();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func1();</div></pre></td></tr></table></figure>
-<p>함수 func1이 호출되면 함수 func1은 Call Stack에 쌓인다. 그리고 함수 func1은 함수 func2을 호출하므로 함수 func2가 Call Stack에 쌓이고 setTimeout가 호출된다. setTimeout의 핸들러는 즉시 실행되지 않고 지정 대기 시간만큼 기다리다가 이벤트 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다.</p>
-<p><img src="http://poiemaweb.com/img/event-loop.gif" alt="이벤트 루프(Event Loop)에 의한 setTimeout 핸들러의 실행"></p>
-<p>DOM 이벤트도 이와 같이 동작한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</div><div class="line">  func2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// &lt;button id="foo"&gt;foo&lt;/button&gt;</span></div><div class="line">  <span class="keyword">var</span> elem = <span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>);</div><div class="line"></div><div class="line">  elem.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.style.backgroundColor = <span class="string">'indigo'</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  func3();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func1();</div></pre></td></tr></table></figure>
-<p>함수 func1이 호출되면 함수 func1은 Call Stack에 쌓인다. 그리고 함수 func1은 함수 func2을 호출하므로 함수 func2가 Call Stack에 쌓이고 addEventListener가 호출된다. addEventListener의 콜백함수는 foo 버튼이 클릭되어 “onclick” 이벤트가 발생하면 이벤트 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다.</p>
-<h3 id="Nodejs-환경"><a href="#Nodejs-환경" class="headerlink" title="Nodejs 환경"></a>Nodejs 환경</h3><p><img src="https://camo.githubusercontent.com/cb45689d053b03f76965aa02fff3b049ce79e533/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f42743579774a72494541414b4a51742e6a7067" alt="nodejs 환경"></p>
-<p>Node.js는 비동기 IO를 지원하기 위해 libuv 라이브러리를 사용하며, 이 libuv가 이벤트 루프를 제공한다. 자바스크립트 엔진은 비동기 작업을 위해 Node.js의 API를 호출하며, 이때 넘겨진 콜백은 libuv의 이벤트 루프를 통해 스케쥴되고 실행된다.</p>
-<hr>
-<p>결론적으로, 자바스크립트가 단일 스레드 기반의 언어라는 말은 <strong>자바스크립트 엔진이 단일 호출 스택을 사용한다</strong>는 관점에서만 사실이다. 실제 자바스크립트가 구동되는 환경(브라우저, nodejs 등)에서는 주로 여러개의 스레드가 사용되며 이러한 구동 환경이 단일 호출 스택을 사용하는 자바스크립트 엔진과 상호 연동하기 위해 사용하는 장치가 바로 이벤트 루프이다.</p>
-<hr>
-<p>Reference</p>
-<p><a href="http://poiemaweb.com/js-async" target="_blank" rel="external">Poiemaweb</a>  </p>
-<p><a href="https://github.com/nhnent/fe.javascript/wiki/June-13-June-17,-2016" target="_blank" rel="external">nhnent/github</a></p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-    <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
-    <span class="a2a_divider"></span>
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_twitter"></a>
-    <a class="a2a_button_google_plus"></a>
-    <a class="a2a_button_pinterest"></a>
-    <a class="a2a_button_tumblr"></a>
-</div>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-<style>
-    .a2a_menu {
-        border-radius: 4px;
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
     }
-    .a2a_menu a {
-        margin: 2px 0;
-        font-size: 14px;
-        line-height: 16px;
-        border-radius: 4px;
-        color: inherit !important;
-        font-family: 'Microsoft Yahei';
-    }
-    #a2apage_dropdown {
-        margin: 10px 0;
-    }
-    .a2a_mini_services {
-        padding: 10px;
-    }
-    a.a2a_i,
-    i.a2a_i {
-        width: 122px;
-        line-height: 16px;
-    }
-    a.a2a_i .a2a_svg,
-    a.a2a_more .a2a_svg {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: top;
-        background-size: 16px;
-    }
-    a.a2a_i {
-        border: none !important;
-    }
-    a.a2a_menu_show_more_less {
-        margin: 0;
-        padding: 10px 0;
-        line-height: 16px;
-    }
-    .a2a_mini_services:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-    .a2a_mini_services{*+height:1%;}
-</style>
-
-
-        </footer>
-    </div>
-</article>
-
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon fa"></i></a>
-    <div class="sidebar-top">
-        <p>follow</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/hyeseung.lee.93" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/huusz" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="https://huusz.github.io/feed.xml" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/Nodejs/nodejs/01.basic/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            [node] node 시작하기
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/Javascript/Javascript/03.Closure/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">[JS] 클로져 Closure</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
-    <div class="widgets-container">
-        
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/03.inner/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="`.git`의 정체: git의 내부" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/03.inner/" class="title">`.git`의 정체: git의 내부</a></p>
-                            <p class="item-date"><time datetime="2017-10-21T19:21:58.000Z" itemprop="datePublished">2017-10-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Git/GIT/02.diffrence-branch-command/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.unixstickers.com/image/cache/data/stickers/git/git-type.sh-600x600.png)" alt="git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2017/Git/GIT/02.diffrence-branch-command/" class="title">git remote prune, git prune, git fetch --prune 등등 명령들 간 무슨 차이가 있나요?</a></p>
-                            <p class="item-date"><time datetime="2017-10-19T17:10:46.000Z" itemprop="datePublished">2017-10-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Log/Log/01.dada-log-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lh3.googleusercontent.com/-3h309I9VX1w/WdIAFCTzKhI/AAAAAAAAAbU/9HlUNs0Qi6QkdvWJE7MmITLOZajR4jwIwCL0BGAs/w530-d-h305-n-rw/origin.png)" alt="Semantic-ui-react와 css-module을 같이 사용할 수 없을까?" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Log/">Log</a></p>
-                            <p class="item-title"><a href="/2017/Log/Log/01.dada-log-01/" class="title">Semantic-ui-react와 css-module을 같이 사용할 수 없을까?</a></p>
-                            <p class="item-date"><time datetime="2017-10-02T07:31:11.000Z" itemprop="datePublished">2017-10-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/React/React/01.basic/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn-images-1.medium.com/max/2000/1*HSisLuifMO6KbLfPOKtLow.jpeg)" alt="[React] 리액트 입문하기" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/React/">React</a></p>
-                            <p class="item-title"><a href="/2017/React/React/01.basic/" class="title">[React] 리액트 입문하기</a></p>
-                            <p class="item-date"><time datetime="2017-09-20T11:32:01.000Z" itemprop="datePublished">2017-09-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://allvectorlogo.com/img/2016/05/node-js-logo.png)" alt="[node]  REST API: POST VS PUT" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
-                            <p class="item-title"><a href="/2017/Nodejs/nodejs/00.POST VS PUT/" class="title">[node]  REST API: POST VS PUT</a></p>
-                            <p class="item-date"><time datetime="2017-09-09T09:42:28.000Z" itemprop="datePublished">2017-09-09</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Log/">Log</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">2</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/asynchronous/" style="font-size: 10px;">asynchronous</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idempotent/" style="font-size: 10px;">idempotent</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/nesting/" style="font-size: 10px;">nesting</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/object/" style="font-size: 10px;">object</a> <a href="/tags/prototype/" style="font-size: 10px;">prototype</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sass-syntax/" style="font-size: 10px;">sass syntax</a> <a href="/tags/semantic-ui-react/" style="font-size: 10px;">semantic-ui-react</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/urlshortner/" style="font-size: 10px;">urlshortner</a> <a href="/tags/webform/" style="font-size: 10px;">webform</a>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="https://huusz.github.io/" class="logo" style="font-size: 32px">Huusz's Log</a>
-                </h1>
-                <p>&copy; 2017 huusz</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-        
-    
-    <script>
-    var disqus_shortname = 'huuszLog';
-    
-    
-    var disqus_url = 'http://huusz.github.io/2017/Javascript/Javascript/04.Async,EventLoop/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
-</body>
-</html>
+  })();</script><div class="scroll-top"><span class="arrow-icon"></span></div><footer class="app-footer"><p class="copyright">&copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script src="/js/script.js"></script></body></html>
