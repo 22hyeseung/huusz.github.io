@@ -7,7 +7,7 @@ title: 휴지블로그
 subtitle:
 description:
 author: huusz
-language: ko
+language: en
 timezone: Asia/Seoul
 
 # URL
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: vexo
+theme: nayo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

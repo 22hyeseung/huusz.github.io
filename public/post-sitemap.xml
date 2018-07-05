@@ -7,48 +7,24 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/10.how-to-uninstall-node/</loc>
-        <lastmod>2017-11-27T13:31:23.446Z</lastmod>
+        <loc>http://huusz.github.io/2018/Test/how-to-test/</loc>
+        <lastmod>2018-07-02T14:38:22.104Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/09.session/</loc>
-        <lastmod>2017-11-27T12:24:45.000Z</lastmod>
+        <loc>http://huusz.github.io/2018/%EB%A9%8D%EC%B2%AD/%EB%A9%8D%EC%B2%AD1/</loc>
+        <lastmod>2018-06-30T13:20:10.164Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/03.inner/</loc>
-        <lastmod>2017-11-27T12:21:01.237Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/React/React/01.basic/</loc>
-        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/02.diffrence-branch-command/</loc>
-        <lastmod>2017-11-17T09:24:21.216Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Git/GIT/01.git-connect-github/</loc>
-        <lastmod>2017-11-17T09:24:17.117Z</lastmod>
+        <loc>http://huusz.github.io/2018/TIL/TIL180529-unit-test-pattern/</loc>
+        <lastmod>2018-06-22T11:02:58.822Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -56,127 +32,7 @@
 
     <url>
         <loc>http://huusz.github.io/2017/Log/Log/01.dada-log-01/</loc>
-        <lastmod>2017-11-16T16:13:11.788Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/02.extensions/</loc>
-        <lastmod>2017-09-21T06:22:28.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Sass/SCSS/03.sassScript/</loc>
-        <lastmod>2017-09-21T06:22:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/01.basic/</loc>
-        <lastmod>2017-09-21T06:07:02.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/02.http/</loc>
-        <lastmod>2017-09-21T06:07:01.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/03.Middleware/</loc>
-        <lastmod>2017-09-21T06:07:01.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/04.Template%20Language/</loc>
-        <lastmod>2017-09-21T06:06:58.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/05.Web%20form/</loc>
-        <lastmod>2017-09-21T06:06:57.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/06.service%20development/</loc>
-        <lastmod>2017-09-21T06:06:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/07.Express%20Middleware/</loc>
-        <lastmod>2017-09-21T06:06:53.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/08.cookie/</loc>
-        <lastmod>2017-09-21T06:06:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Nodejs/nodejs/00.POST%20VS%20PUT/</loc>
-        <lastmod>2017-09-21T06:06:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Javascript/Javascript/02.Prototype/</loc>
-        <lastmod>2017-09-21T05:53:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Javascript/Javascript/01.Object/</loc>
-        <lastmod>2017-09-21T05:52:59.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Javascript/Javascript/03.Closure/</loc>
-        <lastmod>2017-09-21T05:52:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2017/Javascript/Javascript/04.Async,EventLoop/</loc>
-        <lastmod>2017-09-21T05:52:43.000Z</lastmod>
+        <lastmod>2017-11-16T16:13:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

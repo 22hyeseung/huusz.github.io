@@ -7,43 +7,29 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Javascript/</loc>
-        <lastmod>2017-09-21T05:53:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/categories/Sass/</loc>
-        <lastmod>2017-09-21T06:22:28.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/categories/Log/</loc>
-        <lastmod>2017-11-16T16:13:11.788Z</lastmod>
+        <lastmod>2017-11-16T16:13:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/React/</loc>
-        <lastmod>2017-11-21T10:10:40.591Z</lastmod>
+        <loc>http://huusz.github.io/categories/TIL/</loc>
+        <lastmod>2018-06-22T11:02:58.822Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Git/</loc>
-        <lastmod>2017-11-27T12:21:01.237Z</lastmod>
+        <loc>http://huusz.github.io/categories/%EB%A9%8D%EC%B2%AD/</loc>
+        <lastmod>2018-06-30T13:20:10.164Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Nodejs/</loc>
-        <lastmod>2017-11-27T13:31:23.446Z</lastmod>
+        <loc>http://huusz.github.io/categories/Test/</loc>
+        <lastmod>2018-07-02T14:38:22.104Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
