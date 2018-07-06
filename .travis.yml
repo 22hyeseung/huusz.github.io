@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+- "9"
+# Hexo source 코드는 source branch에서 작업되고 있어야합니다.
+branches:
+  only:
+  - source
+before_install:
+- npm install -g hexo
+install:
+- npm install
+
+before_script:
+- git config --global user.name "huusz"
+- git config --global user.email "irinso93@gmail.com"
+- sed -i "s/__GITHUB_TOKEN__/${__GITHUB_TOKEN__}/" _config.yml
+
+script:
+- hexo clean
+- hexo generate
+- hexo deploy
+# _config.yml
+# 기타 Hexo 설정...
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://e2a4dd81703bff4d342d0da1b39887d56a957a12@github.com/huusz/huusz.github.io
+  branch: master
+  message: "update blog"
