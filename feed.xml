@@ -37,11 +37,11 @@
       <category term="Test" scheme="http://huusz.github.io/categories/Test/"/>
     
     
-      <category term="Jest" scheme="http://huusz.github.io/tags/Jest/"/>
-    
       <category term="Unit test" scheme="http://huusz.github.io/tags/Unit-test/"/>
     
       <category term="React test" scheme="http://huusz.github.io/tags/React-test/"/>
+    
+      <category term="Jest" scheme="http://huusz.github.io/tags/Jest/"/>
     
   </entry>
   
