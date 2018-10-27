@@ -7,13 +7,6 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/TIL/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/categories/Log/</loc>
         <lastmod>2018-07-16T12:28:06.674Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -21,15 +14,15 @@
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/%EB%A9%8D%EC%B2%AD/</loc>
-        <lastmod>2018-07-16T12:28:06.675Z</lastmod>
+        <loc>http://huusz.github.io/categories/Test/</loc>
+        <lastmod>2018-10-27T14:53:49.315Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://huusz.github.io/categories/Test/</loc>
-        <lastmod>2018-10-27T14:53:49.315Z</lastmod>
+        <loc>http://huusz.github.io/categories/TIL/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

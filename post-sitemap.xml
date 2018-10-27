@@ -7,24 +7,16 @@
     </url>
 
     <url>
+        <loc>http://huusz.github.io/2018/TIL/TIL180529-unit-test-pattern/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://huusz.github.io/2018/Test/how-to-test/</loc>
         <lastmod>2018-10-27T14:53:49.315Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2018/%EB%A9%8D%EC%B2%AD/%EB%A9%8D%EC%B2%AD1/</loc>
-        <lastmod>2018-07-16T12:28:06.675Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/2018/TIL/TIL180529-unit-test-pattern/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

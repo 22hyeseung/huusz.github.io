@@ -2,64 +2,8 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://huusz.github.io/tags/Test-style/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/AAA-3A/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Arrange-Act-Assert/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Given-When-Then/</loc>
-        <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://huusz.github.io/tags/semantic-ui-react/</loc>
         <lastmod>2018-07-16T12:28:06.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Jest/</loc>
-        <lastmod>2018-07-16T12:28:06.675Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Enzyme/</loc>
-        <lastmod>2018-07-16T12:28:06.675Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Test/</loc>
-        <lastmod>2018-07-16T12:28:06.675Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://huusz.github.io/tags/Unit-test/</loc>
-        <lastmod>2018-10-27T14:53:49.315Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -74,6 +18,41 @@
     <url>
         <loc>http://huusz.github.io/tags/TDD/</loc>
         <lastmod>2018-10-27T14:53:49.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/Unit-test/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/Test-style/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/AAA-3A/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/Arrange-Act-Assert/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://huusz.github.io/tags/Given-When-Then/</loc>
+        <lastmod>2018-10-27T14:57:30.303Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

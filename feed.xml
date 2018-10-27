@@ -46,48 +46,19 @@
   </entry>
   
   <entry>
-    <title>Enzyme - Cannot read property &#39;have&#39; of undefined</title>
-    <link href="http://huusz.github.io/2018/%EB%A9%8D%EC%B2%AD/%EB%A9%8D%EC%B2%AD1/"/>
-    <id>http://huusz.github.io/2018/멍청/멍청1/</id>
-    <published>2018-06-30T14:18:53.000Z</published>
-    <updated>2018-07-16T12:28:06.675Z</updated>
-    
-    <content type="html"><![CDATA[<p>리액트 컴포넌트 유닛테스트를 연습하려던 차에 시작부터 막힌 부분</p><p><img src="/images/enzyme01.png" alt=""></p><p>Cannot read property ‘have’ of undefined</p><p>???????????</p><p><img src="/images/enzyme02.png" alt=""></p><p>공식 문서에서 이렇게 하라고 했는데 ??????</p><p>결론부터 말하면 <code>to.have.lengthOf()</code> 는 테스트 프레임워크 chai의 문법이다.<br>나는 jest를 사용하고 있기 때문에.. <code>toHaveLength()</code> 로 해줘야 한다.<br>jest도, chai도 아닌 다른 테스트 프레임워크를 사용하고 있다면, 그 프레임워크의 길이 검사 문법을 사용해야 한다.</p><p>나는 진짜 똥 멍청이다..</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;리액트 컴포넌트 유닛테스트를 연습하려던 차에 시작부터 막힌 부분&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/images/enzyme01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;Cannot read property ‘have’ of undefined&lt;/p&gt;&lt;p&gt;??
-      
-    
-    </summary>
-    
-      <category term="멍청" scheme="http://huusz.github.io/categories/%EB%A9%8D%EC%B2%AD/"/>
-    
-    
-      <category term="Jest" scheme="http://huusz.github.io/tags/Jest/"/>
-    
-      <category term="Enzyme" scheme="http://huusz.github.io/tags/Enzyme/"/>
-    
-      <category term="Test" scheme="http://huusz.github.io/tags/Test/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Unit test style</title>
     <link href="http://huusz.github.io/2018/TIL/TIL180529-unit-test-pattern/"/>
     <id>http://huusz.github.io/2018/TIL/TIL180529-unit-test-pattern/</id>
     <published>2018-05-29T14:18:53.000Z</published>
-    <updated>2018-07-16T12:28:06.674Z</updated>
+    <updated>2018-10-27T14:57:30.303Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Test-style"><a href="#Test-style" class="headerlink" title="Test style"></a>Test style</h1><ol><li>Setup, Exercise, Verify and Teardown (<a href="http://xunitpatterns.com/Four%20Phase%20Test.html" target="_blank" rel="noopener">Four-phases test pattern</a>)</li><li>Given, When, Then (<a href="https://dannorth.net/introducing-bdd/" target="_blank" rel="noopener">BDD</a>)</li><li>Arrange, Act, Assert(<a href="https://xp123.com/articles/3a-arrange-act-assert/" target="_blank" rel="noopener">AAA</a>)</li></ol><p>모두 기본적인 아이디어는 같다.</p><ol start="4"><li>[Setup/ Given/ Arrange] 테스트 할 대상에게, 테스트를 위해 사전에 필요한 조건들을 사전에 갖추게 하고 (기본 값, 파라미터, 선행 되어야 할 함수 실행 등)</li><li>[Exercise/ When/ Act]테스트 대상 함수를 호출하고</li><li>[Verify/ Then/ Assert]테스트 대상이 예상한 대로 작동하는지 확인한다.</li></ol><p><sub>* Four-phases test pattern의 Teardown은 테스트에 의해 만들어진 fixture를 해제하는 단계로 필수는 아니다.</sub></p><hr><p>Reference</p><ul><li><a href="http://xunitpatterns.com/Four%20Phase%20Test.html" target="_blank" rel="noopener">Meszaros - Four-phases test pattern</a></li><li><a href="https://xp123.com/articles/3a-arrange-act-assert/" target="_blank" rel="noopener">Bill Wake - 3A(AAA)</a></li><li><a href="https://msdn.microsoft.com/ko-kr/library/hh694602.aspx" target="_blank" rel="noopener">MS docs: AAA example</a></li><li><a href="https://dannorth.net/introducing-bdd/" target="_blank" rel="noopener">BDD - Given When Then</a></li><li><a href="https://martinfowler.com/bliki/GivenWhenThen.html" target="_blank" rel="noopener">martinfowler.com: Given-When-Then</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<ol><li>Setup, Exercise, Verify and Teardown (<a href="http://xunitpatterns.com/Four%20Phase%20Test.html" target="_blank" rel="noopener">Four-phases test pattern</a>)</li><li>Given, When, Then (<a href="https://dannorth.net/introducing-bdd/" target="_blank" rel="noopener">BDD</a>)</li><li>Arrange, Act, Assert(<a href="https://xp123.com/articles/3a-arrange-act-assert/" target="_blank" rel="noopener">AAA</a>)</li></ol><p>모두 기본적인 아이디어는 같다.</p><ol start="4"><li>[Setup/ Given/ Arrange] 테스트 할 대상에게, 테스트를 위해 사전에 필요한 조건들을 사전에 갖추게 하고 (기본 값, 파라미터, 선행 되어야 할 함수 실행 등)</li><li>[Exercise/ When/ Act]테스트 대상 함수를 호출하고</li><li>[Verify/ Then/ Assert]테스트 대상이 예상한 대로 작동하는지 확인한다.</li></ol><p><sub>* Four-phases test pattern의 Teardown은 테스트에 의해 만들어진 fixture를 해제하는 단계로 필수는 아니다.</sub></p><hr><p>Reference</p><ul><li><a href="http://xunitpatterns.com/Four%20Phase%20Test.html" target="_blank" rel="noopener">Meszaros - Four-phases test pattern</a></li><li><a href="https://xp123.com/articles/3a-arrange-act-assert/" target="_blank" rel="noopener">Bill Wake - 3A(AAA)</a></li><li><a href="https://msdn.microsoft.com/ko-kr/library/hh694602.aspx" target="_blank" rel="noopener">MS docs: AAA example</a></li><li><a href="https://dannorth.net/introducing-bdd/" target="_blank" rel="noopener">BDD - Given When Then</a></li><li><a href="https://martinfowler.com/bliki/GivenWhenThen.html" target="_blank" rel="noopener">martinfowler.com: Given-When-Then</a></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Test-style&quot;&gt;&lt;a href=&quot;#Test-style&quot; class=&quot;headerlink&quot; title=&quot;Test style&quot;&gt;&lt;/a&gt;Test style&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;Setup, Exercise, Verify and Teard
+        &lt;ol&gt;&lt;li&gt;Setup, Exercise, Verify and Teardown (&lt;a href=&quot;http://xunitpatterns.com/Four%20Phase%20Test.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Fou
       
     
     </summary>
